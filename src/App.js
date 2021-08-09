@@ -8,6 +8,8 @@ import AdminRouter from './components/router/AdminRouter';
 import MyRouter from './components/router/MyRouter';
 import Header from './components/Header';
 
+import Home from './pages/public/Home';
+
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -25,7 +27,7 @@ const App = () => {
             <Helmet>
               <title>Inicio | SallEvent</title>
             </Helmet>
-            <p>Inicio</p>
+            <Home />
           </PublicRoute>
           <PublicRoute path="/services">
             <Helmet>
