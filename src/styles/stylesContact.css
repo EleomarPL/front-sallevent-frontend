@@ -1,0 +1,51 @@
+.container-background {
+  background: black url("../img/contact/contact.png") no-repeat scroll;
+  background-size: cover;
+}
+.bg-contact {
+  background: rgba(172, 169, 169, 0.4);
+}
+.border-radius-contact {
+  border-radius: 25px 25px 15px 15px;
+}
+#container-form {
+  border-radius: 0 0 15px 15px;
+}
+.form-contact > div.form-group > input[id] {
+  border: none;
+  border-bottom: 2px solid white;
+  color: #ebebeb;
+  outline: none;
+}
+.input {
+  position: relative;
+}
+.input .animation-focus {
+  width: 100%;
+  position: absolute;
+  bottom: 2px;
+}
+.input .animation-focus > div {
+  width: 0;
+  height: auto;
+  position: absolute;
+  transition: width 0.4s linear;
+}
+.animation-focus .left {
+  right: 50%;
+}
+.animation-focus .right {
+  left: 50%;
+}
+.input input[name]:focus+.animation-focus > div {
+  width: 50%;
+  border-bottom: 2px solid #ffc107;
+}
+@media (min-width: 992px) {
+  .border-radius-contact {
+     border-radius: 25px;
+  }
+  #container-form {
+     border-radius: 15px;
+  }
+}

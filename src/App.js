@@ -9,6 +9,7 @@ import MyRouter from './components/router/MyRouter';
 import Header from './components/Header';
 
 import Home from './pages/public/Home';
+import Contact from './pages/public/Contact';
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -39,7 +40,7 @@ const App = () => {
             <Helmet>
               <title>Contacto | SallEvent</title>
             </Helmet>
-            <p>Contacto</p>
+            <Contact />
           </PublicRoute>
           <PublicRoute path="/register">
             <Helmet>
