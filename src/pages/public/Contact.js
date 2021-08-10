@@ -1,5 +1,8 @@
 import React from 'react';
 
+import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail}
+  from '../../services/validations/generalValidations';
+
 import '../../styles/stylesContact.css';
 
 const Contact = () => {
@@ -7,6 +10,39 @@ const Contact = () => {
   const handleSubmitMessageContact = (evt) => {
     evt.preventDefault();
 
+    let dataMessageContact = {
+      fullName: {
+        name: 'Nombre completo',
+        minLength: 2,
+        maxLength: 200,
+        value: evt.target[0].value
+      },
+      email: {
+        name: 'Correo electronico',
+        minLength: 10,
+        maxLength: 80,
+        value: evt.target[1].value
+      },
+      phone: {
+        name: 'Telefono',
+        minLength: 9,
+        maxLength: 14,
+        value: evt.target[2].value
+      },
+      text: {
+        name: 'Mensaje',
+        minLength: 2,
+        maxLength: 300,
+        value: evt.target[3].value
+      }
+    };
+    if ( !isObjectValuesNull(dataMessageContact) && validateLength(dataMessageContact) ) {
+      if ( isNumberValue({name: 'Telefono', value: dataMessageContact['phone'].value}) &&
+        isValidateEmail(dataMessageContact['email'].value)) {
+        
+        console.log('yea !!!');
+      }
+    }
   };
 
   return (
