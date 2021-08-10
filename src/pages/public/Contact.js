@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail}
   from '../../services/validations/generalValidations';
+import useContact from '../../hooks/useContact';
 
 import '../../styles/stylesContact.css';
 
 const Contact = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const {createMessageContact} = useContact();
 
   const handleSubmitMessageContact = (evt) => {
     evt.preventDefault();
@@ -40,7 +43,22 @@ const Contact = () => {
       if ( isNumberValue({name: 'Telefono', value: dataMessageContact['phone'].value}) &&
         isValidateEmail(dataMessageContact['email'].value)) {
         
-        console.log('yea !!!');
+        setIsLoading(true);
+        createMessageContact({
+          fullName: dataMessageContact.fullName.value,
+          email: dataMessageContact.email.value,
+          phone: dataMessageContact.phone.value,
+          text: dataMessageContact.text.value
+        }).then( () => {
+          setIsLoading(false);
+
+          evt.target[0].value = '';
+          evt.target[1].value = '';
+          evt.target[2].value = '';
+          evt.target[3].value = '';
+        }).catch(() => {
+          setIsLoading(false);
+        });
       }
     }
   };
@@ -106,6 +124,13 @@ const Contact = () => {
                 type="submit"
                 className="btn btn-warning btn-block text-white mt-2"
               >
+                { isLoading &&
+                  <span
+                    className="spinner-border spinner-border-sm" role="status"
+                    aria-hidden="true"
+                    style={ {marginRight: '0.5rem'} }
+                  />
+                }
                 Envía un mensaje
               </button>
             </form>
