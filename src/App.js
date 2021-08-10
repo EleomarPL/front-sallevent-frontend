@@ -1,6 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { BrowserRouter, Switch } from 'react-router-dom';
+import {ToastContainer} from 'react-toastify';
 
 import { AuthProvider } from './contexts/Auth';
 import PublicRoute from './components/router/PublicRouter';
@@ -15,6 +16,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import '@fontsource/roboto';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './styles/index.css';
 
@@ -67,6 +69,12 @@ const App = () => {
             <p>Administrador</p>
           </AdminRouter>
         </Switch>
+        <ToastContainer position="top-right"
+          autoClose={ 5000 } hideProgressBar={ false }
+          newestOnTop={ false } closeOnClick
+          rtl={ false } pauseOnFocusLoss
+          draggable={ false } pauseOnHover
+        />
       </BrowserRouter>
     </AuthProvider>
   );
