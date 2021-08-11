@@ -12,6 +12,7 @@ import Header from './components/Header';
 import Home from './pages/public/Home';
 import Contact from './pages/public/Contact';
 import Register from './pages/public/Register';
+import Login from './pages/public/Login';
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -55,7 +56,7 @@ const App = () => {
             <Helmet>
               <title>Acceder | SallEvent</title>
             </Helmet>
-            <p>Acceder</p>
+            <Login />
           </PublicRoute>
           <MyRouter path="/my">
             <Helmet>
