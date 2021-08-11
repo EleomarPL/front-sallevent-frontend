@@ -1,11 +1,36 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
+
+import useLogin from '../../hooks/useLogin';
+import SpinnerButtonLoading from '../../components/common/SpinnerButtonLoading';
+import {notifyWarning} from '../../consts/notifications';
+import Auth from '../../contexts/Auth';
 
 import '../../styles/stylesRegister.css';
 
+
 const Login = () => {
+  const {login} = useLogin();
+  const {setUserData} = useContext(Auth);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmitLogin = (evt) => {
     evt.preventDefault();
+    
+    if (userName.trim() !== '' && password.trim() !== '') {
+      setIsLoading(true);
+      login({ userName, password }).then((dataUser) => {
+        setIsLoading(false);
+        setUserData(dataUser);
+      }).catch(() => {
+        setIsLoading(false);
+      });
+    } else {
+      notifyWarning('Rellene todos los campos');
+    }
 
   };
 
@@ -26,7 +51,8 @@ const Login = () => {
                     <input type="text" id="user"
                       className="form-control form-control mt-2"
                       placeholder="Usuario" required
-                      autoFocus
+                      onChange={ (evt) => setUserName(evt.target.value) }
+                      autoFocus value={ userName }
                     />
                   </div>
                   <div className="pt-2 pb-4">
@@ -34,9 +60,17 @@ const Login = () => {
                     <input type="password" id="inputPassword"
                       className="form-control form-control mt-4"
                       placeholder="Contraseña" required
+                      onChange={ (evt) => setPassword(evt.target.value) }
+                      value={ password }
                     />
                   </div>
-                  <button type="submit" className="btn btn-lg btn-primary btn-block-4 my-4 px-4">
+                  <button
+                    type="submit" className="btn btn-lg btn-primary btn-block-4 my-4 px-4"
+                    disabled={ isLoading }
+                  >
+                    { isLoading &&
+                      <SpinnerButtonLoading />
+                    }
                     Acceder
                   </button>
                 </form>
