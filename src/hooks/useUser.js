@@ -9,7 +9,8 @@ const useUser = () => {
         {
           name, lastName, motherLastName, phone, email, userName, password
         });
-      notifySuccess('Mensaje enviado');
+      notifySuccess(`¡Felicidades! "${name}" has sido registrado exitosamente. Por favor inicia sesión`);
+      return true;
     } catch ( err ) {
       if (err.message === 'Request failed with status code 409') {
         notifyWarning('Ingresa un diferente nombre de usuario');
@@ -17,6 +18,7 @@ const useUser = () => {
       if (err.message === 'Network Error') {
         notifyError('No encontramos una conexión a internet');
       }
+      return false;
     }
   };
 

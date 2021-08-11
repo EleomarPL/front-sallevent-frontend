@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
+import {useHistory} from 'react-router-dom';
+
+import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail}
+  from '../../services/validations/generalValidations';
+import useUser from '../../hooks/useUser';
+import {notifyWarning} from '../../consts/notifications';
 
 import '../../styles/stylesRegister.css';
+import SpinnerButtonLoading from '../../components/common/SpinnerButtonLoading';
 
 const Register = () => {
+
+  const {createNewUser} = useUser();
+  const history = useHistory();
+
+  const [messageStatusPassword, setMessageStatusPaswword] = useState({ color: '', text: '' });
+  const [isLoading, setIsLoading] = useState();
 
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -15,9 +28,87 @@ const Register = () => {
 
   const handleChangeState = (evt, setNewValue) => setNewValue(evt.target.value);
 
+  const verifyPasswordChange = (evt, setNewValue) => {
+    setNewValue(evt.target.value);
+
+    if (password !== evt.target.value )
+      setMessageStatusPaswword({
+        color: '#D70B00',
+        text: 'Las contraseñas no coinciden'
+      });
+    else
+      setMessageStatusPaswword({
+        color: '#347d39',
+        text: 'Las contraseñas coinciden'
+      });
+  };
   const handleSubmitRegister = (evt) => {
     evt.preventDefault();
-    
+    if (confirmPassword.trim() === password.trim()) {
+      let dataNewUser = {
+        name: {
+          name: 'Nombre',
+          minLength: 2,
+          maxLength: 45,
+          value: name
+        },
+        lastName: {
+          name: 'Apellido paterno',
+          minLength: 2,
+          maxLength: 45,
+          value: lastName
+        },
+        motherLastName: {
+          name: 'Apellido materno',
+          minLength: 2,
+          maxLength: 45,
+          value: motherLastName
+        },
+        phone: {
+          name: 'Telefono',
+          minLength: 9,
+          maxLength: 14,
+          value: phone
+        },
+        email: {
+          name: 'Correo electronico',
+          minLength: 10,
+          maxLength: 80,
+          value: email
+        },
+        userName: {
+          name: 'Usuario',
+          minLength: 6,
+          maxLength: 45,
+          value: userName
+        },
+        password: {
+          name: 'Contraseña',
+          minLength: 6,
+          maxLength: 45,
+          value: password
+        }
+      };
+
+      if ( !isObjectValuesNull(dataNewUser) && validateLength(dataNewUser) ) {
+        if ( isNumberValue({name: 'Telefono', value: dataNewUser['phone'].value}) &&
+          isValidateEmail(dataNewUser['email'].value)) {
+
+          setIsLoading(true);
+          createNewUser({
+            name, lastName, motherLastName, phone, email, userName, password
+          }).then( (response) => {
+            setIsLoading(false);
+            if (response)
+              history.push('/login');
+          }).catch(() => {
+            setIsLoading(false);
+          });
+        }
+      }
+    } else {
+      notifyWarning('Las contraseñas no coinciden');
+    }
   };
 
   return (
@@ -99,13 +190,19 @@ const Register = () => {
                   <input type="password" id="confirmpassword"
                     value={ confirmPassword }
                     className="form-control mr-sm-1 mr-md-2" placeholder="Confirmar contraseña"
-                    onChange={ (evt) => handleChangeState(evt, setConfirmPassword) }
+                    onChange={ (evt) => verifyPasswordChange(evt, setConfirmPassword) }
                     required
                   />
                 </div>
               </div>
+              <small style={ {fontWeight: '600', color: messageStatusPassword.color} }>
+                { messageStatusPassword.text }
+              </small>
               <div className="w-100 mt-4">
                 <button type="submit" className="btn btn-lg btn-primary d-block px-4 mx-auto">
+                  { isLoading &&
+                    <SpinnerButtonLoading />
+                  }
                   Registrarme
                 </button>
               </div>
