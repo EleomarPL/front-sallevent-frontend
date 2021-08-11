@@ -10,6 +10,7 @@ import MyRouter from './components/router/MyRouter';
 import Header from './components/Header';
 
 import Home from './pages/public/Home';
+import Services from './pages/public/Services';
 import Contact from './pages/public/Contact';
 import Register from './pages/public/Register';
 import Login from './pages/public/Login';
@@ -38,7 +39,7 @@ const App = () => {
             <Helmet>
               <title>Servicios | SallEvent</title>
             </Helmet>
-            <p>Servicios</p>
+            <Services />
           </PublicRoute>
           <PublicRoute path="/contact">
             <Helmet>
