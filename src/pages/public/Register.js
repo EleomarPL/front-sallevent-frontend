@@ -122,7 +122,7 @@ const Register = () => {
             <form onSubmit={ handleSubmitRegister }>
               <h1 className="mb-3 font-weight-normal text-center pt-4 mt-4">Registrarme</h1>
               <div className="pt-4">
-                <label htmlFor="name" className="sr-only">Nombre</label>
+                <label htmlFor="name" className="visually-hidden-focusable">Nombre</label>
                 <input type="text"
                   id="name" className="form-control mt-2"
                   placeholder="Nombre" value={ name }
@@ -132,7 +132,7 @@ const Register = () => {
               </div>
               <div className="w-100 d-flex flex-wrap">
                 <div className="mt-4 px-0 col-lg-6 pr-lg-1">
-                  <label htmlFor="pa_lastname" className="sr-only">Apellido paterno</label>
+                  <label htmlFor="pa_lastname" className="visually-hidden-focusable">Apellido paterno</label>
                   <input type="text" value={ lastName }
                     id="pa_lastname" className="form-control"
                     onChange={ (evt) => handleChangeState(evt, setLastName) }
@@ -140,7 +140,7 @@ const Register = () => {
                   />
                 </div>
                 <div className="mt-4 px-0 col-lg-6 pl-lg-1">
-                  <label htmlFor="mo_lastname" className="sr-only">Apellido materno</label>
+                  <label htmlFor="mo_lastname" className="visually-hidden-focusable">Apellido materno</label>
                   <input type="text" value={ motherLastName }
                     id="mo_lastname" className="form-control"
                     onChange={ (evt) => handleChangeState(evt, setMotherLastName) }
@@ -150,7 +150,7 @@ const Register = () => {
               </div>
               <div className="w-100 d-flex flex-wrap">
                 <div className="mt-4 px-0 col-lg-6 pr-lg-1">
-                  <label htmlFor="email" className="sr-only">Email</label>
+                  <label htmlFor="email" className="visually-hidden-focusable">Email</label>
                   <input type="email" value={ email }
                     id="email" className="form-control"
                     onChange={ (evt) => handleChangeState(evt, setEmail) }
@@ -158,7 +158,7 @@ const Register = () => {
                   />
                 </div>
                 <div className="mt-4 px-0 col-lg-6 pl-lg-1">
-                  <label htmlFor="phone" className="sr-only">Teléfono</label>
+                  <label htmlFor="phone" className="visually-hidden-focusable">Teléfono</label>
                   <input type="tel" value={ phone }
                     id="phone" className="form-control"
                     onChange={ (evt) => handleChangeState(evt, setPhone) }
@@ -167,7 +167,7 @@ const Register = () => {
                 </div>
               </div>
               <div className="mt-4">
-                <label htmlFor="user" className="sr-only">Usuario</label>
+                <label htmlFor="user" className="visually-hidden-focusable">Usuario</label>
                 <input type="text" value={ userName }
                   id="user" className="form-control"
                   onChange={ (evt) => handleChangeState(evt, setUserName) }
@@ -175,7 +175,7 @@ const Register = () => {
                 />
               </div>
               <div className="mt-4">
-                <label htmlFor="password" className="sr-only">Contraseña</label>
+                <label htmlFor="password" className="visually-hidden-focusable">Contraseña</label>
                 <div className="d-flex flex-column flex-sm-row">
                   <input id="password" value={ password }
                     type="password" className="form-control mr-sm-1 mr-md-2"
@@ -185,7 +185,7 @@ const Register = () => {
                 </div>
               </div>
               <div id="box-confirmpass" className="mt-4">
-                <label htmlFor="confirmpassword" className="sr-only">Confirmar constraseña</label>
+                <label htmlFor="confirmpassword" className="visually-hidden-focusable">Confirmar constraseña</label>
                 <div className="d-flex flex-column flex-sm-row">
                   <input type="password" id="confirmpassword"
                     value={ confirmPassword }
