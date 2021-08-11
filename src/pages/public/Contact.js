@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail}
   from '../../services/validations/generalValidations';
 import useContact from '../../hooks/useContact';
+import SpinnerButtonLoading from '../../components/common/SpinnerButtonLoading';
 
 import '../../styles/stylesContact.css';
 
@@ -125,11 +126,7 @@ const Contact = () => {
                 className="btn btn-warning btn-block text-white mt-2"
               >
                 { isLoading &&
-                  <span
-                    className="spinner-border spinner-border-sm" role="status"
-                    aria-hidden="true"
-                    style={ {marginRight: '0.5rem'} }
-                  />
+                  <SpinnerButtonLoading />
                 }
                 Envía un mensaje
               </button>
