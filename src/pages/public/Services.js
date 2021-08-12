@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 
+import CardMessageCalendar from '../../components/cards/CardMessageCalendar';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 import CalendarReservations from '../../components/views/CalendarReservations';
 
@@ -8,7 +9,8 @@ const SomeServices = React.lazy(() => import('../../components/views/SomeService
 const Services = () => {
   return (
     <section className="container-fluid p-lg-4">
-      <div className="col-lg-12">
+      <CardMessageCalendar />
+      <div className="col-lg-12 pb-3 mt-1">
         <div className="col-lg-6">
           <CalendarReservations />
         </div>
