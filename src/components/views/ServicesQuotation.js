@@ -1,0 +1,213 @@
+import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+
+import Quotation from '../../contexts/Quotation';
+
+const ServicesQuotation = () => {
+  const {quotationData, setQuotationData} = useContext(Quotation);
+
+  useEffect(() => {
+    // example data
+    let data = [
+      {
+        'name': 'Sillas',
+        'detail': 'Sillas blancas',
+        'price': 5,
+        'id': '6116c7c9df885de4b3195b88'
+      },
+      {
+        'name': 'Mesas',
+        'detail': 'Mesas blancas',
+        'price': 10,
+        'id': '6116c7dfdf885de4b3195b89'
+      }
+    ];
+    setQuotationData({
+      ...quotationData,
+      listServices: data
+    });
+  }, []);
+  const [typeEvent, setTypeEvent] = useState({
+    selectValue: 'null',
+    inputAltValue: ''
+  });
+
+  const handleChageValueSelect = (evt) => {
+    let newValue = evt.target.value;
+
+    setTypeEvent({
+      ...typeEvent,
+      selectValue: newValue
+    });
+    setQuotationData({
+      ...quotationData,
+      typeEvent: newValue === 'other' ? '' : newValue
+    });
+  };
+
+  const handleChangeInputSelect = (evt) => {
+    setTypeEvent({
+      ...typeEvent,
+      inputAltValue: evt.target.value
+    });
+    setQuotationData({
+      ...quotationData,
+      typeEvent: evt.target.value
+    });
+  };
+
+  const handleChangeSelectTime = ({evt, isStartTime}) => {
+    if (isStartTime) {
+      setQuotationData({
+        ...quotationData,
+        starttime: {
+          ...quotationData.starttime,
+          timetable: evt.target.value
+        }
+      });
+    } else {
+      setQuotationData({
+        ...quotationData,
+        finaltime: {
+          ...quotationData.finaltime,
+          timetable: evt.target.value
+        }
+      });
+    }
+  };
+
+  const handleChangeInputTime = ({evt, isStartTime}) => {
+    if (isStartTime) {
+      setQuotationData({
+        ...quotationData,
+        starttime: {
+          ...quotationData.starttime,
+          time: evt.target.value
+        }
+      });
+    } else {
+      setQuotationData({
+        ...quotationData,
+        finaltime: {
+          ...quotationData.finaltime,
+          time: evt.target.value
+        }
+      });
+    }
+  };
+
+  const handleChangeServices = ({evt, nameService}) => {
+    setQuotationData({
+      ...quotationData,
+      [`${nameService}`]: evt.target.value
+    });
+  };
+  return (
+    <>
+      <div className="pt-4">
+        <h3 className="fw-bold mb-3">Cotización</h3>
+        <div style={ {marginLeft: '1rem'} }>
+          <div className="col-md-12 input-group align-items-center mt-2 mb-4">
+            <label htmlFor="event" style={ {marginRight: '5px'} }>Evento:</label>
+            <select id="event" className="form-select"
+              value={ typeEvent.selectValue } required
+              onChange={ handleChageValueSelect }
+              style={ {marginRight: '5px'} }
+            >
+              <option value="null" hidden>Seleccione una opción</option>
+              <option value="Graduacion">Graduacion</option>
+              <option value="Boda">Boda</option>
+              <option value="Bautizo">Bautizo</option>
+              <option value="Comunion">Comunion</option>
+              <option value="Confirmacion">Confirmacion</option>
+              <option value="Cumpleaños">Cumpleaños</option>
+              <option value="Quince años">Quince años</option>
+              <option value="Reunion">Reunion</option>
+              <option value="other">Otro</option>
+            </select>
+            { typeEvent.selectValue === 'other' &&
+              <>
+                <label
+                  htmlFor="event"
+                  className="mr-2"
+                  style={ {marginRight: '5px'} }
+                >
+                  Mencionelo:
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  required
+                  onChange={ handleChangeInputSelect }
+                />
+              </>
+            }
+          </div>
+          <div className="col-md-5 justify-content-center m-auto">
+            <div className="input-group d-flex flex-wrap align-items-center mb-1">
+              <label style={ {marginRight: '5px'} } htmlFor="start-time">Hr inicio:</label>
+              <input type="number" placeholder="00"
+                id="start-time" className="form-control"
+                min="1" max="12"
+                onChange={ evt => handleChangeInputTime({evt, isStartTime: true}) }
+                required />
+              <select
+                className="form-select"
+                onChange={ evt => handleChangeSelectTime({evt, isStartTime: true}) }
+              >
+                <option value="am">AM</option>
+                <option value="pm">PM</option>
+              </select>
+            </div>
+            <div className="input-group d-flex flex-wrap align-items-center mb-1">
+              <label style={ {marginRight: '5px'} } htmlFor="final-time">Hr final:</label>
+              <input type="number" placeholder="12"
+                id="final-time" className="form-control"
+                min="1" max="12"
+                onChange={ evt => handleChangeInputTime({evt, isStartTime: false}) }
+                required />
+              <select
+                className="form-select"
+                onChange={ evt => handleChangeSelectTime({evt, isStartTime: false}) }
+              >
+                <option value="am">AM</option>
+                <option value="pm">PM</option>
+              </select>
+            </div>
+          </div>
+          <div className="col-md-12 mt-2">
+            <h3>Servicios:</h3>
+          </div>
+          <div className="col-md-12 mt-2">
+            <div className="d-flex justify-content-center flex-wrap">
+              { quotationData.listServices &&
+                  quotationData.listServices.map( object =>
+                    <div
+                      key={ object.id }
+                      className="d-flex flex-wrap align-items-center mb-1"
+                      style={ {marginRight: '5px'} }
+                    >
+                      <label style={ {marginRight: '5px'} } htmlFor={ object.id }>{ object.name }:</label>
+                      <input type="number"
+                        className="form-control"
+                        id={ object.id }
+                        style={ {width: '5rem'} }
+                        min="1"
+                        onChange={ evt => handleChangeServices({evt, nameService: `${object.id}`}) }
+                        required />
+                    </div>
+                  )
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+ServicesQuotation.propTypes = {
+  children: PropTypes.node
+};
+
+export default ServicesQuotation;
