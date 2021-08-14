@@ -1,30 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
+import useService from '../../hooks/useService';
 import Quotation from '../../contexts/Quotation';
 
 const ServicesQuotation = () => {
   const {quotationData, setQuotationData} = useContext(Quotation);
+  const {getAllServices} = useService();
 
   useEffect(() => {
-    // example data
-    let data = [
-      {
-        'name': 'Sillas',
-        'detail': 'Sillas blancas',
-        'price': 5,
-        'id': '6116c7c9df885de4b3195b88'
-      },
-      {
-        'name': 'Mesas',
-        'detail': 'Mesas blancas',
-        'price': 10,
-        'id': '6116c7dfdf885de4b3195b89'
-      }
-    ];
-    setQuotationData({
-      ...quotationData,
-      listServices: data
+    getAllServices().then(response => {
+      setQuotationData({
+        ...quotationData,
+        listServices: response
+      });
     });
   }, []);
   const [typeEvent, setTypeEvent] = useState({

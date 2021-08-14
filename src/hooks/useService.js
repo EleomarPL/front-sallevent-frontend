@@ -5,8 +5,8 @@ import {notifyError} from '../consts/notifications';
 const useService = () => {
   const getAllServices = async() => {
     try {
-      let response = await getAllServicesAxios();
-      return response;
+      let {data} = await getAllServicesAxios();
+      return data;
     } catch ( err ) {
       if (err.message === 'Network Error')
         notifyError('No encontramos una conexión a internet');
