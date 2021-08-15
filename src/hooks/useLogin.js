@@ -1,7 +1,10 @@
+import { useContext } from 'react';
 import {login as loginUser} from '../services/apis/login';
 import {notifyError, notifyInfo} from '../consts/notifications';
+import Auth from '../contexts/Auth';
 
 const useLogin = () => {
+  const {setUserData} = useContext(Auth);
 
   const login = async({ userName, password }) => {
     try {
@@ -31,9 +34,14 @@ const useLogin = () => {
       return null;
     }
   };
+  const logout = () => {
+    window.localStorage.clear();
+    setUserData(null);
+  };
 
   return {
-    login
+    login,
+    logout
   };
 };
 

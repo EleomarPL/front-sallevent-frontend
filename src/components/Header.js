@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import Auth from '../contexts/Auth';
+import useLogin from '../hooks/useLogin';
+
 const Header = () => {
+  const {logout} = useLogin();
+
+  const {userData} = useContext(Auth);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div className="container">
@@ -30,56 +36,75 @@ const Header = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav m-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                activeClassName="active"
-                to="/"
-                exact
-              >
-                Inicio
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                activeClassName="active"
-                to="/services"
-              >
-                Servicios
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                activeClassName="active"
-                to="/contact"
-              >
-                Contacto
-              </NavLink>
-            </li>
-          </ul>
-          <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                activeClassName="active"
-                to="/register"
-              >
-                Registrarse
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                activeClassName="active"
-                to="/login"
-              >
-                Acceder
-              </NavLink>
-            </li>
-          </ul>
+          { userData === null ?
+            <>
+
+              <ul className="navbar-nav m-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    activeClassName="active"
+                    to="/"
+                    exact
+                  >
+                    Inicio
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    activeClassName="active"
+                    to="/services"
+                  >
+                    Servicios
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    activeClassName="active"
+                    to="/contact"
+                  >
+                    Contacto
+                  </NavLink>
+                </li>
+              </ul>
+              <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    activeClassName="active"
+                    to="/register"
+                  >
+                    Registrarse
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    activeClassName="active"
+                    to="/login"
+                  >
+                    Acceder
+                  </NavLink>
+                </li>
+              </ul>
+            </>
+            :
+            <ul className="navbar-nav mb-2 mb-lg-0" style={ {marginLeft: 'auto'} }>
+              <li>
+                <button
+                  className="nav-link border-0"
+                  style={ {background: 'transparent', color: '#ffffffd9'} }
+                  type="button"
+                  onClick={ logout }
+                >
+                  Cerrar Sesión
+                </button>
+              </li>
+            </ul>
+          }
+          
         </div>
       </div>
     </nav>
