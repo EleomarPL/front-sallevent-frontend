@@ -11,7 +11,8 @@ const AdminRouter = ({children}, props) => {
   if (isLogged) {
     if (userData.type === 1)
       return <Redirect to="/my" />;
-    return <Route { ...props }>{ children }</Route>;
+    else if (userData.type === 0)
+      return <Route { ...props }>{ children }</Route>;
   } else {
     return <Redirect to="/login" />;
   }
