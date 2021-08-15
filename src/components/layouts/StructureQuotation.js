@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {QuotationProvider} from '../../contexts/Quotation';
-import ServicesQuotation from '../views/ServicesQuotation';
+import ServicesQuotation from '../views/quotationDashboard/ServicesQuotation';
 
 const StructureQuotation = ({children}) => {
   return (

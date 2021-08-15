@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import useService from '../../hooks/useService';
-import Quotation from '../../contexts/Quotation';
+import useService from '../../../hooks/useService';
+import Quotation from '../../../contexts/Quotation';
 
 const ServicesQuotation = () => {
   const {quotationData, setQuotationData} = useContext(Quotation);
@@ -95,7 +95,7 @@ const ServicesQuotation = () => {
     <>
       <div className="pt-4">
         <h3 className="fw-bold mb-3">Cotización</h3>
-        <div style={ {marginLeft: '1rem'} }>
+        <form style={ {marginLeft: '1rem'} } id="formQuotation">
           <div className="col-md-12 input-group align-items-center mt-2 mb-4">
             <label htmlFor="event" style={ {marginRight: '5px'} }>Evento:</label>
             <select id="event" className="form-select"
@@ -189,7 +189,7 @@ const ServicesQuotation = () => {
               }
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );
