@@ -4,6 +4,7 @@ import CardMessageCalendar from '../../components/cards/CardMessageCalendar';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 import CalendarReservations from '../../components/views/CalendarReservations';
 import StructureQuotation from '../../components/layouts/StructureQuotation';
+import ButtonClean from '../../components/views/quotationDashboard/ButtonClean';
 
 const SomeServices = React.lazy(() => import('../../components/views/SomeServices'));
 
@@ -18,7 +19,11 @@ const Services = () => {
         </div>
         <div className="col-lg-7 px-2">
           <StructureQuotation>
-
+            <div className="d-flex flex-wrap justify-content-center mt-lg-3 mb-3">
+              <div style={ {marginRight: '0.4rem'} }>
+                <ButtonClean />
+              </div>
+            </div>
           </StructureQuotation>
         </div>
       </div>
