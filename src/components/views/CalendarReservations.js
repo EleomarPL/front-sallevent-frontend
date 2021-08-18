@@ -3,16 +3,31 @@ import _calendar from 'calendar';
 
 import {data} from '../../data/public/calendar';
 import CardDay from '../cards/CardDay';
+import useReservation from '../../hooks/useReservation';
 
 import '../../styles/stylesCalendar.css';
 
 const CalendarReservations = () => {
+  const [listReservations, setListReservation] = useState({});
+  const {getDateReservationWithStatus} = useReservation();
   const cal = new _calendar.Calendar(0);
   const currentDate = new Date();
   
   useEffect(() => {
-    // TODO: Request to the api to extract the reserved and waiting days
-  });
+    getDateReservationWithStatus().then(response => {
+      if (response) {
+        let newData = {};
+        response.forEach(object => {
+          let splitDate = object.dateReservation.toString().split('T');
+          newData = {
+            ...newData,
+            [`${splitDate[0]}`]: object.statusReservation
+          };
+        });
+        setListReservation(newData);
+      }
+    });
+  }, []);
 
   const [daysNotAllowed, setDaysNotAllowed] = useState({
     daySelected: null,
@@ -92,6 +107,7 @@ const CalendarReservations = () => {
                     return <CardDay
                       key={ _key + day }
                       day={ day }
+                      listReservation={ listReservations }
                       date={ date }
                       daysNotAllowed={ daysNotAllowed }
                       setDaysNotAllowed={ setDaysNotAllowed }

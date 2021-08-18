@@ -1,9 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, memo} from 'react';
 import PropTypes from 'prop-types';
 
-const CardDay = ({day, date, daysNotAllowed, setDaysNotAllowed}) => {
+const CardDay = memo(function CardDay({day, date, daysNotAllowed, setDaysNotAllowed, listReservation}) {
   const currentDate = new Date();
   const [colorDay, setColorDay] = useState('#EEEEEE');
+
+  let monthWitZero = ('0' + (date.month + 1)).slice(-2);
+  let dayWithZero = ('0' + day).slice(-2);
+
+  let validateDayReservated = listReservation[`${date.year}-${monthWitZero}-${dayWithZero}`];
 
   useEffect(() => {
     if (daysNotAllowed.daySelected !== null) {
@@ -14,14 +19,22 @@ const CardDay = ({day, date, daysNotAllowed, setDaysNotAllowed}) => {
       };
       if (date.year === dateSelected.year && date.month === dateSelected.month &&
         day === dateSelected.day) {
-        setColorDay('purple');
+        setColorDay('var(--day-selected)');
       } else {
-        setColorDay('#EEEEEE');
+        if (validateDayReservated === undefined)
+          setColorDay('#EEEEEE');
       }
     }
   }, [daysNotAllowed.daySelected]);
+  useEffect(() => {
+    if (validateDayReservated !== undefined)
+      setColorDay(validateDayReservated === 1 ? 'var(--day-reservated)' : 'var(--day-waiter)');
+  }, [listReservation]);
 
   const isValidDay = () => {
+    if (validateDayReservated !== undefined) {
+      return false;
+    }
     if ( date.year >= currentDate.getFullYear()) {
       if (date.month === currentDate.getMonth()) {
         if ( day >= currentDate.getDate() + 3) {
@@ -67,14 +80,17 @@ const CardDay = ({day, date, daysNotAllowed, setDaysNotAllowed}) => {
       </div>
     </div>
   );
-};
+});
 CardDay.propTypes = {
   day: PropTypes.oneOfType([
     PropTypes.string, PropTypes.number
   ]).isRequired,
   date: PropTypes.object.isRequired,
   daysNotAllowed: PropTypes.object.isRequired,
-  setDaysNotAllowed: PropTypes.func.isRequired
+  setDaysNotAllowed: PropTypes.func.isRequired,
+  listReservation: PropTypes.oneOfType([
+    PropTypes.string, PropTypes.object, PropTypes.oneOf([null])
+  ])
 };
 
 export default CardDay;
