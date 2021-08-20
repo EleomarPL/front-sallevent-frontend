@@ -14,7 +14,8 @@ export const QuotationProvider = ({ children }) => {
       time: '',
       timetable: 'am'
     },
-    listServices: ''
+    listServices: '',
+    total: 0
   });
   return (
     <Quotation.Provider value={ { quotationData, setQuotationData } }>

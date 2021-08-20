@@ -2,10 +2,12 @@ import React, { useContext } from 'react';
 
 import Quotation from '../../../contexts/Quotation';
 import {notifyWarning} from '../../../consts/notifications';
+import useService from '../../../hooks/useService';
 
 const ButtonQuotation = () => {
   
   const {quotationData, setQuotationData} = useContext(Quotation);
+  const {quotationReservation} = useService();
 
   const repairTime = (time) => {
     switch (time) {
@@ -16,10 +18,16 @@ const ButtonQuotation = () => {
     }
   };
 
-  const calculateCost = () => {
-
+  const calculateCost = ({listServices, timeStart, timeEnd}) => {
+    quotationReservation({listServices, timeStart, timeEnd}).then(response => {
+      setQuotationData({
+        ...quotationData,
+        total: response !== null ? response.total : 0
+      });
+      console.log(response);
+    });
   };
-  const validaServices = () => {
+  const validaServices = ({ timeStart, timeEnd }) => {
     let dataToSend = [];
     if (quotationData.listServices.length > 0) {
       quotationData.listServices.forEach((element) => {
@@ -29,10 +37,13 @@ const ButtonQuotation = () => {
               amountService: Number(quotationData[element.id]),
               id: element.id
             });
-          else
+          else if (isNaN(quotationData[element.id]))
             notifyWarning('Valores invalidos en la cantidad de un servicio');
         }
       });
+    }
+    if (dataToSend.length > 0) {
+      calculateCost({listServices: dataToSend, timeStart, timeEnd});
     }
   };
 
@@ -59,7 +70,7 @@ const ButtonQuotation = () => {
       if (newTimeFormatStartTime >= newTimeFormatEndTime)
         notifyWarning('La hora de inicio debe ser menor a la hora final');
       else
-        validaServices();
+        validaServices({timeStart: newTimeFormatStartTime, timeEnd: newTimeFormatEndTime});
     }
   };
   return (

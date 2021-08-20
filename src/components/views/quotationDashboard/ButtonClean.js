@@ -18,7 +18,8 @@ const ButtonClean = () => {
       finaltime: {
         time: '',
         timetable: 'am'
-      }
+      },
+      total: 0
     });
   };
   return (
