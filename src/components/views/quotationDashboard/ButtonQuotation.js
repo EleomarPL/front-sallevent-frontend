@@ -45,9 +45,7 @@ const ButtonQuotation = () => {
         }
       });
     }
-    if (dataToSend.length > 0) {
-      calculateCost({listServices: dataToSend, timeStart, timeEnd});
-    }
+    calculateCost({listServices: dataToSend, timeStart, timeEnd});
   };
 
   const handleQuotation = () => {
