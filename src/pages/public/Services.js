@@ -6,6 +6,7 @@ import CalendarReservations from '../../components/views/CalendarReservations';
 import StructureQuotation from '../../components/layouts/StructureQuotation';
 import ButtonClean from '../../components/views/quotationDashboard/ButtonClean';
 import ButtonQuotation from '../../components/views/quotationDashboard/ButtonQuotation';
+import BoxTotal from '../../components/views/quotationDashboard/BoxTotal';
 
 const SomeServices = React.lazy(() => import('../../components/views/SomeServices'));
 
@@ -20,6 +21,9 @@ const Services = () => {
         </div>
         <div className="col-lg-7 px-2">
           <StructureQuotation>
+            <div className="" style={ {width: '15rem', marginLeft: 'auto'} }>
+              <BoxTotal />
+            </div>
             <div className="d-flex flex-wrap justify-content-center mt-lg-3 mb-3">
               <ButtonQuotation />
               <div style={ {marginLeft: '0.4rem'} }>

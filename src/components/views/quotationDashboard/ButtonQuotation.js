@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import Quotation from '../../../contexts/Quotation';
 import {notifyWarning} from '../../../consts/notifications';
 import useService from '../../../hooks/useService';
+import SpinnerButtonLoading from '../../common/SpinnerButtonLoading';
 
 const ButtonQuotation = () => {
   
   const {quotationData, setQuotationData} = useContext(Quotation);
   const {quotationReservation} = useService();
+  const [isLoading, setIsLoading] = useState(false);
 
   const repairTime = (time) => {
     switch (time) {
@@ -19,12 +21,13 @@ const ButtonQuotation = () => {
   };
 
   const calculateCost = ({listServices, timeStart, timeEnd}) => {
+    setIsLoading(true);
     quotationReservation({listServices, timeStart, timeEnd}).then(response => {
+      setIsLoading(false);
       setQuotationData({
         ...quotationData,
         total: response !== null ? response.total : 0
       });
-      console.log(response);
     });
   };
   const validaServices = ({ timeStart, timeEnd }) => {
@@ -77,6 +80,9 @@ const ButtonQuotation = () => {
     <button type="button" className="btn btn-dark btn-sm"
       onClick={ handleQuotation }
     >
+      { isLoading &&
+        <SpinnerButtonLoading />
+      }
       Cotizar
     </button>
   );
