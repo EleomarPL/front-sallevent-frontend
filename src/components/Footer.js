@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+
 import useRoom from '../hooks/useRoom';
+import Auth from '../contexts/Auth';
 
 const Footer = () => {
   const [infoFooter, setInfoFooter] = useState(null);
   const {getDataFooter} = useRoom();
+  const {userData} = useContext(Auth);
 
   useEffect(() => {
     getDataFooter().then(response => {
@@ -11,7 +14,8 @@ const Footer = () => {
         setInfoFooter(response);
     });
   }, []);
-
+  if (userData !== null)
+    return null;
   return (
     <footer className="container-fluid bg-dark text-white py-2">
       <div className="d-flex flex-wrap justify-content-around align-items-center">
