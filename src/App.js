@@ -8,6 +8,7 @@ import PublicRoute from './components/router/PublicRouter';
 import AdminRouter from './components/router/AdminRouter';
 import MyRouter from './components/router/MyRouter';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 import Home from './pages/public/Home';
 import Services from './pages/public/Services';
@@ -72,6 +73,7 @@ const App = () => {
             <p>Administrador</p>
           </AdminRouter>
         </Switch>
+        <Footer />
         <ToastContainer position="top-right"
           autoClose={ 5000 } hideProgressBar={ false }
           newestOnTop={ false } closeOnClick
