@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import useRoom from '../hooks/useRoom';
 
 const Footer = () => {
   const [infoFooter, setInfoFooter] = useState(null);
+  const {getDataFooter} = useRoom();
 
   useEffect(() => {
-
+    getDataFooter().then(response => {
+      if (response)
+        setInfoFooter(response);
+    });
   }, []);
 
   return (
@@ -30,13 +35,13 @@ const Footer = () => {
         </div>
         <div className="d-flex flex-column align-items-center pb-2">
           <span>Dirección:</span>
-          <span>Santo Domingo de Morelos</span>
-          <span>Oaxaca</span>
+          <span>{ infoFooter && `${infoFooter.street} ${infoFooter.municipality}` }</span>
+          <span>{ infoFooter && infoFooter.state }</span>
         </div>
         <div className="d-flex flex-column align-items-center">
           <span>Contactenos:</span>
-          <span>eleomarpedrolorenzo@gmail.com</span>
-          <span>9581306284</span>
+          <span>{ infoFooter && infoFooter.email }</span>
+          <span>{ infoFooter && infoFooter.phone }</span>
         </div>
       </div>
     </footer>
