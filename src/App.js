@@ -15,6 +15,7 @@ import Services from './pages/public/Services';
 import Contact from './pages/public/Contact';
 import Register from './pages/public/Register';
 import Login from './pages/public/Login';
+import IndexMy from './pages/my/Index';
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -64,7 +65,7 @@ const App = () => {
             <Helmet>
               <title>My | SallEvent</title>
             </Helmet>
-            <p>Usuario</p>
+            <IndexMy />
           </MyRouter>
           <AdminRouter path="/admin">
             <Helmet>

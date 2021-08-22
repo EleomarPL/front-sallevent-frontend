@@ -1,0 +1,13 @@
+.container-group-pages {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: 1fr 2fr;
+}
+.container-group-pages > #navigation {
+  grid-column: 1;
+}
+@media screen and (max-width: 767px) {
+  .container-group-pages {
+    grid-template-columns: 1fr;
+  }
+}
