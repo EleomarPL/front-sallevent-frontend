@@ -1,0 +1,35 @@
+#lateral-navigation{
+  padding-top: 0;
+  margin-top: 0;
+}
+.nav-link-personalized{
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 5px 0;
+
+  width: 100%;
+
+  transition: color .3s ease-in-out;
+}
+.active-link-personalized{
+  background: red;
+  background-color: #eeeeee !important;
+  color: black !important;
+}
+.link-options{
+  display: flex;
+  margin-bottom: 0.7rem;
+}
+.nav-link-personalized:hover{
+  color: #d3d3d3;
+}
+
+@media screen and (min-width: 767px){
+  #lateral-navigation{
+    position: sticky;
+    min-height: calc(86vh + 1px);
+    top: 14vh !important;
+  }
+}

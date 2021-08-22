@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import '../../styles/styleGroupPageAnyUser.css';
+
+import {routesNav} from '../../data/my/routes';
 import NavigationAnyUser from '../views/NavigationAnyUser';
 
 const GroupPageAnyUser = ({children}) => {
   return (
-    <main className="container-group-pages">
+    <main className="container-group-pages pt-2">
       <div id="navigation">
-        <NavigationAnyUser />
+        <NavigationAnyUser isAdmin={ false } routesNav={ routesNav } />
       </div>
       <div className="px-md-4">
         { children }
