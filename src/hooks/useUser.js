@@ -26,13 +26,15 @@ const useUser = () => {
       return false;
     }
   };
-  const editDataUser = async({name, lastName, motherLastName, phone, email, userName, token}) => {
+  const editDataUser = async({name, lastName, motherLastName, phone, email, userName}) => {
+    const token = JSON.parse(window.localStorage.getItem('session'));
     try {
       let {data} = await editDataUserAxios(
         {
           name, lastName, motherLastName, phone, email, userName, token
         });
       let dataUser = {
+        ...userData,
         name: data.name,
         lastName: data.lastName,
         motherLastName: data.motherLastName,
@@ -40,10 +42,8 @@ const useUser = () => {
         email: data.email,
         userName: data.userName
       };
-      setUserData({
-        ...userData,
-        ...dataUser
-      });
+      setUserData(dataUser);
+      window.localStorage.setItem('datauser', JSON.stringify(dataUser));
       notifySuccess('Tus datos se han actualizado correctamente ');
       return true;
     } catch ( err ) {
