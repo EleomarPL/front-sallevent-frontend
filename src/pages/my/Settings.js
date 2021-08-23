@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import ChangeDataUser from '../../components/views/user/ChangeDataUser';
 import ChangePasswordUser from '../../components/views/user/ChangePasswordUser';
