@@ -1,27 +1,33 @@
 export const configInputsSettings = [
   {
     name: 'Nombre',
-    type: 'text'
+    type: 'text',
+    contextReference: 'name'
   },
   {
     name: 'Apellido Paterno',
-    type: 'text'
+    type: 'text',
+    contextReference: 'lastName'
   },
   {
     name: 'Apellido Materno',
-    type: 'text'
+    type: 'text',
+    contextReference: 'motherLastName'
   },
   {
     name: 'Email',
-    type: 'email'
+    type: 'email',
+    contextReference: 'email'
   },
   {
     name: 'Telefono',
-    type: 'tel'
+    type: 'tel',
+    contextReference: 'phone'
   },
   {
     name: 'Usuario',
-    type: 'text'
+    type: 'text',
+    contextReference: 'userName'
   }
 ];
 

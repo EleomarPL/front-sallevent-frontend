@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import ButtonUpdatedDataUser from '../../buttons/ButtonUpdatedDataUser';
 import {configInputsSettings} from '../../../data/my/inputsSettings';
+import Auth from '../../../contexts/Auth';
 
 const ChangeDataUser = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const {userData} = useContext(Auth);
 
   const handleChangeData = (evt) => {
     evt.preventDefault();
@@ -32,6 +34,7 @@ const ChangeDataUser = () => {
                     type={ data.type }
                     className="form-control w-100"
                     style={ {background: '#eeeeee'} }
+                    value={ userData[data.contextReference] }
                     required
                   />
                 </div>
