@@ -17,7 +17,7 @@ export const editDataUser = async({ name, lastName, motherLastName, phone, email
       Authorization: `Bearer ${token}`
     }
   };
-  let response = await axios.post(`${baseAPI}/edit-data-user`,
+  let response = await axios.put(`${baseAPI}/edit-data-user`,
     {
       name, lastName, motherLastName, phone, email, userName
     },
@@ -31,7 +31,7 @@ export const editPasswordUser = async({ oldPassword, newPassword, token }) => {
       Authorization: `Bearer ${token}`
     }
   };
-  let response = await axios.post(`${baseAPI}/edit-password-user`,
+  let response = await axios.put(`${baseAPI}/edit-password-user`,
     { oldPassword, newPassword },
     config
   );

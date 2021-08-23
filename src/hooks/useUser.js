@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import {createUser, editDataUser as editDataUserAxios} from '../services/apis/user';
+import {createUser, editDataUser as editDataUserAxios, editPasswordUser as editPasswordUserAxios} from '../services/apis/user';
 import {notifySuccess, notifyError, notifyWarning} from '../consts/notifications';
 
 import Auth from '../contexts/Auth';
@@ -57,16 +57,19 @@ const useUser = () => {
       return false;
     }
   };
-  const editPasswordUser = async({oldPassword, newPassword, token}) => {
+  const editPasswordUser = async({oldPassword, newPassword}) => {
+    const token = JSON.parse(window.localStorage.getItem('session'));
     try {
-      await editDataUserAxios(
+      await editPasswordUserAxios(
         {
           oldPassword, newPassword, token
         });
       notifySuccess('Tu contraseña se ha actualizado correctamente ');
       return true;
     } catch ( err ) {
-      if (err.response.data.error === 'Token missing or invalid') {
+      if (err.message === 'Request failed with status code 401') {
+        notifyWarning('Tu contraseña actual no es valida');
+      } else if (err.response.data.error === 'Token missing or invalid') {
         notifyWarning('Al parecer, perdiste los permisos, te recomiendo cerrar sesión');
       } else if (err.message === 'Network Error') {
         notifyError('No encontramos una conexión a internet');
