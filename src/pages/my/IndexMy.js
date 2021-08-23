@@ -1,8 +1,9 @@
 import React from 'react';
-
 import {BrowserRouter, Switch} from 'react-router-dom';
+
 import GroupPageAnyUser from '../../components/layouts/GroupPageAnyUser';
 import MyRouter from '../../components/router/MyRouter';
+import Settings from './Settings';
 
 const Index = () => {
   return (
@@ -17,7 +18,7 @@ const Index = () => {
               <p>calendario</p>
             </MyRouter>
             <MyRouter exact path="/my/">
-              <p>Ajustes</p>
+              <Settings />
             </MyRouter>
           </Switch>
         </GroupPageAnyUser>

@@ -8,11 +8,11 @@ import NavigationAnyUser from '../views/NavigationAnyUser';
 
 const GroupPageAnyUser = ({children}) => {
   return (
-    <main className="container-group-pages pt-2">
+    <main className="container-group-pages pt-2" style={ {background: '#eeeeee'} }>
       <div id="navigation">
         <NavigationAnyUser isAdmin={ false } routesNav={ routesNav } />
       </div>
-      <div className="px-md-4">
+      <div className="p-md-4">
         { children }
       </div>
     </main>
