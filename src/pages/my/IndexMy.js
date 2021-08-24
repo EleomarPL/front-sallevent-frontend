@@ -3,6 +3,7 @@ import {BrowserRouter, Switch} from 'react-router-dom';
 
 import GroupPageAnyUser from '../../components/layouts/GroupPageAnyUser';
 import MyRouter from '../../components/router/MyRouter';
+import MyReservations from './MyReservations';
 import Settings from './Settings';
 
 const Index = () => {
@@ -12,7 +13,7 @@ const Index = () => {
         <GroupPageAnyUser>
           <Switch>
             <MyRouter exact path="/my/my-reservations">
-              <p>mis reservaciones</p>
+              <MyReservations />
             </MyRouter>
             <MyRouter exact path="/my/calendar">
               <p>calendario</p>
