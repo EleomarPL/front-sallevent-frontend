@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ButtonGoToNewReservation from '../../components/buttons/ButtonGoToNewReservation';
 import ButtonTableReservations from '../../components/buttons/ButtonTableReservations';
+import SpinnerLoading from '../../components/common/SpinnerLoading';
+import useReservation from '../../hooks/useReservation';
 
 const MyReservations = () => {
+  const [listReservations, setListReservations] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const {getReservationsUser} = useReservation();
+
+  useEffect(() => {
+    setIsLoading(true);
+    getReservationsUser().then(response => {
+      if (response !== null)
+        setListReservations(response);
+      setIsLoading(false);
+    });
+  }, []);
   const getCurrentDate = () => {
     const currentDate = new Date();
     let year = currentDate.getFullYear();
@@ -41,28 +56,37 @@ const MyReservations = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Boda</td>
-                  <td>20/09/2021</td>
-                  <td>300.5</td>
-                  <td>
-                    <ButtonTableReservations onClick={ () => console.log('modificar') }>
-                      Modificar
-                    </ButtonTableReservations>
-                  </td>
-                  <td>
-                    <ButtonTableReservations onClick={ () => console.log('eliminar') }>
-                      Eliminar
-                    </ButtonTableReservations>
-                  </td>
-                  <td>
-                    <ButtonTableReservations onClick={ () => console.log('estado') }>
-                      Estado
-                    </ButtonTableReservations>
-                  </td>
-                </tr>
+                { listReservations &&
+                  listReservations.map(data =>
+                    <tr
+                      key={ data.id }
+                    >
+                      <td>{ data.typeEvent }</td>
+                      <td>{ data.dateReservationStart.split('T')[0] }</td>
+                      <td>{ data.priceTotal }</td>
+                      <td>
+                        <ButtonTableReservations onClick={ () => console.log('modificar') }>
+                          Modificar
+                        </ButtonTableReservations>
+                      </td>
+                      <td>
+                        <ButtonTableReservations onClick={ () => console.log('eliminar') }>
+                          Eliminar
+                        </ButtonTableReservations>
+                      </td>
+                      <td>
+                        <ButtonTableReservations onClick={ () => console.log('estado') }>
+                          Estado
+                        </ButtonTableReservations>
+                      </td>
+                    </tr>
+                  )
+                }
               </tbody>
             </table>
+            { isLoading &&
+              <SpinnerLoading />
+            }
           </div>
           <div className="w-75 d-flex flex-wrap justify-content-end" style={ {fontSize: '1.2rem'} }>
             <p style={ {marginRight: '0.5rem'} }>Total:</p>
