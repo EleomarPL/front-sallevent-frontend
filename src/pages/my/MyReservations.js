@@ -7,6 +7,7 @@ import useReservation from '../../hooks/useReservation';
 
 const MyReservations = () => {
   const [listReservations, setListReservations] = useState([]);
+  const [totalReservations, setTotalReservations] = useState(0.0);
   const [isLoading, setIsLoading] = useState(false);
 
   const {getReservationsUser} = useReservation();
@@ -19,6 +20,11 @@ const MyReservations = () => {
       setIsLoading(false);
     });
   }, []);
+  useEffect(() => {
+    const total = listReservations.reduce((acc, currentValue) => acc + currentValue.priceTotal, 0);
+    setTotalReservations(total);
+  }, [listReservations]);
+
   const getCurrentDate = () => {
     const currentDate = new Date();
     let year = currentDate.getFullYear();
@@ -90,7 +96,7 @@ const MyReservations = () => {
           </div>
           <div className="w-75 d-flex flex-wrap justify-content-end" style={ {fontSize: '1.2rem'} }>
             <p style={ {marginRight: '0.5rem'} }>Total:</p>
-            <p className="text-danger fw-bold">12</p>
+            <p className="text-danger fw-bold">{ totalReservations }</p>
           </div>
         </div>
       </div>
