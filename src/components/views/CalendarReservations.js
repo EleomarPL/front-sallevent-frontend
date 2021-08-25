@@ -8,7 +8,7 @@ import useReservation from '../../hooks/useReservation';
 
 import '../../styles/stylesCalendar.css';
 
-const CalendarReservations = ({ showStage = true }) => {
+const CalendarReservations = ({ showStage = true, fcGetDaySelected }) => {
   const [listReservations, setListReservation] = useState({});
   const {getDateReservationWithStatus} = useReservation();
   const cal = new _calendar.Calendar(0);
@@ -114,6 +114,7 @@ const CalendarReservations = ({ showStage = true }) => {
                       date={ date }
                       daysNotAllowed={ daysNotAllowed }
                       setDaysNotAllowed={ setDaysNotAllowed }
+                      fcGetDaySelected={ fcGetDaySelected }
                     />;
                   } else return null;
                 })
@@ -127,7 +128,8 @@ const CalendarReservations = ({ showStage = true }) => {
 };
 
 CalendarReservations.propTypes = {
-  showStage: PropTypes.bool
+  showStage: PropTypes.bool,
+  fcGetDaySelected: PropTypes.func
 };
 
 export default CalendarReservations;

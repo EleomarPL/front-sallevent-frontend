@@ -1,7 +1,7 @@
 import React, {useEffect, useState, memo} from 'react';
 import PropTypes from 'prop-types';
 
-const CardDay = memo(function CardDay({day, date, daysNotAllowed, setDaysNotAllowed, listReservation}) {
+const CardDay = memo(function CardDay({day, date, daysNotAllowed, setDaysNotAllowed, listReservation, fcGetDaySelected}) {
   const currentDate = new Date();
   const [colorDay, setColorDay] = useState('#EEEEEE');
 
@@ -49,6 +49,8 @@ const CardDay = memo(function CardDay({day, date, daysNotAllowed, setDaysNotAllo
 
   const handleClickUser = () => {
     if (isValidDay()) {
+      if ( fcGetDaySelected )
+        fcGetDaySelected(`${date.year}-${date.month + 1}-${day}`);
       setDaysNotAllowed({
         ...daysNotAllowed,
         daySelected: {
@@ -90,7 +92,8 @@ CardDay.propTypes = {
   setDaysNotAllowed: PropTypes.func.isRequired,
   listReservation: PropTypes.oneOfType([
     PropTypes.string, PropTypes.object, PropTypes.oneOf([null])
-  ])
+  ]),
+  fcGetDaySelected: PropTypes.func
 };
 
 export default CardDay;
