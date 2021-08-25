@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import _calendar from 'calendar';
+import PropTypes from 'prop-types';
 
 import {data} from '../../data/public/calendar';
 import CardDay from '../cards/CardDay';
@@ -7,7 +8,7 @@ import useReservation from '../../hooks/useReservation';
 
 import '../../styles/stylesCalendar.css';
 
-const CalendarReservations = () => {
+const CalendarReservations = ({ showStage = true }) => {
   const [listReservations, setListReservation] = useState({});
   const {getDateReservationWithStatus} = useReservation();
   const cal = new _calendar.Calendar(0);
@@ -86,16 +87,18 @@ const CalendarReservations = () => {
             { data.days.map(day => <strong key={ day }>{ day }</strong>) }
           </div>
         </div>
-        <div className="calendar-info-weeks">
-          {
-            data.typeStatus.map(week =>
-              <div key={ week.name } className="calendar-info-week">
-                <span className="calendar-week-type"
-                  style={ {backgroundColor: week.color} }></span>
-                <p style={ {margin: 'auto'} }>{ week.name }</p>
-              </div>)
-          }
-        </div>
+        { showStage &&
+          <div className="calendar-info-weeks">
+            {
+              data.typeStatus.map(week =>
+                <div key={ week.name } className="calendar-info-week">
+                  <span className="calendar-week-type"
+                    style={ {backgroundColor: week.color} }></span>
+                  <p style={ {margin: 'auto'} }>{ week.name }</p>
+                </div>)
+            }
+          </div>
+        }
       </div>
       <div className="calendar-date w-100">
         {
@@ -121,6 +124,10 @@ const CalendarReservations = () => {
       </div>
     </div>
   );
+};
+
+CalendarReservations.propTypes = {
+  showStage: PropTypes.bool
 };
 
 export default CalendarReservations;
