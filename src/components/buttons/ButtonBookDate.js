@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {useHistory} from 'react-router-dom';
+
 const ButtonBookDay = ({date}) => {
+  const history = useHistory();
+
   const handleBook = () => {
-    console.log(date);
+    history.push('/my/book');
   };
 
   return (
