@@ -7,7 +7,8 @@ const Reservation = React.createContext({});
 export const ReservationProvider = ({ children }) => {
   let getDataFromLocalStorage = JSON.parse(window.localStorage.getItem('dataReservation'));
   let initialityData = {
-    dateYYMMDD: ''
+    dateYYMMDD: '',
+    isBooked: false
   };
   const [dataReservation, setDataReservation] = useState(getDataFromLocalStorage || initialityData);
   return (

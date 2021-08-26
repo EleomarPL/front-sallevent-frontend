@@ -11,7 +11,7 @@ const ButtonBookDay = ({date}) => {
 
   const handleBook = () => {
     window.localStorage.setItem('dataReservation', JSON.stringify({ dateYYMMDD: date }));
-    setDataReservation({ dateYYMMDD: date });
+    setDataReservation({ dateYYMMDD: date, isBooked: false });
     history.push('/my/book');
   };
 
