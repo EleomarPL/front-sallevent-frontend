@@ -20,6 +20,7 @@ const Services = () => {
           <CalendarReservations />
         </div>
         <div className="col-lg-7 px-2">
+          <h3 className="fw-bold mb-3 pt-4">Cotización</h3>
           <StructureQuotation>
             <div className="" style={ {width: '15rem', marginLeft: 'auto'} }>
               <BoxTotal />

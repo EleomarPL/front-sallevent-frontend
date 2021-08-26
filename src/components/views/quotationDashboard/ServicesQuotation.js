@@ -93,8 +93,7 @@ const ServicesQuotation = () => {
   };
   return (
     <>
-      <div className="pt-4">
-        <h3 className="fw-bold mb-3">Cotización</h3>
+      <div className="pt-2 w-100">
         <form style={ {marginLeft: '1rem'} } id="formQuotation">
           <div className="col-md-12 input-group align-items-center mt-2 mb-4">
             <label htmlFor="event" style={ {marginRight: '5px'} }>Evento:</label>
