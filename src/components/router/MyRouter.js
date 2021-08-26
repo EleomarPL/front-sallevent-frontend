@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Redirect, Route } from 'react-router';
+import { Redirect, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Auth from '../../contexts/Auth';
