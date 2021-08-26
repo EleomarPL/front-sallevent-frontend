@@ -7,6 +7,8 @@ import MyReservations from './MyReservations';
 import Settings from './Settings';
 import Calendar from './Calendar';
 import { ReservationProvider } from '../../contexts/ReservationUser';
+import ValidateReservationUser from '../../components/router/ValidateReservationUser';
+import Book from './Book';
 
 const Index = () => {
   return (
@@ -14,7 +16,9 @@ const Index = () => {
       <BrowserRouter>
         <Switch>
           <MyRouter exact path="/my/book">
-            <p>Reservar</p>
+            <ValidateReservationUser>
+              <Book />
+            </ValidateReservationUser>
           </MyRouter>
           <GroupPageAnyUser>
             <Switch>
