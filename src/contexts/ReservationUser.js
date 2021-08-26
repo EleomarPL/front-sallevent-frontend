@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 const Reservation = React.createContext({});
 
 export const ReservationProvider = ({ children }) => {
-  const [dataReservation, setDataReservation] = useState(JSON.parse(window.localStorage.getItem('dataReservation')) || null);
+  let getDataFromLocalStorage = JSON.parse(window.localStorage.getItem('dataReservation'));
+  let initialityData = {
+    dateYYMMDD: ''
+  };
+  const [dataReservation, setDataReservation] = useState(getDataFromLocalStorage || initialityData);
   return (
     <Reservation.Provider value={ { dataReservation, setDataReservation } }>
       { children }
