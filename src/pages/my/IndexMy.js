@@ -8,6 +8,7 @@ import Settings from './Settings';
 import Calendar from './Calendar';
 import { ReservationProvider } from '../../contexts/ReservationUser';
 import ValidateBookUser from '../../components/router/ValidateBookUser';
+import ValidateWithoutUserReservation from '../../components/router/ValidateWithoutUserReservation';
 import Book from './Book';
 
 const Index = () => {
@@ -23,13 +24,19 @@ const Index = () => {
           <GroupPageAnyUser>
             <Switch>
               <MyRouter exact path="/my/my-reservations">
-                <MyReservations />
+                <ValidateWithoutUserReservation>
+                  <MyReservations />
+                </ValidateWithoutUserReservation>
               </MyRouter>
               <MyRouter exact path="/my/calendar">
-                <Calendar />
+                <ValidateWithoutUserReservation>
+                  <Calendar />
+                </ValidateWithoutUserReservation>
               </MyRouter>
               <MyRouter exact path="/my">
-                <Settings />
+                <ValidateWithoutUserReservation>
+                  <Settings />
+                </ValidateWithoutUserReservation>
               </MyRouter>
             </Switch>
           </GroupPageAnyUser>
