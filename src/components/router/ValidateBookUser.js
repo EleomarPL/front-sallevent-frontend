@@ -8,8 +8,12 @@ const ValidateReservationUser = ({children}) => {
   const {dataReservation} = useContext(ReservationUser);
   if (!dataReservation.dateYYMMDD)
     return <Redirect to="/my/calendar" />;
-  else
-    return <>{ children }</>;
+  else {
+    if (dataReservation.isBooked)
+      return <Redirect to="/my/reservation" />;
+    else
+      return <>{ children }</>;
+  }
 };
 
 ValidateReservationUser.propTypes = {
