@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import {useHistory} from 'react-router-dom';
+import ProptTypes from 'prop-types';
 
 import ReservationUser from '../../contexts/ReservationUser';
 
-const ButtonBackBook = () => {
+const ButtonBackBook = ({text}) => {
   const history = useHistory();
   const {setDataReservation} = useContext(ReservationUser);
 
@@ -21,9 +22,13 @@ const ButtonBackBook = () => {
       className="btn btn-dark btn-sm"
       onClick={ handleBackBook }
     >
-      Regresar
+      { text }
     </button>
   );
+};
+
+ButtonBackBook.propTypes = {
+  text: ProptTypes.string.isRequired
 };
 
 export default ButtonBackBook;
