@@ -9,7 +9,9 @@ import Calendar from './Calendar';
 import { ReservationProvider } from '../../contexts/ReservationUser';
 import ValidateBookUser from '../../components/router/ValidateBookUser';
 import ValidateWithoutUserReservation from '../../components/router/ValidateWithoutUserReservation';
+import ValidateReservationUser from '../../components/router/ValidateReservationUser';
 import Book from './Book';
+import Reservation from './Reservation';
 
 const Index = () => {
   return (
@@ -20,6 +22,11 @@ const Index = () => {
             <ValidateBookUser>
               <Book />
             </ValidateBookUser>
+          </MyRouter>
+          <MyRouter exact path="/my/reservation">
+            <ValidateReservationUser>
+              <Reservation />
+            </ValidateReservationUser>
           </MyRouter>
           <GroupPageAnyUser>
             <Switch>

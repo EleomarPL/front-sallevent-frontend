@@ -29,14 +29,17 @@ const ButtonBook = () => {
       listSelectedServices: listServices, timeStart, timeEnd, typeEvent, dateYYMMDD: dataReservation.dateYYMMDD
     }).then(response => {
       if (response !== null) {
-        setDataReservation({
+        let newDataReservation = {
+          ...dataReservation,
           typeEvent: response.typeEvent,
           timeStart,
           timeEnd,
           statusReservation: response.statusReservation,
           priceTotal: response.priceTotal,
           isBooked: true
-        });
+        };
+        window.localStorage.setItem('dataReservation', JSON.stringify(newDataReservation));
+        setDataReservation(newDataReservation);
       }
       setIsLoading(false);
     });
