@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 
 import ButtonGoToNewReservation from '../../components/buttons/ButtonGoToNewReservation';
 import ButtonTableReservations from '../../components/buttons/ButtonTableReservations';
+import SpinnerButtonLoading from '../../components/common/SpinnerButtonLoading';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 import useReservation from '../../hooks/useReservation';
+import {openModalDeleteReservationUser} from '../../components/modals/ModalDeleteReservationUser';
+
+const ModalDeleteReservationUser = React.lazy(() => import('../../components/modals/ModalDeleteReservationUser'));
 
 const MyReservations = () => {
   const [listReservations, setListReservations] = useState([]);
   const [totalReservations, setTotalReservations] = useState(0.0);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [idReservation, setIdReservation] = useState(null);
   const {getReservationsUser} = useReservation();
 
   useEffect(() => {
@@ -32,6 +37,11 @@ const MyReservations = () => {
     let day = ('0' + currentDate.getDate()).slice(-2);
 
     return `${day}/${month}/${year}`;
+  };
+
+  const handleDeleteReservation = (id) => {
+    setIdReservation(id);
+    openModalDeleteReservationUser();
   };
 
   return (
@@ -76,7 +86,7 @@ const MyReservations = () => {
                         </ButtonTableReservations>
                       </td>
                       <td>
-                        <ButtonTableReservations onClick={ () => console.log('eliminar') }>
+                        <ButtonTableReservations onClick={ () => handleDeleteReservation(data.id) }>
                           Eliminar
                         </ButtonTableReservations>
                       </td>
@@ -103,6 +113,11 @@ const MyReservations = () => {
       <div className="d-flex flex-wrap justify-content-center my-4">
         <ButtonGoToNewReservation />
       </div>
+      <Suspense fallback={ <SpinnerButtonLoading /> }>
+        <ModalDeleteReservationUser
+          idReservation={ idReservation }
+        />
+      </Suspense>
     </section>
   );
 };
