@@ -3,13 +3,15 @@ import React, { useContext } from 'react';
 import DataUser from '../../components/views/user/DataUser';
 import StatusReservation from '../../components/views/user/StatusReservation';
 import ReservationUser from '../../contexts/ReservationUser';
+import ButtonBackBook from '../../components/buttons/ButtonBackBook';
+import ButtonGoToReservations from '../../components/buttons/ButtonGoToReservations';
 
 const Reservation = () => {
   const {dataReservation} = useContext(ReservationUser);
   return (
     <section className="container-fluid p-md-3">
       <div className="col-md-12 border border-dark">
-        <div className="d-flex justify-content-around align-items-center">
+        <div className="d-flex flex-wrap justify-content-around align-items-center">
           <div className="col-md-5 p-2 mb-2">
             <StatusReservation />
           </div>
@@ -32,6 +34,10 @@ const Reservation = () => {
             </span>
           </p>
         </div>
+      </div>
+      <div className="my-2 d-flex flex-wrap justify-content-around">
+        <ButtonBackBook text="Aceptar y salir" />
+        <ButtonGoToReservations />
       </div>
     </section>
   );
