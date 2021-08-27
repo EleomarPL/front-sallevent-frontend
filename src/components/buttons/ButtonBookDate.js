@@ -10,8 +10,14 @@ const ButtonBookDay = ({date}) => {
   const {setDataReservation} = useContext(ReservationUser);
 
   const handleBook = () => {
-    window.localStorage.setItem('dataReservation', JSON.stringify({ dateYYMMDD: date }));
-    setDataReservation({ dateYYMMDD: date, isBooked: false });
+    let dateSplit = date.split('-');
+    let year = dateSplit[0];
+    let month = ('0' + dateSplit[1]).slice(-2);
+    let day = ('0' + dateSplit[2]).slice(-2);
+
+    let _date = `${year}-${month}-${day}`;
+    window.localStorage.setItem('dataReservation', JSON.stringify({ dateYYMMDD: _date }));
+    setDataReservation({ dateYYMMDD: _date, isBooked: false });
     history.push('/my/book');
   };
 

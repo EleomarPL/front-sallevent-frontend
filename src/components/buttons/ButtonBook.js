@@ -4,10 +4,12 @@ import {notifyWarning} from '../../consts/notifications';
 import Quotation from '../../contexts/Quotation';
 import ReservationUser from '../../contexts/ReservationUser';
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
+import useReservation from '../../hooks/useReservation';
 
 const ButtonBook = () => {
   const {quotationData} = useContext(Quotation);
   const {dataReservation, setDataReservation} = useContext(ReservationUser);
+  const {createReservation} = useReservation();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,7 +24,22 @@ const ButtonBook = () => {
 
   const bookDay = ({listServices, timeStart, timeEnd, typeEvent}) => {
     setIsLoading(true);
-    console.log({listServices, timeStart, timeEnd, typeEvent, dateYYMMDD: dataReservation.dateYYMMDD});
+
+    createReservation({
+      listSelectedServices: listServices, timeStart, timeEnd, typeEvent, dateYYMMDD: dataReservation.dateYYMMDD
+    }).then(response => {
+      if (response !== null) {
+        setDataReservation({
+          typeEvent: response.typeEvent,
+          timeStart,
+          timeEnd,
+          statusReservation: response.statusReservation,
+          priceTotal: response.priceTotal,
+          isBooked: true
+        });
+      }
+      setIsLoading(false);
+    });
     
   };
   const validaServices = ({ timeStart, timeEnd }) => {
