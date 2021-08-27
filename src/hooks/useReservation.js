@@ -1,9 +1,10 @@
 import {
   getDateReservationWithStatus as axiosGetDateReservationWithStatus,
   getReservations,
-  createReservation as createReservationAxios
+  createReservation as createReservationAxios,
+  deleteReservation as deleteReservationUser
 } from '../services/apis/reservation';
-import {notifyError, notifyWarning} from '../consts/notifications';
+import {notifyError, notifyWarning, notifySuccess} from '../consts/notifications';
 
 
 const useReservation = () => {
@@ -47,11 +48,28 @@ const useReservation = () => {
       return null;
     }
   };
+  const deleteReservation = async({id}) => {
+    const token = JSON.parse(window.localStorage.getItem('session'));
+
+    try {
+      let {data} = await deleteReservationUser({id, token});
+      notifySuccess('Se ha eliminado esta reservación');
+      return data;
+    } catch ( err ) {
+      if (err.response.data.error === 'Token missing or invalid') {
+        notifyWarning('Al parecer, perdiste los permisos, te recomiendo cerrar sesión');
+      } else if (err.message === 'Network Error') {
+        notifyError('No encontramos una conexión a internet');
+      }
+      return null;
+    }
+  };
 
   return {
     getDateReservationWithStatus,
     getReservationsUser,
-    createReservation
+    createReservation,
+    deleteReservation
   };
 };
 
