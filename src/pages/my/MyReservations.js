@@ -13,6 +13,7 @@ const MyReservations = () => {
   const [listReservations, setListReservations] = useState([]);
   const [totalReservations, setTotalReservations] = useState(0.0);
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingSpecificButtonState, setLoadingSpecificButtonState] = useState('');
 
   const [idReservation, setIdReservation] = useState(null);
   const {getReservationsUser} = useReservation();
@@ -42,6 +43,10 @@ const MyReservations = () => {
   const handleDeleteReservation = (id) => {
     setIdReservation(id);
     openModalDeleteReservationUser();
+  };
+
+  const handleViewStatusReservation = (id) => {
+    setLoadingSpecificButtonState(id);
   };
 
   return (
@@ -91,7 +96,10 @@ const MyReservations = () => {
                         </ButtonTableReservations>
                       </td>
                       <td>
-                        <ButtonTableReservations onClick={ () => console.log('estado') }>
+                        <ButtonTableReservations onClick={ () => handleViewStatusReservation(data.id) }>
+                          { loadingSpecificButtonState === data.id &&
+                            <SpinnerButtonLoading />
+                          }
                           Estado
                         </ButtonTableReservations>
                       </td>
