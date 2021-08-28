@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { Suspense, useContext, useEffect, useState } from 'react';
 
 import ButtonGoToNewReservation from '../../components/buttons/ButtonGoToNewReservation';
 import ButtonTableReservations from '../../components/buttons/ButtonTableReservations';
@@ -6,6 +6,7 @@ import SpinnerButtonLoading from '../../components/common/SpinnerButtonLoading';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 import useReservation from '../../hooks/useReservation';
 import {openModalDeleteReservationUser} from '../../components/modals/ModalDeleteReservationUser';
+import ReservationUser from '../../contexts/ReservationUser';
 
 const ModalDeleteReservationUser = React.lazy(() => import('../../components/modals/ModalDeleteReservationUser'));
 
@@ -16,7 +17,8 @@ const MyReservations = () => {
   const [loadingSpecificButtonState, setLoadingSpecificButtonState] = useState('');
 
   const [idReservation, setIdReservation] = useState(null);
-  const {getReservationsUser} = useReservation();
+  const {getReservationsUser, getOnlyReservation} = useReservation();
+  const {dataReservation, setDataReservation} = useContext(ReservationUser);
 
   useEffect(() => {
     setIsLoading(true);
@@ -47,6 +49,22 @@ const MyReservations = () => {
 
   const handleViewStatusReservation = (id) => {
     setLoadingSpecificButtonState(id);
+    getOnlyReservation({idReservation: id}).then(response => {
+      if (response !== null) {
+        setLoadingSpecificButtonState('');
+        let dataToContext = {
+          typeEvent: response.typeEvent,
+          timeStart: response.dateReservationStart.split('T')[1].split(':')[0],
+          timeEnd: response.dateReservationEnd.split('T')[1].split(':')[0],
+          priceTotal: response.priceTotal,
+          dateYYMMDD: response.dateReservationStart.split('T')[0],
+          statusReservation: response.statusReservation,
+          isBooked: true
+        };
+        window.localStorage.setItem('dataReservation', JSON.stringify(dataToContext));
+        setDataReservation(dataToContext);
+      }
+    });
   };
 
   return (

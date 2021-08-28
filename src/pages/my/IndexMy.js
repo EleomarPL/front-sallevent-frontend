@@ -12,6 +12,8 @@ import ValidateWithoutUserReservation from '../../components/router/ValidateWith
 import ValidateReservationUser from '../../components/router/ValidateReservationUser';
 import Book from './Book';
 import Reservation from './Reservation';
+import ValidateUpdateBookUser from '../../components/router/ValidateUpdateBookUser';
+import UpdateBook from './UpdateBook';
 
 const Index = () => {
   return (
@@ -27,6 +29,11 @@ const Index = () => {
             <ValidateReservationUser>
               <Reservation />
             </ValidateReservationUser>
+          </MyRouter>
+          <MyRouter exact path="/my/update-book">
+            <ValidateUpdateBookUser>
+              <UpdateBook />
+            </ValidateUpdateBookUser>
           </MyRouter>
           <GroupPageAnyUser>
             <Switch>
