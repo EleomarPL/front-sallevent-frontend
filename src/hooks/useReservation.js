@@ -48,12 +48,12 @@ const useReservation = () => {
       return null;
     }
   };
-  const deleteReservation = async({id}) => {
+  const deleteReservation = async({idReservation}) => {
     const token = JSON.parse(window.localStorage.getItem('session'));
 
     try {
-      let {data} = await deleteReservationUser({id, token});
-      notifySuccess('Se ha eliminado esta reservación');
+      let {data} = await deleteReservationUser({idReservation, token});
+      notifySuccess('Reservación eliminada correctamente');
       return data;
     } catch ( err ) {
       if (err.response.data.error === 'Token missing or invalid') {

@@ -116,6 +116,8 @@ const MyReservations = () => {
       <Suspense fallback={ <SpinnerButtonLoading /> }>
         <ModalDeleteReservationUser
           idReservation={ idReservation }
+          listReservations={ listReservations }
+          setListReservations={ setListReservations }
         />
       </Suspense>
     </section>

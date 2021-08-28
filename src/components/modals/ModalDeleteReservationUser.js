@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'bootstrap';
+
+import useReservation from '../../hooks/useReservation';
+import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
 
 export const openModalDeleteReservationUser = () => {
   let myModal = new Modal(
@@ -12,10 +15,20 @@ export const openModalDeleteReservationUser = () => {
   myModal.show();
 };
 
-const ModalDeleteReservationUser = ({ idReservation }) => {
+const ModalDeleteReservationUser = ({ idReservation, listReservations, setListReservations }) => {
+  const {deleteReservation} = useReservation();
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleDeleteReservation = () => {
     let myModal = Modal.getInstance( document.getElementById('modalDeleteReservation') );
-    
+    setIsLoading(true);
+    deleteReservation({idReservation}).then(response => {
+      setIsLoading(false);
+      if (response !== null) {
+        setListReservations(listReservations.filter(data => data.id !== idReservation));
+      }
+      myModal.hide();
+    });
     
   };
 
@@ -39,9 +52,11 @@ const ModalDeleteReservationUser = ({ idReservation }) => {
             <button
               type="button"
               className="btn btn-danger"
-              // data-bs-dismiss="modal"
               onClick={ handleDeleteReservation }
             >
+              { isLoading &&
+                <SpinnerButtonLoading />
+              }
               Eliminar reservación
             </button>
           </div>
@@ -54,7 +69,9 @@ const ModalDeleteReservationUser = ({ idReservation }) => {
 ModalDeleteReservationUser.propTypes = {
   idReservation: PropTypes.oneOfType([
     PropTypes.string, PropTypes.oneOf([null])
-  ])
+  ]),
+  listReservations: PropTypes.any.isRequired,
+  setListReservations: PropTypes.func.isRequired
 };
 
 export default ModalDeleteReservationUser;

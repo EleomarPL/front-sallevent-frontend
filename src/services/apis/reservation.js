@@ -27,12 +27,12 @@ export const createReservation = async({listSelectedServices, timeStart, timeEnd
   }, config);
   return response;
 };
-export const deleteReservation = async({id, token}) => {
+export const deleteReservation = async({idReservation, token}) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`
     }
   };
-  let response = await axios.delete(`${baseAPI}/delete-reservation`, { id }, config);
+  let response = await axios.delete(`${baseAPI}/delete-reservation/${idReservation}`, config);
   return response;
 };
