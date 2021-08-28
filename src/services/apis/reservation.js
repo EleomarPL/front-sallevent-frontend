@@ -36,3 +36,12 @@ export const deleteReservation = async({idReservation, token}) => {
   let response = await axios.delete(`${baseAPI}/delete-reservation/${idReservation}`, config);
   return response;
 };
+export const getOnlyReservation = async({idReservation, token}) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+  let response = await axios.get(`${baseAPI}/get-only-reservation/${idReservation}`, config);
+  return response;
+};
