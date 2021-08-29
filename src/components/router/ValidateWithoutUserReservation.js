@@ -9,7 +9,9 @@ const ValidateWithoutUserReservation = ({children}) => {
   if (dataReservation.dateYYMMDD) {
     if (dataReservation.isBooked)
       return <Redirect to="/my/reservation" />;
-    else
+    else if (dataReservation.isUpdateBook)
+      return <Redirect to="/my/update-book" />;
+    else if (!dataReservation.isBooked)
       return <Redirect to="/my/book" />;
   } else
     return <>{ children }</>;

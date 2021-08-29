@@ -11,8 +11,10 @@ const ValidateUpdateBookUser = ({children}) => {
   else {
     if (dataReservation.isUpdateBook)
       return <>{ children }</>;
-    else
+    else if (dataReservation.isBooked)
       return <Redirect to="/my/reservation" />;
+    else if (!dataReservation.isBooked)
+      return <Redirect to="/my/book" />;
   }
 };
 
