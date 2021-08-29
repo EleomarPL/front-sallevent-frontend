@@ -15,10 +15,11 @@ const MyReservations = () => {
   const [totalReservations, setTotalReservations] = useState(0.0);
   const [isLoading, setIsLoading] = useState(false);
   const [loadingSpecificButtonState, setLoadingSpecificButtonState] = useState('');
+  const [loadingUpdateButtonState, setLoadingUpdateButtonState] = useState('');
 
   const [idReservation, setIdReservation] = useState(null);
-  const {getReservationsUser, getOnlyReservation} = useReservation();
-  const {dataReservation, setDataReservation} = useContext(ReservationUser);
+  const {getReservationsUser, getOnlyReservation, getReservation} = useReservation();
+  const {setDataReservation} = useContext(ReservationUser);
 
   useEffect(() => {
     setIsLoading(true);
@@ -40,6 +41,25 @@ const MyReservations = () => {
     let day = ('0' + currentDate.getDate()).slice(-2);
 
     return `${day}/${month}/${year}`;
+  };
+  const handleUpdateReservation = (id) => {
+    setLoadingUpdateButtonState(id);
+    getReservation({idReservation: id}).then(response => {
+      setLoadingUpdateButtonState('');
+      let DataToApplyContext = {
+        isUpdateBook: true,
+        id: response.id,
+        typeEvent: response.typeEvent,
+        timeStart: response.timeStart,
+        timeEnd: response.timeEnd,
+        dateYYMMDD: response.dateYYMMDD,
+        priceTotal: response.priceTotal,
+        statusReservation: response.statusReservation,
+        listServices: response.listServices
+      };
+      window.localStorage.setItem('dataReservation', JSON.stringify(DataToApplyContext));
+      setDataReservation(DataToApplyContext);
+    });
   };
 
   const handleDeleteReservation = (id) => {
@@ -104,7 +124,10 @@ const MyReservations = () => {
                       <td>{ data.dateReservationStart.split('T')[0] }</td>
                       <td>{ data.priceTotal }</td>
                       <td>
-                        <ButtonTableReservations onClick={ () => console.log('modificar') }>
+                        <ButtonTableReservations onClick={ () => handleUpdateReservation(data.id) }>
+                          { loadingUpdateButtonState === data.id &&
+                            <SpinnerButtonLoading />
+                          }
                           Modificar
                         </ButtonTableReservations>
                       </td>
