@@ -45,3 +45,12 @@ export const getOnlyReservation = async({idReservation, token}) => {
   let response = await axios.get(`${baseAPI}/get-only-reservation/${idReservation}`, config);
   return response;
 };
+export const getReservationWithServices = async({idReservation, token}) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+  let response = await axios.get(`${baseAPI}/get-reservation/${idReservation}`, config);
+  return response;
+};
