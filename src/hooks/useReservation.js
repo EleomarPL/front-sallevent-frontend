@@ -4,7 +4,8 @@ import {
   createReservation as createReservationAxios,
   deleteReservation as deleteReservationUser,
   getOnlyReservation as getOnlyReservationAxios,
-  getReservationWithServices
+  getReservationWithServices,
+  updateReservacion as updateReservacionAxios
 } from '../services/apis/reservation';
 import {notifyError, notifyWarning, notifySuccess} from '../consts/notifications';
 
@@ -96,6 +97,24 @@ const useReservation = () => {
       return null;
     }
   };
+  const updateReservation = async({idReservation, listSelectedServices, timeStart, timeEnd, typeEvent}) => {
+    const token = JSON.parse(window.localStorage.getItem('session'));
+
+    try {
+      let {data} = await updateReservacionAxios({
+        idReservation, listSelectedServices, timeEnd, timeStart, token, typeEvent
+      });
+      return data;
+    } catch ( err ) {
+      if (err.response.data.error === 'Token missing or invalid') {
+        notifyWarning('Al parecer, perdiste los permisos, te recomiendo cerrar sesión');
+      } else if (err.message === 'Network Error') {
+        notifyError('No encontramos una conexión a internet');
+      } else
+        notifyError('Error al actualizar reservación');
+      return null;
+    }
+  };
 
   return {
     getDateReservationWithStatus,
@@ -103,7 +122,8 @@ const useReservation = () => {
     createReservation,
     deleteReservation,
     getOnlyReservation,
-    getReservation
+    getReservation,
+    updateReservation
   };
 };
 

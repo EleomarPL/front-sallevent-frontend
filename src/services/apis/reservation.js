@@ -54,3 +54,15 @@ export const getReservationWithServices = async({idReservation, token}) => {
   let response = await axios.get(`${baseAPI}/get-reservation/${idReservation}`, config);
   return response;
 };
+export const updateReservacion = async({idReservation, timeEnd, timeStart, typeEvent, listSelectedServices, token}) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+  let response = await axios.put(`${baseAPI}/edit-reservation/${idReservation}`, {
+    listSelectedServices, timeStart, timeEnd, typeEvent
+  },
+  config);
+  return response;
+};
