@@ -57,6 +57,24 @@ const MyReservations = () => {
         statusReservation: response.statusReservation,
         listServices: response.listServices
       };
+      let repairTimeStart = response.timeStart > 12 ? response.timeStart - 12 : response.timeStart;
+      let repairTimeEnd = response.timeEnd > 12 ? response.timeEnd - 12 : response.timeEnd;
+      let dataToQuotation = {
+        typeEvent: response.typeEvent,
+        starttime: {
+          time: repairTimeStart === '00' ? 12 : repairTimeStart,
+          timetable: response.timeStart >= 12 ? 'pm' : 'am'
+        },
+        finaltime: {
+          time: repairTimeEnd,
+          timetable: response.timeEnd >= 12 ? 'pm' : 'am'
+        },
+        total: response.priceTotal
+      };
+      response.listServices.forEach(service => {
+        dataToQuotation[service.id] = service.amountService;
+      });
+      window.localStorage.setItem('dataQuotationAlternative', JSON.stringify(dataToQuotation));
       window.localStorage.setItem('dataReservation', JSON.stringify(DataToApplyContext));
       setDataReservation(DataToApplyContext);
     });
