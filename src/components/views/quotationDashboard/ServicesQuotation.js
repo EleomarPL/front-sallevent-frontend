@@ -17,7 +17,7 @@ const ServicesQuotation = () => {
     });
   }, []);
   const [typeEvent, setTypeEvent] = useState({
-    selectValue: 'null',
+    selectValue: quotationData.typeEvent,
     inputAltValue: ''
   });
 
@@ -102,7 +102,7 @@ const ServicesQuotation = () => {
               onChange={ handleChageValueSelect }
               style={ {marginRight: '5px'} }
             >
-              <option value="null" hidden>Seleccione una opción</option>
+              <option value="" hidden>Seleccione una opción</option>
               <option value="Graduacion">Graduacion</option>
               <option value="Boda">Boda</option>
               <option value="Bautizo">Bautizo</option>
@@ -134,13 +134,15 @@ const ServicesQuotation = () => {
           <div className="col-md-5 justify-content-center m-auto">
             <div className="input-group d-flex flex-wrap align-items-center mb-1">
               <label style={ {marginRight: '5px'} } htmlFor="start-time">Hr inicio:</label>
-              <input type="number" placeholder="00"
+              <input type="number" placeholder="1"
                 id="start-time" className="form-control"
                 min="1" max="12"
+                value={ quotationData.starttime.time }
                 onChange={ evt => handleChangeInputTime({evt, isStartTime: true}) }
                 required />
               <select
                 className="form-select"
+                value={ quotationData.starttime.timetable }
                 onChange={ evt => handleChangeSelectTime({evt, isStartTime: true}) }
               >
                 <option value="am">AM</option>
@@ -152,10 +154,12 @@ const ServicesQuotation = () => {
               <input type="number" placeholder="12"
                 id="final-time" className="form-control"
                 min="1" max="12"
+                value={ quotationData.finaltime.time }
                 onChange={ evt => handleChangeInputTime({evt, isStartTime: false}) }
                 required />
               <select
                 className="form-select"
+                value={ quotationData.finaltime.timetable }
                 onChange={ evt => handleChangeSelectTime({evt, isStartTime: false}) }
               >
                 <option value="am">AM</option>
@@ -181,6 +185,7 @@ const ServicesQuotation = () => {
                         id={ object.id }
                         style={ {width: '5rem'} }
                         min="1"
+                        value={ quotationData[object.id] ? quotationData[object.id] : '' }
                         onChange={ evt => handleChangeServices({evt, nameService: `${object.id}`}) }
                         required />
                     </div>
