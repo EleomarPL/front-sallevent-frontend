@@ -3,9 +3,14 @@ import React, { useContext, useState } from 'react';
 import {notifyWarning} from '../../consts/notifications';
 import Quotation from '../../contexts/Quotation';
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
+import useReservation from '../../hooks/useReservation';
+import ReservationUser from '../../contexts/ReservationUser';
 
 const ButtonUpdateBook = () => {
   const {quotationData} = useContext(Quotation);
+  const {dataReservation, setDataReservation} = useContext(ReservationUser);
+
+  const {updateReservation} = useReservation();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,7 +25,29 @@ const ButtonUpdateBook = () => {
 
   const bookDay = ({listServices, timeStart, timeEnd, typeEvent}) => {
     setIsLoading(true);
-    console.log({listServices, timeStart, timeEnd, typeEvent});
+    updateReservation({
+      idReservation: dataReservation.id,
+      listSelectedServices: listServices,
+      timeEnd,
+      timeStart,
+      typeEvent
+    }).then(response => {
+      setIsLoading(false);
+      if (response !== null) {
+        let newDataReservation = {
+          ...dataReservation,
+          typeEvent: response.typeEvent,
+          timeStart,
+          timeEnd,
+          statusReservation: response.statusReservation,
+          priceTotal: response.priceTotal,
+          isBooked: true,
+          isUpdateBook: false
+        };
+        window.localStorage.setItem('dataReservation', JSON.stringify(newDataReservation));
+        setDataReservation(newDataReservation);
+      }
+    });
   };
   const validaServices = ({ timeStart, timeEnd }) => {
     let dataToSend = [];
