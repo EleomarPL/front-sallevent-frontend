@@ -36,7 +36,7 @@ const Reservation = () => {
         </div>
       </div>
       <div className="my-2 d-flex flex-wrap justify-content-around">
-        <ButtonBackBook text="Aceptar y salir" />
+        <ButtonBackBook to="/my/calendar" text="Aceptar y salir" />
         <ButtonGoToReservations />
       </div>
     </section>

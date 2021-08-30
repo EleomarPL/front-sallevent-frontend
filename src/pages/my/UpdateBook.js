@@ -35,7 +35,7 @@ const UpdateBook = () => {
             </div>
             <div className="d-flex flex-wrap align-items-center mb-3">
               <div style={ {marginRight: '0.5rem'} }>
-                <ButtonBackBook text="Regresar" />
+                <ButtonBackBook to="/my/my-reservations" text="Regresar" />
               </div>
               <div style={ {width: '15rem'} }>
                 <BoxTotal />

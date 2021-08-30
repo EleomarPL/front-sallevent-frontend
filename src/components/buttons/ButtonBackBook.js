@@ -4,7 +4,7 @@ import ProptTypes from 'prop-types';
 
 import ReservationUser from '../../contexts/ReservationUser';
 
-const ButtonBackBook = ({text}) => {
+const ButtonBackBook = ({text, to}) => {
   const history = useHistory();
   const {setDataReservation} = useContext(ReservationUser);
 
@@ -14,7 +14,7 @@ const ButtonBackBook = ({text}) => {
       dateYYMMDD: '',
       isBooked: false
     });
-    history.push('/my/calendar');
+    history.push(to);
   };
   return (
     <button
@@ -28,7 +28,8 @@ const ButtonBackBook = ({text}) => {
 };
 
 ButtonBackBook.propTypes = {
-  text: ProptTypes.string.isRequired
+  text: ProptTypes.string.isRequired,
+  to: ProptTypes.string.isRequired
 };
 
 export default ButtonBackBook;
