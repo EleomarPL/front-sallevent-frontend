@@ -3,6 +3,7 @@ import React, {useContext} from 'react';
 import {inputsPersonalInformation} from '../../data/admin/inputsPersonalInformation';
 
 import Auth from '../../contexts/Auth';
+import BaseButtonAdmin from '../../components/buttons/BaseButtonAdmin';
 
 const PersonalInformation = () => {
   const {userData} = useContext(Auth);
@@ -51,13 +52,15 @@ const PersonalInformation = () => {
           )
         }
       </div>
-      <div className="d-flex flex-wrap justify-content-center">
-        <button
-          type="button"
-          className="btn btn-primary"
-        >
+      <div className="d-flex flex-wrap justify-content-center mt-3">
+        <BaseButtonAdmin onClick={ () => console.log('modificar informacion') }>
           Modificar Información
-        </button>
+        </BaseButtonAdmin>
+        <div style={ {marginLeft: '1rem'} }>
+          <BaseButtonAdmin onClick={ () => console.log('modificar contraseña') }>
+            Modificar Contraseña
+          </BaseButtonAdmin>
+        </div>
       </div>
     </section>
   );
