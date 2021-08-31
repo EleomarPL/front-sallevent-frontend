@@ -5,6 +5,7 @@ import { Modal } from 'bootstrap';
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
 import BaseButtonAdmin from '../buttons/BaseButtonAdmin';
 import Auth from '../../contexts/Auth';
+import useAdmin from '../../hooks/useAdmin';
 
 import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail} from '../../services/validations/generalValidations';
 
@@ -21,9 +22,12 @@ export const openmodalUpdateAdminUser = () => {
 const ModalUpdateDataAdmin = () => {
   const {userData} = useContext(Auth);
   const [isLoading, setIsLoading] = useState(false);
+  const {editDataAdmin} = useAdmin();
 
   const handleSubmitUpdateDataUser = (evt) => {
     evt.preventDefault();
+    let myModal = Modal.getInstance( document.getElementById('modalUpdateAdmin') );
+
     let dataEditUser = {
       name: {
         name: 'Nombre',
@@ -67,10 +71,16 @@ const ModalUpdateDataAdmin = () => {
       if ( isNumberValue({name: 'Telefono', value: dataEditUser['phone'].value}) &&
         isValidateEmail(dataEditUser['email'].value)) {
         setIsLoading(true);
-      
+        editDataAdmin({
+          name: dataEditUser.name.value, lastName: dataEditUser.lastName.value,
+          email: dataEditUser.email.value, motherLastName: dataEditUser.motherLastName.value,
+          phone: dataEditUser.phone.value, userName: dataEditUser.userName.value
+        }).then(() => {
+          setIsLoading(false);
+          myModal.hide();
+        });
       }
     }
-    console.log('enviando');
   };
 
   return (
