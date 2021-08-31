@@ -4,6 +4,8 @@ import { Modal } from 'bootstrap';
 import BaseButtonAdmin from '../buttons/BaseButtonAdmin';
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
 
+import {isObjectValuesNull, validateLength} from '../../services/validations/generalValidations';
+
 export const openmodalUpdatePasswordAdminUser = () => {
   let myModal = new Modal(
     document.getElementById('modalUpdatePasswordAdmin'), {
@@ -15,7 +17,51 @@ export const openmodalUpdatePasswordAdminUser = () => {
 };
 
 const ModalUpdatePasswordAdmin = () => {
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [messageStatusPassword, setMessageStatusPaswword] = useState({ color: '', text: '' });
+
   const [isLoading, setIsLoading] = useState(false);
+
+  const verifyNewPassword = (evt, setNewValue, index) => {
+    setNewValue(evt.target.value);
+    if (index === 1 || confirmPassword.trim() !== '') {
+      let stringToCompare = index === 0 ? confirmPassword : newPassword;
+      if (stringToCompare !== evt.target.value )
+        setMessageStatusPaswword({
+          color: '#D70B00',
+          text: 'Las contraseñas no coinciden'
+        });
+      else
+        setMessageStatusPaswword({
+          color: '#347d39',
+          text: 'Las contraseñas coinciden'
+        });
+    }
+  };
+
+  const updatePasswordAdmin = () => {
+    if (newPassword.trim() === confirmPassword.trim()) {
+      let dataNewUser = {
+        name: {
+          name: 'Contraseña Actual',
+          minLength: 6,
+          maxLength: 45,
+          value: oldPassword
+        },
+        lastName: {
+          name: 'Nueva Contraseña',
+          minLength: 6,
+          maxLength: 45,
+          value: confirmPassword
+        }
+      };
+      if ( !isObjectValuesNull(dataNewUser) && validateLength(dataNewUser) ) {
+        setIsLoading(true);
+      }
+    }
+  };
 
   return (
     <div className="modal fade" id="modalUpdatePasswordAdmin"
@@ -36,9 +82,11 @@ const ModalUpdatePasswordAdmin = () => {
                 <i className="bi bi-key-fill" style={ {fontSize: '1.2rem'} }></i>
               </span>
               <input
-                type="text" className="form-control"
+                type="password" className="form-control"
                 placeholder="Contraseña Actual" aria-label="CurrentPassword"
                 aria-describedby="username"
+                value={ oldPassword }
+                onChange={ (evt) => setOldPassword(evt.target.value) }
                 required
               />
             </div>
@@ -47,9 +95,11 @@ const ModalUpdatePasswordAdmin = () => {
                 <i className="bi bi-lock" style={ {fontSize: '1.2rem'} }></i>
               </span>
               <input
-                type="text" className="form-control"
+                type="password" className="form-control"
                 placeholder="Nueva Contraseña" aria-label="NewPassword"
                 aria-describedby="newpassword"
+                value={ newPassword }
+                onChange={ (evt) => verifyNewPassword(evt, setNewPassword, 0) }
                 required
               />
             </div>
@@ -58,15 +108,20 @@ const ModalUpdatePasswordAdmin = () => {
                 <i className="bi bi-lock-fill" style={ {fontSize: '1.2rem'} }></i>
               </span>
               <input
-                type="text" className="form-control"
+                type="password" className="form-control"
                 placeholder="Confirmar Contraseña" aria-label="ConfirmPassword"
                 aria-describedby="confirmpassword"
+                value={ confirmPassword }
+                onChange={ (evt) => verifyNewPassword(evt, setConfirmPassword, 1) }
                 required
               />
             </div>
+            <small style={ {fontWeight: '600', color: messageStatusPassword.color} }>
+              { messageStatusPassword.text }
+            </small>
             <div className="d-flex flex-wrap justify-content-center">
               <BaseButtonAdmin
-                onClick={ () => console.log('actualizar') }
+                onClick={ updatePasswordAdmin }
               >
                 { isLoading &&
                   <SpinnerButtonLoading />
