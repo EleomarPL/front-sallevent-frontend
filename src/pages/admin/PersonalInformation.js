@@ -5,9 +5,11 @@ import {inputsPersonalInformation} from '../../data/admin/inputsPersonalInformat
 import Auth from '../../contexts/Auth';
 import BaseButtonAdmin from '../../components/buttons/BaseButtonAdmin';
 import {openmodalUpdateAdminUser} from '../../components/modals/ModalUpdateDataAdmin';
+import {openmodalUpdatePasswordAdminUser} from '../../components/modals/ModalUpdatePasswordAdmin';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 
 const ModalUpdateDataAdmin = React.lazy(() => import('../../components/modals/ModalUpdateDataAdmin'));
+const ModalUpdatePasswordAdmin = React.lazy(() => import('../../components/modals/ModalUpdatePasswordAdmin'));
 
 const PersonalInformation = () => {
   const {userData} = useContext(Auth);
@@ -61,13 +63,16 @@ const PersonalInformation = () => {
           Modificar Información
         </BaseButtonAdmin>
         <div style={ {marginLeft: '1rem'} }>
-          <BaseButtonAdmin onClick={ () => console.log('modificar contraseña') }>
+          <BaseButtonAdmin onClick={ openmodalUpdatePasswordAdminUser }>
             Modificar Contraseña
           </BaseButtonAdmin>
         </div>
       </div>
       <Suspense fallback={ <SpinnerLoading /> }>
         <ModalUpdateDataAdmin />
+      </Suspense>
+      <Suspense fallback={ <SpinnerLoading /> }>
+        <ModalUpdatePasswordAdmin />
       </Suspense>
     </section>
   );
