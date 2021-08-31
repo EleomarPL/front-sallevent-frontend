@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 
 import '../../styles/styleGroupPageAnyUser.css';
 
-import {routesNav} from '../../data/my/routes';
 import NavigationAnyUser from '../views/NavigationAnyUser';
 
-const GroupPageAnyUser = ({children}) => {
+const GroupPageAnyUser = ({children, routesNav}) => {
   return (
     <main className="container-group-pages pt-2" style={ {background: '#eeeeee'} }>
       <div id="navigation">
@@ -20,7 +19,8 @@ const GroupPageAnyUser = ({children}) => {
 };
 
 GroupPageAnyUser.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  routesNav: PropTypes.array.isRequired
 };
 
 export default GroupPageAnyUser;

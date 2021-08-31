@@ -14,6 +14,7 @@ import Book from './Book';
 import Reservation from './Reservation';
 import ValidateUpdateBookUser from '../../components/router/ValidateUpdateBookUser';
 import UpdateBook from './UpdateBook';
+import {routesNav} from '../../data/my/routes';
 
 const Index = () => {
   return (
@@ -35,7 +36,7 @@ const Index = () => {
               <UpdateBook />
             </ValidateUpdateBookUser>
           </MyRouter>
-          <GroupPageAnyUser>
+          <GroupPageAnyUser routesNav={ routesNav }>
             <Switch>
               <MyRouter exact path="/my/my-reservations">
                 <ValidateWithoutUserReservation>
