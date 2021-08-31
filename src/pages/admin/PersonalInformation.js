@@ -1,9 +1,13 @@
-import React, {useContext} from 'react';
+import React, {Suspense, useContext} from 'react';
 
 import {inputsPersonalInformation} from '../../data/admin/inputsPersonalInformation';
 
 import Auth from '../../contexts/Auth';
 import BaseButtonAdmin from '../../components/buttons/BaseButtonAdmin';
+import {openmodalUpdateAdminUser} from '../../components/modals/ModalUpdateDataAdmin';
+import SpinnerLoading from '../../components/common/SpinnerLoading';
+
+const ModalUpdateDataAdmin = React.lazy(() => import('../../components/modals/ModalUpdateDataAdmin'));
 
 const PersonalInformation = () => {
   const {userData} = useContext(Auth);
@@ -53,7 +57,7 @@ const PersonalInformation = () => {
         }
       </div>
       <div className="d-flex flex-wrap justify-content-center mt-3">
-        <BaseButtonAdmin onClick={ () => console.log('modificar informacion') }>
+        <BaseButtonAdmin onClick={ openmodalUpdateAdminUser }>
           Modificar Información
         </BaseButtonAdmin>
         <div style={ {marginLeft: '1rem'} }>
@@ -62,6 +66,9 @@ const PersonalInformation = () => {
           </BaseButtonAdmin>
         </div>
       </div>
+      <Suspense fallback={ <SpinnerLoading /> }>
+        <ModalUpdateDataAdmin />
+      </Suspense>
     </section>
   );
 };
