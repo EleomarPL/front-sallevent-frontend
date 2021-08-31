@@ -4,8 +4,9 @@ import { Modal } from 'bootstrap';
 
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
 import BaseButtonAdmin from '../buttons/BaseButtonAdmin';
-
 import Auth from '../../contexts/Auth';
+
+import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail} from '../../services/validations/generalValidations';
 
 export const openmodalUpdateAdminUser = () => {
   let myModal = new Modal(
@@ -21,6 +22,57 @@ const ModalUpdateDataAdmin = () => {
   const {userData} = useContext(Auth);
   const [isLoading, setIsLoading] = useState(false);
 
+  const handleSubmitUpdateDataUser = (evt) => {
+    evt.preventDefault();
+    let dataEditUser = {
+      name: {
+        name: 'Nombre',
+        minLength: 2,
+        maxLength: 45,
+        value: evt.target[1].value
+      },
+      lastName: {
+        name: 'Apellido paterno',
+        minLength: 2,
+        maxLength: 45,
+        value: evt.target[2].value
+      },
+      motherLastName: {
+        name: 'Apellido materno',
+        minLength: 2,
+        maxLength: 45,
+        value: evt.target[3].value
+      },
+      email: {
+        name: 'Correo electronico',
+        minLength: 10,
+        maxLength: 80,
+        value: evt.target[4].value
+      },
+      phone: {
+        name: 'Telefono',
+        minLength: 9,
+        maxLength: 14,
+        value: evt.target[5].value
+      },
+      userName: {
+        name: 'Usuario',
+        minLength: 6,
+        maxLength: 45,
+        value: evt.target[0].value
+      }
+    };
+
+    if ( !isObjectValuesNull(dataEditUser) && validateLength(dataEditUser) ) {
+      if ( isNumberValue({name: 'Telefono', value: dataEditUser['phone'].value}) &&
+        isValidateEmail(dataEditUser['email'].value)) {
+        setIsLoading(true);
+      
+      }
+    }
+    console.log('enviando');
+  };
+
   return (
     <div className="modal fade" id="modalUpdateAdmin"
       tabIndex="-1" aria-labelledby="modalUpdateAdminLabel"
@@ -35,83 +87,85 @@ const ModalUpdateDataAdmin = () => {
               data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body text-center">
-            <div className="input-group mb-3">
-              <span className="input-group-text" id="username">
-                <i className="bi bi-person-circle" style={ {fontSize: '1.2rem'} }></i>
-              </span>
-              <InputGroupWithState
-                type="text"
-                ariaDescribedBy="username"
-                ariaLabel="Username"
-                placeholder="Usuario"
-                value={ userData.userName }
-              />
-            </div>
-            <div className="input-group mb-3">
-              <span className="input-group-text">
-                <i className="bi bi-person-fill" style={ {fontSize: '1.2rem'} }></i>
-              </span>
-              <div className="form-control px-0">
+            <form onSubmit={ handleSubmitUpdateDataUser }>
+              <div className="input-group mb-3">
+                <span className="input-group-text" id="username">
+                  <i className="bi bi-person-circle" style={ {fontSize: '1.2rem'} }></i>
+                </span>
                 <InputGroupWithState
                   type="text"
-                  ariaDescribedBy=""
-                  ariaLabel="Name"
-                  placeholder="Nombre"
-                  value={ userData.name }
-                  isInGroup={ true }
-                />
-                <InputGroupWithState
-                  type="text"
-                  ariaDescribedBy=""
-                  ariaLabel="LastName"
-                  placeholder="Apellido paterno"
-                  value={ userData.lastName }
-                  isInGroup={ true }
-                />
-                <InputGroupWithState
-                  type="text"
-                  ariaDescribedBy=""
-                  ariaLabel="MotherLastName"
-                  placeholder="Apellido materno"
-                  value={ userData.motherLastName }
-                  isInGroup={ true }
+                  ariaDescribedBy="username"
+                  ariaLabel="Username"
+                  placeholder="Usuario"
+                  value={ userData.userName }
                 />
               </div>
-            </div>
-            <div className="input-group mb-3">
-              <span className="input-group-text" id="email">
-                <i className="bi bi-envelope-fill" style={ {fontSize: '1.2rem'} }></i>
-              </span>
-              <InputGroupWithState
-                type="email"
-                ariaDescribedBy="email"
-                ariaLabel="Email"
-                placeholder="Email"
-                value={ userData.email }
-              />
-            </div>
-            <div className="input-group mb-3">
-              <span className="input-group-text" id="phone">
-                <i className="bi bi-telephone-fill" style={ {fontSize: '1.2rem'} }></i>
-              </span>
-              <InputGroupWithState
-                type="tel"
-                ariaDescribedBy="phone"
-                ariaLabel="Phone"
-                placeholder="Telefono"
-                value={ userData.phone }
-              />
-            </div>
-            <div className="d-flex flex-wrap justify-content-center">
-              <BaseButtonAdmin
-                onClick={ () => console.log('actualizar') }
-              >
-                { isLoading &&
-                  <SpinnerButtonLoading />
-                }
-                Actualizar
-              </BaseButtonAdmin>
-            </div>
+              <div className="input-group mb-3">
+                <span className="input-group-text">
+                  <i className="bi bi-person-fill" style={ {fontSize: '1.2rem'} }></i>
+                </span>
+                <div className="form-control px-0">
+                  <InputGroupWithState
+                    type="text"
+                    ariaDescribedBy=""
+                    ariaLabel="Name"
+                    placeholder="Nombre"
+                    value={ userData.name }
+                    isInGroup={ true }
+                  />
+                  <InputGroupWithState
+                    type="text"
+                    ariaDescribedBy=""
+                    ariaLabel="LastName"
+                    placeholder="Apellido paterno"
+                    value={ userData.lastName }
+                    isInGroup={ true }
+                  />
+                  <InputGroupWithState
+                    type="text"
+                    ariaDescribedBy=""
+                    ariaLabel="MotherLastName"
+                    placeholder="Apellido materno"
+                    value={ userData.motherLastName }
+                    isInGroup={ true }
+                  />
+                </div>
+              </div>
+              <div className="input-group mb-3">
+                <span className="input-group-text" id="email">
+                  <i className="bi bi-envelope-fill" style={ {fontSize: '1.2rem'} }></i>
+                </span>
+                <InputGroupWithState
+                  type="email"
+                  ariaDescribedBy="email"
+                  ariaLabel="Email"
+                  placeholder="Email"
+                  value={ userData.email }
+                />
+              </div>
+              <div className="input-group mb-3">
+                <span className="input-group-text" id="phone">
+                  <i className="bi bi-telephone-fill" style={ {fontSize: '1.2rem'} }></i>
+                </span>
+                <InputGroupWithState
+                  type="tel"
+                  ariaDescribedBy="phone"
+                  ariaLabel="Phone"
+                  placeholder="Telefono"
+                  value={ userData.phone }
+                />
+              </div>
+              <div className="d-flex flex-wrap justify-content-center">
+                <BaseButtonAdmin
+                  type={ 1 }
+                >
+                  { isLoading &&
+                    <SpinnerButtonLoading />
+                  }
+                  Actualizar
+                </BaseButtonAdmin>
+              </div>
+            </form>
           </div>
         </div>
       </div>
