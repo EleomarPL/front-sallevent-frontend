@@ -6,7 +6,7 @@ import Auth from '../../contexts/Auth';
 
 import '../../styles/styleNavigationAnyUser.css';
 
-const NavigationAnyUser = ({isAdmin = false, routesNav}) => {
+const NavigationAnyUser = ({isAdmin, routesNav}) => {
   const {userData} = useContext(Auth);
 
   return (
@@ -39,7 +39,7 @@ const NavigationAnyUser = ({isAdmin = false, routesNav}) => {
                     <NavLink
                       className="nav-link-personalized"
                       activeClassName="active-link-personalized"
-                      to={ isAdmin ? '/admin' : '/my' + data.path }
+                      to={ isAdmin ? '/admin' + data.path : '/my' + data.path }
                       exact
                     >
                       { data.text }
