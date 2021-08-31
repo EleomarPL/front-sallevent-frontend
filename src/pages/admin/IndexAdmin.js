@@ -3,6 +3,7 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 
 import GroupPageAnyUser from '../../components/layouts/GroupPageAnyUser';
 import AdminRouter from '../../components/router/AdminRouter';
+import PersonalInformation from './PersonalInformation';
 
 import {routesNav} from '../../data/admin/routes';
 
@@ -24,7 +25,7 @@ const IndexAdmin = () => {
             <p>Salón</p>
           </AdminRouter>
           <AdminRouter exact path="/admin/">
-            <p>Datos personales</p>
+            <PersonalInformation />
           </AdminRouter>
         </Switch>
       </GroupPageAnyUser>
