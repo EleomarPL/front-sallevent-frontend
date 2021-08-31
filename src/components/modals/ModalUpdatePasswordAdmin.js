@@ -3,6 +3,7 @@ import { Modal } from 'bootstrap';
 
 import BaseButtonAdmin from '../buttons/BaseButtonAdmin';
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
+import useAdmin from '../../hooks/useAdmin';
 
 import {isObjectValuesNull, validateLength} from '../../services/validations/generalValidations';
 
@@ -23,6 +24,7 @@ const ModalUpdatePasswordAdmin = () => {
   const [messageStatusPassword, setMessageStatusPaswword] = useState({ color: '', text: '' });
 
   const [isLoading, setIsLoading] = useState(false);
+  const {editPasswordAdmin} = useAdmin();
 
   const verifyNewPassword = (evt, setNewValue, index) => {
     setNewValue(evt.target.value);
@@ -43,6 +45,7 @@ const ModalUpdatePasswordAdmin = () => {
 
   const updatePasswordAdmin = () => {
     if (newPassword.trim() === confirmPassword.trim()) {
+      let myModal = Modal.getInstance( document.getElementById('modalUpdatePasswordAdmin') );
       let dataNewUser = {
         name: {
           name: 'Contraseña Actual',
@@ -59,6 +62,16 @@ const ModalUpdatePasswordAdmin = () => {
       };
       if ( !isObjectValuesNull(dataNewUser) && validateLength(dataNewUser) ) {
         setIsLoading(true);
+        editPasswordAdmin({oldPassword, newPassword}).then(response => {
+          setIsLoading(false);
+          if (response) {
+            setConfirmPassword('');
+            setNewPassword('');
+            setOldPassword('');
+            setMessageStatusPaswword({ color: '', text: '' });
+            myModal.hide();
+          }
+        });
       }
     }
   };
