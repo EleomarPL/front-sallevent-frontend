@@ -4,6 +4,7 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 import GroupPageAnyUser from '../../components/layouts/GroupPageAnyUser';
 import AdminRouter from '../../components/router/AdminRouter';
 import PersonalInformation from './PersonalInformation';
+import Clients from './Clients';
 
 import {routesNav} from '../../data/admin/routes';
 
@@ -13,7 +14,7 @@ const IndexAdmin = () => {
       <GroupPageAnyUser routesNav={ routesNav } isAdmin={ true } >
         <Switch>
           <AdminRouter exact path="/admin/clients">
-            <p>Clientes</p>
+            <Clients />
           </AdminRouter>
           <AdminRouter exact path="/admin/books">
             <p>Reservaciones</p>

@@ -6,7 +6,7 @@
 .container-group-pages > #navigation {
   grid-column: 1;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
   .container-group-pages {
     grid-template-columns: 1fr;
   }
