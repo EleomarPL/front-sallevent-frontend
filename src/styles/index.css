@@ -1,0 +1,10 @@
+.table-responsive{
+  display: block !important;
+  overflow-x: auto !important;
+  max-width: 60vw !important;
+}
+@media screen and (max-width: 991px) {
+  .table-responsive{
+    max-width: 100vw !important;
+  }
+}

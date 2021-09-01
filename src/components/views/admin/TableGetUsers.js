@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
+import useAdmin from '../../../hooks/useAdmin';
+import SpinnerLoading from '../../common/SpinnerLoading';
+
 const TableGetUsers = ({ keyword }) => {
+  const [users, setUsers] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const {getUsers} = useAdmin();
+
+  useEffect(() => {
+    setIsLoading(true);
+    getUsers({keyword}).then(response => {
+      setIsLoading(false);
+      if (response !== null)
+        setUsers(response);
+    });
+  }, [keyword]);
+
   return (
     <div className="table-responsive mt-3"
-      style={ {maxWidth: '95vw', boxShadow: '0 0 7px 1px #3e9fce'} }
+      style={ {boxShadow: '0 0 7px 1px #3e9fce'} }
     >
       <table className="table table-striped table-hover text-center">
         <thead className="table-dark">
@@ -20,28 +36,27 @@ const TableGetUsers = ({ keyword }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Usuario</td>
-            <td>Nombre</td>
-            <td>Apellido P</td>
-            <td>Apellido M</td>
-            <td>Email</td>
-            <td>Telefono</td>
-            <td><ButtonModifyUser /></td>
-            <td><ButtonDeleteUser /></td>
-          </tr>
-          <tr>
-            <td>Usuario</td>
-            <td>Nombre</td>
-            <td>Apellido P</td>
-            <td>Apellido M</td>
-            <td>Email</td>
-            <td>Telefono</td>
-            <td><ButtonModifyUser /></td>
-            <td><ButtonDeleteUser /></td>
-          </tr>
+          { users !== null &&
+            users.map(dataUser =>
+              <tr
+                key={ dataUser.id }
+              >
+                <td>{ dataUser.userName }</td>
+                <td>{ dataUser.name }</td>
+                <td>{ dataUser.lastName }</td>
+                <td>{ dataUser.motherLastName }</td>
+                <td>{ dataUser.email }</td>
+                <td>{ dataUser.phone }</td>
+                <td><ButtonModifyUser /></td>
+                <td><ButtonDeleteUser /></td>
+              </tr>
+            )
+          }
         </tbody>
       </table>
+      { isLoading &&
+        <SpinnerLoading />
+      }
     </div>
   );
 };

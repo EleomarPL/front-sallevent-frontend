@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import BaseButtonAdmin from '../../components/buttons/BaseButtonAdmin';
 import TableGetUsers from '../../components/views/admin/TableGetUsers';
+import { DebounceInput } from 'react-debounce-input';
 
 const Clients = () => {
+  const [searcher, setSearcher] = useState('');
+
+  const handleChangeKeyword = (evt) => {
+    setSearcher(evt.target.value);
+  };
   const getCurrentDate = () => {
     const currentDate = new Date();
     let year = currentDate.getFullYear();
@@ -18,13 +25,22 @@ const Clients = () => {
         <div className="fw-bold" style={ {fontSize: '1.5rem'} }>Table de clientes</div>
         <div className="input-group w-50">
           <span className="input-group-text" id="search"><i className="bi bi-search"></i></span>
-          <input type="text" className="form-control"
-            placeholder="Nombre de usuario" aria-label="Buscar"
+          <DebounceInput
+            minLength={ 2 }
+            type="text"
+            aria-label="Buscar"
             aria-describedby="search"
+            className="form-control"
+            debounceTimeout={ 300 }
+            onChange={ handleChangeKeyword }
+            value={ searcher }
+            placeholder="Nombre de usuario - min 2 palabras"
           />
         </div>
       </div>
-      <TableGetUsers keyword="" />
+      <div className="mx-100">
+        <TableGetUsers keyword={ searcher } />
+      </div>
       <div className="d-flex justify-content-center mt-3">
         <BaseButtonAdmin onClick={ () => console.log('crear usuario') }>
           Crear nuevo usuario
