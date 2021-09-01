@@ -28,3 +28,12 @@ export const editPasswordAdmin = async({ oldPassword, newPassword, token }) => {
   );
   return response;
 };
+export const getUsers = async({keyword, token}) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+  let response = await axios.get(`${baseAPI}/get-users/${keyword}`, config);
+  return response;
+};
