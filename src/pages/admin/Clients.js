@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 
 import BaseButtonAdmin from '../../components/buttons/BaseButtonAdmin';
 import TableGetUsers from '../../components/views/admin/TableGetUsers';
 import PersonalizedSearcher from '../../components/views/PersonalizedSearcher';
+import {openmodalCreateUserUser} from '../../components/modals/ModalCreateUser';
+import SpinnerLoading from '../../components/common/SpinnerLoading';
+
+const ModalCreateUser = React.lazy(() => import('../../components/modals/ModalCreateUser'));
 
 const Clients = () => {
   const [searcher, setSearcher] = useState('');
@@ -30,10 +34,13 @@ const Clients = () => {
         <TableGetUsers keyword={ searcher } />
       </div>
       <div className="d-flex justify-content-center mt-3">
-        <BaseButtonAdmin onClick={ () => console.log('crear usuario') }>
+        <BaseButtonAdmin onClick={ openmodalCreateUserUser }>
           Crear nuevo usuario
         </BaseButtonAdmin>
       </div>
+      <Suspense fallback={ <SpinnerLoading /> }>
+        <ModalCreateUser />
+      </Suspense>
     </section>
   );
 };

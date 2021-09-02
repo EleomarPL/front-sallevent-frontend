@@ -1,15 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Modal } from 'bootstrap';
 
-import Auth from '../../contexts/Auth';
-import useAdmin from '../../hooks/useAdmin';
 import FormUpdateData from '../views/FormUpdateData';
 
 import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail} from '../../services/validations/generalValidations';
 
-export const openmodalUpdateAdminUser = () => {
+export const openmodalCreateUserUser = () => {
   let myModal = new Modal(
-    document.getElementById('modalUpdateAdmin'), {
+    document.getElementById('modalCreateUser'), {
       keyboard: true,
       focus: true
     }
@@ -17,16 +15,14 @@ export const openmodalUpdateAdminUser = () => {
   myModal.show();
 };
 
-const ModalUpdateDataAdmin = () => {
-  const {userData} = useContext(Auth);
+const ModalCreateUser = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const {editDataAdmin} = useAdmin();
 
   const handleSubmitUpdateDataUser = (evt) => {
     evt.preventDefault();
-    let myModal = Modal.getInstance( document.getElementById('modalUpdateAdmin') );
+    let myModal = Modal.getInstance( document.getElementById('modalCreateUser') );
 
-    let dataEditUser = {
+    let dataNewUser = {
       name: {
         name: 'Nombre',
         minLength: 2,
@@ -62,34 +58,33 @@ const ModalUpdateDataAdmin = () => {
         minLength: 6,
         maxLength: 45,
         value: evt.target[0].value
+      },
+      password: {
+        name: 'Contraseña',
+        minLength: 6,
+        maxLength: 45,
+        value: evt.target[6].value
       }
     };
 
-    if ( !isObjectValuesNull(dataEditUser) && validateLength(dataEditUser) ) {
-      if ( isNumberValue({name: 'Telefono', value: dataEditUser['phone'].value}) &&
-        isValidateEmail(dataEditUser['email'].value)) {
+    if ( !isObjectValuesNull(dataNewUser) && validateLength(dataNewUser) ) {
+      if ( isNumberValue({name: 'Telefono', value: dataNewUser['phone'].value}) &&
+        isValidateEmail(dataNewUser['email'].value)) {
         setIsLoading(true);
-        editDataAdmin({
-          name: dataEditUser.name.value, lastName: dataEditUser.lastName.value,
-          email: dataEditUser.email.value, motherLastName: dataEditUser.motherLastName.value,
-          phone: dataEditUser.phone.value, userName: dataEditUser.userName.value
-        }).then(() => {
-          setIsLoading(false);
-          myModal.hide();
-        });
+        
       }
     }
   };
 
   return (
-    <div className="modal fade" id="modalUpdateAdmin"
-      tabIndex="-1" aria-labelledby="modalUpdateAdminLabel"
+    <div className="modal fade" id="modalCreateUser"
+      tabIndex="-1" aria-labelledby="modalCreateUserLabel"
       aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title fw-normal" id="modalUpdateAdminLabel">
-              Modificar Información de <span className="fw-bold">{ userData.name }</span>
+            <h5 className="modal-title fw-normal" id="modalCreateUserLabel">
+              Crear Usuario
             </h5>
             <button type="button" className="btn-close"
               data-bs-dismiss="modal" aria-label="Close"></button>
@@ -98,9 +93,20 @@ const ModalUpdateDataAdmin = () => {
             <FormUpdateData
               handleSubmitUpdateDataUser={ handleSubmitUpdateDataUser }
               isLoading={ isLoading }
-              userData={ userData }
-              textButton="Actualizar"
-            />
+              textButton="Crear Usuario"
+            >
+              <div className="input-group mb-3">
+                <span className="input-group-text" id="password">
+                  <i className="bi bi-lock-fill" style={ {fontSize: '1.2rem'} }></i>
+                </span>
+                <input
+                  type="password" className="form-control"
+                  placeholder="Contraseña" aria-label="Password"
+                  aria-describedby="password"
+                  required
+                />
+              </div>
+            </FormUpdateData>
           </div>
         </div>
       </div>
@@ -108,6 +114,4 @@ const ModalUpdateDataAdmin = () => {
   );
 };
 
-
-
-export default ModalUpdateDataAdmin;
+export default ModalCreateUser;

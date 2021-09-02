@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
 import BaseButtonAdmin from '../buttons/BaseButtonAdmin';
 
-const FormUpdateData = ({handleSubmitUpdateDataUser, userData = {}, isLoading, children}) => {
+const FormUpdateData = ({handleSubmitUpdateDataUser, userData = {}, isLoading, children, textButton}) => {
 
   return (
     <form onSubmit={ handleSubmitUpdateDataUser }>
@@ -83,7 +83,7 @@ const FormUpdateData = ({handleSubmitUpdateDataUser, userData = {}, isLoading, c
           { isLoading &&
             <SpinnerButtonLoading />
           }
-          Actualizar
+          { textButton }
         </BaseButtonAdmin>
       </div>
     </form>
@@ -94,7 +94,8 @@ FormUpdateData.propTypes = {
   handleSubmitUpdateDataUser: PropTypes.func.isRequired,
   userData: PropTypes.object,
   children: PropTypes.node,
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  textButton: PropTypes.string.isRequired
 };
 
 const InputGroupWithState = ({value = '', ariaDescribedBy, ariaLabel, placeholder, type, isInGroup = false}) => {
