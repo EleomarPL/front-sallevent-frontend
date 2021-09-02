@@ -3,7 +3,8 @@ import { useContext } from 'react';
 import {
   editDataAdmin as editDataAdminAxios,
   editPasswordAdmin as editPasswordAdminAxios,
-  getUsers as getUserAxios
+  getUsers as getUserAxios,
+  deleteUser as deleteUserAxios
 } from '../services/apis/admin';
 import {notifySuccess, notifyError, notifyWarning} from '../consts/notifications';
 
@@ -77,11 +78,29 @@ const useAdmin = () => {
       return null;
     }
   };
+  const deleteUser = async({id}) => {
+    const token = JSON.parse(window.localStorage.getItem('session'));
+    try {
+      let response = await deleteUserAxios({ id, token});
+      if (response.status === 204) {
+        notifySuccess('Usuario eliminado correctamente');
+      }
+      return true;
+    } catch ( err ) {
+      if (err.response.data.error === 'Token missing or invalid') {
+        notifyWarning('Al parecer, perdiste los permisos, te recomiendo cerrar sesión');
+      } else if (err.message === 'Network Error') {
+        notifyError('No encontramos una conexión a internet');
+      }
+      return false;
+    }
+  };
 
   return {
     editDataAdmin,
     editPasswordAdmin,
-    getUsers
+    getUsers,
+    deleteUser
   };
 };
 

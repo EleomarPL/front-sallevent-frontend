@@ -37,3 +37,12 @@ export const getUsers = async({keyword, token}) => {
   let response = await axios.get(`${baseAPI}/get-users/${keyword}`, config);
   return response;
 };
+export const deleteUser = async({id, token}) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+  let response = await axios.get(`${baseAPI}/delete-user/${id}`, config);
+  return response;
+};
