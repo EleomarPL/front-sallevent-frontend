@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from 'bootstrap';
 
 import FormUpdateData from '../views/FormUpdateData';
+import useUser from '../../hooks/useUser';
 
 import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail} from '../../services/validations/generalValidations';
 
@@ -17,6 +18,7 @@ export const openmodalCreateUserUser = () => {
 
 const ModalCreateUser = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const {createNewUser} = useUser();
 
   const handleSubmitUpdateDataUser = (evt) => {
     evt.preventDefault();
@@ -71,7 +73,20 @@ const ModalCreateUser = () => {
       if ( isNumberValue({name: 'Telefono', value: dataNewUser['phone'].value}) &&
         isValidateEmail(dataNewUser['email'].value)) {
         setIsLoading(true);
-        
+        createNewUser({
+          name: dataNewUser.name.value, lastName: dataNewUser.lastName.value,
+          motherLastName: dataNewUser.motherLastName.value, email: dataNewUser.email.value,
+          phone: dataNewUser.phone.value, userName: dataNewUser.userName.value,
+          password: dataNewUser.password.value
+        }).then(response => {
+          setIsLoading(false);
+          if (response) {
+            for (var i = 0 ; i < 7 ; i++ ) {
+              evt.target[i].value = '';
+            }
+            myModal.hide();
+          }
+        });
       }
     }
   };

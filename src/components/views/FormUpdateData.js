@@ -113,7 +113,7 @@ const InputGroupWithState = ({value = '', ariaDescribedBy, ariaLabel, placeholde
   );
 };
 InputGroupWithState.propTypes = {
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   ariaDescribedBy: PropTypes.string.isRequired,
   ariaLabel: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
