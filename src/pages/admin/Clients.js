@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import BaseButtonAdmin from '../../components/buttons/BaseButtonAdmin';
 import TableGetUsers from '../../components/views/admin/TableGetUsers';
-import { DebounceInput } from 'react-debounce-input';
+import PersonalizedSearcher from '../../components/views/PersonalizedSearcher';
 
 const Clients = () => {
   const [searcher, setSearcher] = useState('');
@@ -21,23 +21,11 @@ const Clients = () => {
   return (
     <section className="container-fluid">
       <strong className="d-flex justify-content-end" style={ {fontSize: '1.2rem'} }>{ getCurrentDate() }</strong>
-      <div className="d-flex flex-wrap justify-content-around">
-        <div className="fw-bold" style={ {fontSize: '1.5rem'} }>Table de clientes</div>
-        <div className="input-group w-50">
-          <span className="input-group-text" id="search"><i className="bi bi-search"></i></span>
-          <DebounceInput
-            minLength={ 2 }
-            type="text"
-            aria-label="Buscar"
-            aria-describedby="search"
-            className="form-control"
-            debounceTimeout={ 300 }
-            onChange={ handleChangeKeyword }
-            value={ searcher }
-            placeholder="Nombre de usuario - min 2 palabras"
-          />
-        </div>
-      </div>
+      <PersonalizedSearcher
+        title="Table de clientes"
+        value={ searcher }
+        setValue={ handleChangeKeyword }
+      />
       <div className="mx-100">
         <TableGetUsers keyword={ searcher } />
       </div>
