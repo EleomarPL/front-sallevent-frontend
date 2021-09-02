@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from 'bootstrap';
+import PropTypes from 'prop-types';
 
 import FormUpdateData from '../views/FormUpdateData';
 import useUser from '../../hooks/useUser';
@@ -16,7 +17,7 @@ export const openmodalCreateUserUser = () => {
   myModal.show();
 };
 
-const ModalCreateUser = () => {
+const ModalCreateUser = ({ users, setUsers }) => {
   const [isLoading, setIsLoading] = useState(false);
   const {createNewUser} = useUser();
 
@@ -84,6 +85,10 @@ const ModalCreateUser = () => {
             for (var i = 0 ; i < 7 ; i++ ) {
               evt.target[i].value = '';
             }
+            setUsers([
+              ...users,
+              response
+            ]);
             myModal.hide();
           }
         });
@@ -127,6 +132,13 @@ const ModalCreateUser = () => {
       </div>
     </div>
   );
+};
+
+ModalCreateUser.propTypes = {
+  users: PropTypes.oneOfType([
+    PropTypes.array, PropTypes.oneOf([null])
+  ]),
+  setUsers: PropTypes.func.isRequired
 };
 
 export default ModalCreateUser;

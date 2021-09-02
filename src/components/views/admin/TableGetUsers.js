@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import useAdmin from '../../../hooks/useAdmin';
 import SpinnerLoading from '../../common/SpinnerLoading';
 
-const TableGetUsers = ({ keyword }) => {
-  const [users, setUsers] = useState(null);
+const TableGetUsers = ({ keyword, users, setUsers }) => {
   const [isLoading, setIsLoading] = useState(false);
   const {getUsers} = useAdmin();
 
@@ -84,7 +83,11 @@ const ButtonModifyUser = () => {
 
 
 TableGetUsers.propTypes = {
-  keyword: PropTypes.string.isRequired
+  keyword: PropTypes.string.isRequired,
+  users: PropTypes.oneOfType([
+    PropTypes.array, PropTypes.oneOf([null])
+  ]),
+  setUsers: PropTypes.func.isRequired
 };
 
 export default TableGetUsers;

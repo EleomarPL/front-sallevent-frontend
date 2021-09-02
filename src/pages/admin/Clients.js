@@ -10,6 +10,7 @@ const ModalCreateUser = React.lazy(() => import('../../components/modals/ModalCr
 
 const Clients = () => {
   const [searcher, setSearcher] = useState('');
+  const [users, setUsers] = useState(null);
 
   const handleChangeKeyword = (evt) => {
     setSearcher(evt.target.value);
@@ -31,7 +32,11 @@ const Clients = () => {
         setValue={ handleChangeKeyword }
       />
       <div className="mx-100">
-        <TableGetUsers keyword={ searcher } />
+        <TableGetUsers
+          keyword={ searcher }
+          users={ users }
+          setUsers={ setUsers }
+        />
       </div>
       <div className="d-flex justify-content-center mt-3">
         <BaseButtonAdmin onClick={ openmodalCreateUserUser }>
@@ -39,7 +44,10 @@ const Clients = () => {
         </BaseButtonAdmin>
       </div>
       <Suspense fallback={ <SpinnerLoading /> }>
-        <ModalCreateUser />
+        <ModalCreateUser
+          users={ users }
+          setUsers={ setUsers }
+        />
       </Suspense>
     </section>
   );

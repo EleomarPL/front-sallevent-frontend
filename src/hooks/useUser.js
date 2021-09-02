@@ -10,12 +10,12 @@ const useUser = () => {
 
   const createNewUser = async({ name, lastName, motherLastName, phone, email, userName, password }) => {
     try {
-      await createUser(
+      let {data} = await createUser(
         {
           name, lastName, motherLastName, phone, email, userName, password
         });
       notifySuccess(`¡Felicidades! "${name}" has sido registrado exitosamente. Por favor inicia sesión`);
-      return true;
+      return data;
     } catch ( err ) {
       if (err.message === 'Request failed with status code 409') {
         notifyWarning('Ingresa un diferente nombre de usuario');
