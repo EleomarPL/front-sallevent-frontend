@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'bootstrap';
 
+import useAdmin from '../../hooks/useAdmin';
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
 
 export const openmodalDeleteUserUser = () => {
@@ -16,11 +17,18 @@ export const openmodalDeleteUserUser = () => {
 
 const modalDeleteUserUser = ({ idUser, users, setUsers }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const {deleteUser} = useAdmin();
 
   const handleDeleteReservation = () => {
     let myModal = Modal.getInstance( document.getElementById('modalDeleteUser') );
     setIsLoading(true);
-    
+    deleteUser({id: idUser}).then(response => {
+      setIsLoading(false);
+      if (response) {
+        setUsers(users.filter(user => user.id !== idUser));
+      }
+      myModal.hide();
+    });
     
   };
 

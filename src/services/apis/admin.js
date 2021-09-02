@@ -43,6 +43,6 @@ export const deleteUser = async({id, token}) => {
       Authorization: `Bearer ${token}`
     }
   };
-  let response = await axios.get(`${baseAPI}/delete-user/${id}`, config);
+  let response = await axios.delete(`${baseAPI}/delete-user/${id}`, config);
   return response;
 };
