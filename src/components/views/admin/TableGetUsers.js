@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import useAdmin from '../../../hooks/useAdmin';
 import SpinnerLoading from '../../common/SpinnerLoading';
+import {openmodalDeleteUserUser} from '../../modals/ModalDeleteUser';
+
+const ModalDeleteUser = React.lazy(() => import('../../modals/ModalDeleteUser'));
 
 const TableGetUsers = ({ keyword, users, setUsers }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [idUser, setIdUser] = useState('');
   const {getUsers} = useAdmin();
 
   useEffect(() => {
@@ -16,6 +20,11 @@ const TableGetUsers = ({ keyword, users, setUsers }) => {
         setUsers(response);
     });
   }, [keyword]);
+
+  const handleDeleteUser = (id) => {
+    setIdUser(id);
+    openmodalDeleteUserUser();
+  };
 
   return (
     <div className="table-responsive mt-3"
@@ -47,7 +56,7 @@ const TableGetUsers = ({ keyword, users, setUsers }) => {
                 <td>{ dataUser.email }</td>
                 <td>{ dataUser.phone }</td>
                 <td><ButtonModifyUser /></td>
-                <td><ButtonDeleteUser /></td>
+                <td><ButtonDeleteUser onClick={ () => handleDeleteUser(dataUser.id) } /></td>
               </tr>
             )
           }
@@ -56,15 +65,23 @@ const TableGetUsers = ({ keyword, users, setUsers }) => {
       { isLoading &&
         <SpinnerLoading />
       }
+      <Suspense fallback={ <SpinnerLoading /> }>
+        <ModalDeleteUser
+          idUser={ idUser }
+          users={ users }
+          setUsers={ setUsers }
+        />
+      </Suspense>
     </div>
   );
 };
 
-const ButtonDeleteUser = () => {
+const ButtonDeleteUser = ({ onClick }) => {
   return (
     <button
       type="button"
       className="btn btn-danger"
+      onClick={ onClick }
     >
       Eliminar
     </button>
@@ -81,7 +98,9 @@ const ButtonModifyUser = () => {
   );
 };
 
-
+ButtonDeleteUser.propTypes = {
+  onClick: PropTypes.func.isRequired
+};
 TableGetUsers.propTypes = {
   keyword: PropTypes.string.isRequired,
   users: PropTypes.oneOfType([
