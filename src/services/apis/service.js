@@ -18,3 +18,25 @@ export const quotationReservation = async({listServices, timeStart, timeEnd}) =>
   });
   return response;
 };
+export const createService = async({name, detail, price, token}) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+  let response = await axios.post(`${baseAPI}/create-service`, {
+    name, detail, price
+  }, config);
+  return response;
+};
+export const updateService = async({name, detail, price, token}) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+  let response = await axios.put(`${baseAPI}/edit-service`, {
+    name, detail, price
+  }, config);
+  return response;
+};
