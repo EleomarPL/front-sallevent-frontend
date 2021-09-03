@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import SpinnerLoading from '../../common/SpinnerLoading';
@@ -6,6 +6,10 @@ import SpinnerLoading from '../../common/SpinnerLoading';
 
 const TableServices = ({ keyword, services, setServices }) => {
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    
+  }, [keyword]);
 
   return (
     <div className="table-responsive mt-3"
@@ -21,12 +25,19 @@ const TableServices = ({ keyword, services, setServices }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Silla</td>
-            <td>5</td>
-            <td>Sillas aluminio azul</td>
-            <td><ButtonModifyService onClick={ () => console.log('Modificar servicio') } /></td>
-          </tr>
+          { services &&
+            services.map(service =>
+              <tr
+                key={ service.id }
+              >
+                <td>{ service.name }</td>
+                <td>{ service.price }</td>
+                <td>{ service.detail }</td>
+                <td><ButtonModifyService onClick={ () => console.log('Modificar servicio') } /></td>
+              </tr>
+            )
+
+          }
         </tbody>
       </table>
       { isLoading &&
