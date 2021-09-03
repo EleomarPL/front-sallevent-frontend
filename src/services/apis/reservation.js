@@ -75,3 +75,12 @@ export const getAllReservations = async({token}) => {
   let response = await axios.get(`${baseAPI}/get-reservations-admin`, config);
   return response;
 };
+export const confirmReservation = async({token, idReservation}) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+  let response = await axios.put(`${baseAPI}/confirm-reservation/${idReservation}`, config);
+  return response;
+};
