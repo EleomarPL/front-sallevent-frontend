@@ -2,13 +2,19 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import SpinnerLoading from '../../common/SpinnerLoading';
+import useService from '../../../hooks/useService';
 
 
 const TableServices = ({ keyword, services, setServices }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const {searchServices} = useService();
 
   useEffect(() => {
-    
+    setIsLoading(true);
+    searchServices({keyword}).then(response => {
+      setIsLoading(false);
+      setServices(response);
+    });
   }, [keyword]);
 
   return (
