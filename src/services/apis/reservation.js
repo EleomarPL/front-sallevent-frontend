@@ -81,6 +81,6 @@ export const confirmReservation = async({token, idReservation}) => {
       Authorization: `Bearer ${token}`
     }
   };
-  let response = await axios.put(`${baseAPI}/confirm-reservation/${idReservation}`, config);
+  let response = await axios.put(`${baseAPI}/confirm-reservation/${idReservation}`, {}, config);
   return response;
 };
