@@ -4,7 +4,8 @@ import {
   editDataAdmin as editDataAdminAxios,
   editPasswordAdmin as editPasswordAdminAxios,
   getUsers as getUserAxios,
-  deleteUser as deleteUserAxios
+  deleteUser as deleteUserAxios,
+  editDataUser as editDataUserAxios
 } from '../services/apis/admin';
 import {notifySuccess, notifyError, notifyWarning} from '../consts/notifications';
 
@@ -78,6 +79,26 @@ const useAdmin = () => {
       return null;
     }
   };
+  const editDataUser = async({idUser, name, lastName, motherLastName, phone, email, userName, password}) => {
+    const token = JSON.parse(window.localStorage.getItem('session'));
+    try {
+      let {data} = await editDataUserAxios(
+        {
+          name, lastName, motherLastName, phone, email, userName, token, idUser, password
+        });
+      notifySuccess('Tus datos se han actualizado correctamente ');
+      return data;
+    } catch ( err ) {
+      if (err.message === 'Request failed with status code 409') {
+        notifyWarning('Ingresa un diferente nombre de usuario');
+      } else if (err.response.data.error === 'Token missing or invalid') {
+        notifyWarning('Al parecer, perdiste los permisos, te recomiendo cerrar sesión');
+      } else if (err.message === 'Network Error') {
+        notifyError('No encontramos una conexión a internet');
+      }
+      return null;
+    }
+  };
   const deleteUser = async({id}) => {
     const token = JSON.parse(window.localStorage.getItem('session'));
     try {
@@ -100,7 +121,8 @@ const useAdmin = () => {
     editDataAdmin,
     editPasswordAdmin,
     getUsers,
-    deleteUser
+    deleteUser,
+    editDataUser
   };
 };
 

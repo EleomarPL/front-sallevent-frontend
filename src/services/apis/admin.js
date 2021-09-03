@@ -46,3 +46,24 @@ export const deleteUser = async({id, token}) => {
   let response = await axios.delete(`${baseAPI}/delete-user/${id}`, config);
   return response;
 };
+export const editDataUser = async({ idUser, name, lastName, motherLastName, phone, email, userName, password, token }) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+  let dataToSend = {
+    name, lastName, motherLastName, phone, email, userName
+  };
+  if (password) {
+    dataToSend = {
+      ...dataToSend,
+      password
+    };
+  }
+  let response = await axios.put(`${baseAPI}/edit-data-user/${idUser}`,
+    { ...dataToSend },
+    config
+  );
+  return response;
+};
