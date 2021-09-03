@@ -4,12 +4,15 @@ import PropTypes from 'prop-types';
 import useAdmin from '../../../hooks/useAdmin';
 import SpinnerLoading from '../../common/SpinnerLoading';
 import {openmodalDeleteUserUser} from '../../modals/ModalDeleteUser';
+import {openmodalUpdateUserByAdminUser} from '../../modals/ModalUpdateUser';
 
 const ModalDeleteUser = React.lazy(() => import('../../modals/ModalDeleteUser'));
+const ModalUpdateUser = React.lazy(() => import('../../modals/ModalUpdateUser'));
 
 const TableGetUsers = ({ keyword, users, setUsers }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [idUser, setIdUser] = useState('');
+  const [userData, setUserData] = useState({});
   const {getUsers} = useAdmin();
 
   useEffect(() => {
@@ -24,6 +27,10 @@ const TableGetUsers = ({ keyword, users, setUsers }) => {
   const handleDeleteUser = (id) => {
     setIdUser(id);
     openmodalDeleteUserUser();
+  };
+  const handleUpdateUser = (dataUser) => {
+    setUserData(dataUser);
+    openmodalUpdateUserByAdminUser();
   };
 
   return (
@@ -55,7 +62,7 @@ const TableGetUsers = ({ keyword, users, setUsers }) => {
                 <td>{ dataUser.motherLastName }</td>
                 <td>{ dataUser.email }</td>
                 <td>{ dataUser.phone }</td>
-                <td><ButtonModifyUser /></td>
+                <td><ButtonModifyUser onClick={ () => handleUpdateUser(dataUser) } /></td>
                 <td><ButtonDeleteUser onClick={ () => handleDeleteUser(dataUser.id) } /></td>
               </tr>
             )
@@ -70,6 +77,11 @@ const TableGetUsers = ({ keyword, users, setUsers }) => {
           idUser={ idUser }
           users={ users }
           setUsers={ setUsers }
+        />
+        <ModalUpdateUser
+          users={ users }
+          setUsers={ setUsers }
+          userData={ userData }
         />
       </Suspense>
     </div>
@@ -87,11 +99,12 @@ const ButtonDeleteUser = ({ onClick }) => {
     </button>
   );
 };
-const ButtonModifyUser = () => {
+const ButtonModifyUser = ({ onClick }) => {
   return (
     <button
       type="button"
       className="btn btn-success"
+      onClick={ onClick }
     >
       Modificar
     </button>
@@ -99,6 +112,9 @@ const ButtonModifyUser = () => {
 };
 
 ButtonDeleteUser.propTypes = {
+  onClick: PropTypes.func.isRequired
+};
+ButtonModifyUser.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 TableGetUsers.propTypes = {

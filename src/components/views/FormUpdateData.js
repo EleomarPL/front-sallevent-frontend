@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
@@ -100,6 +100,10 @@ FormUpdateData.propTypes = {
 
 const InputGroupWithState = ({value = '', ariaDescribedBy, ariaLabel, placeholder, type, isInGroup = false}) => {
   const [valueInput, setValue] = useState(value);
+  useEffect(() => {
+    setValue(value);
+  }, [value]);
+  
   return (
     <input
       type={ type } className={ `form-control ${isInGroup && 'mb-2'}` }
