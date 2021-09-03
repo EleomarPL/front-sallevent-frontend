@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import SpinnerLoading from '../../common/SpinnerLoading';
 import useService from '../../../hooks/useService';
+import {openmodalCreateUpdateServicesUser} from '../../modals/ModalCreateUpdateServices';
 
-
-const TableServices = ({ keyword, services, setServices }) => {
+const TableServices = ({ keyword, services, setServices, setDataService }) => {
   const [isLoading, setIsLoading] = useState(false);
   const {searchServices} = useService();
 
@@ -16,6 +16,11 @@ const TableServices = ({ keyword, services, setServices }) => {
       setServices(response);
     });
   }, [keyword]);
+
+  const handleOpenModalUpdate = (service) => {
+    setDataService(service);
+    openmodalCreateUpdateServicesUser();
+  };
 
   return (
     <div className="table-responsive mt-3"
@@ -39,7 +44,7 @@ const TableServices = ({ keyword, services, setServices }) => {
                 <td>{ service.name }</td>
                 <td>{ service.price }</td>
                 <td>{ service.detail }</td>
-                <td><ButtonModifyService onClick={ () => console.log('Modificar servicio') } /></td>
+                <td><ButtonModifyService onClick={ () => handleOpenModalUpdate(service) } /></td>
               </tr>
             )
 
@@ -73,7 +78,8 @@ TableServices.propTypes = {
   services: PropTypes.oneOfType([
     PropTypes.array, PropTypes.oneOf([null])
   ]),
-  setServices: PropTypes.func.isRequired
+  setServices: PropTypes.func.isRequired,
+  setDataService: PropTypes.func.isRequired
 };
 
 export default TableServices;
