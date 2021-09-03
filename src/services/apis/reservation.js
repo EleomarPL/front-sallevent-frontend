@@ -66,3 +66,12 @@ export const updateReservacion = async({idReservation, timeEnd, timeStart, typeE
   config);
   return response;
 };
+export const getAllReservations = async({token}) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+  let response = await axios.get(`${baseAPI}/get-reservations-admin`, config);
+  return response;
+};
