@@ -1,9 +1,3 @@
-:root {
-  --day-selected: purple;
-  --day-reservated: #70A3ED;
-  --day-waiter: #FCC70F;
-}
-
 .calendar-header {
   background-color: #1B1C1C;
   color: #EEEEEE;

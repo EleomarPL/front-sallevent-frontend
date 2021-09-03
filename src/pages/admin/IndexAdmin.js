@@ -5,6 +5,7 @@ import GroupPageAnyUser from '../../components/layouts/GroupPageAnyUser';
 import AdminRouter from '../../components/router/AdminRouter';
 import PersonalInformation from './PersonalInformation';
 import Clients from './Clients';
+import Reservations from './Reservations';
 
 import {routesNav} from '../../data/admin/routes';
 
@@ -17,7 +18,7 @@ const IndexAdmin = () => {
             <Clients />
           </AdminRouter>
           <AdminRouter exact path="/admin/books">
-            <p>Reservaciones</p>
+            <Reservations />
           </AdminRouter>
           <AdminRouter exact path="/admin/services">
             <p>Servicios</p>

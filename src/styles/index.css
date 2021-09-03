@@ -1,3 +1,9 @@
+:root {
+  --day-selected: purple;
+  --day-reservated: #70A3ED;
+  --day-waiter: #FCC70F;
+}
+
 .table-responsive{
   display: block !important;
   overflow-x: auto !important;
