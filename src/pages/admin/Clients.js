@@ -27,9 +27,10 @@ const Clients = () => {
     <section className="container-fluid">
       <strong className="d-flex justify-content-end" style={ {fontSize: '1.2rem'} }>{ getCurrentDate() }</strong>
       <PersonalizedSearcher
-        title="Table de clientes"
+        title="Tabla de clientes"
         value={ searcher }
         setValue={ handleChangeKeyword }
+        placeholder="Nombre de usuario"
       />
       <div className="mx-100">
         <TableGetUsers

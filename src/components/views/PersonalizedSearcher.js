@@ -2,7 +2,7 @@ import React from 'react';
 import { DebounceInput } from 'react-debounce-input';
 import PropTypes from 'prop-types';
 
-const PersonalizedSearcher = ({ title, value, setValue }) => {
+const PersonalizedSearcher = ({ title, value, setValue, placeholder }) => {
   return (
     <div className="d-flex flex-wrap justify-content-around">
       <div className="fw-bold" style={ {fontSize: '1.5rem'} }>{ title }</div>
@@ -17,7 +17,7 @@ const PersonalizedSearcher = ({ title, value, setValue }) => {
           debounceTimeout={ 500 }
           onChange={ setValue }
           value={ value }
-          placeholder="Nombre de usuario - min 2 palabras"
+          placeholder={ `${placeholder} - min 2 palabras` }
         />
       </div>
     </div>
@@ -27,7 +27,8 @@ const PersonalizedSearcher = ({ title, value, setValue }) => {
 PersonalizedSearcher.propTypes = {
   title: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  setValue: PropTypes.func.isRequired
+  setValue: PropTypes.func.isRequired,
+  placeholder: PropTypes.string
 };
 
 export default PersonalizedSearcher;
