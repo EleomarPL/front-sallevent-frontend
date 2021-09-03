@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
+
+import TableServices from '../../components/views/admin/TableServices';
 import PersonalizedSearcher from '../../components/views/PersonalizedSearcher';
 
 const Services = () => {
   const [searcher, setSearcher] = useState('');
+  const [services, setServices] = useState([]);
 
   const handleChangeKeyword = (evt) => {
     setSearcher(evt.target.value);
@@ -17,6 +20,13 @@ const Services = () => {
         setValue={ handleChangeKeyword }
         placeholder="Nombre servicio"
       />
+      <div className="mx-100">
+        <TableServices
+          keyword={ searcher }
+          services={ services }
+          setServices={ setServices }
+        />
+      </div>
     </section>
   );
 };
