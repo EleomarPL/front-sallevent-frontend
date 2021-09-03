@@ -3,7 +3,7 @@ import { Modal } from 'bootstrap';
 import PropTypes from 'prop-types';
 
 import FormUpdateData from '../views/FormUpdateData';
-
+import useAdmin from '../../hooks/useAdmin';
 import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail} from '../../services/validations/generalValidations';
 import ChangePasswordOption from '../views/admin/ChangePasswordOption';
 
@@ -19,6 +19,7 @@ export const openmodalUpdateUserByAdminUser = () => {
 
 const ModalUpdateUser = ({ userData = {}, users, setUsers }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const {editDataUser} = useAdmin();
 
   const handleSubmitUpdateDataUser = (evt) => {
     evt.preventDefault();
@@ -79,7 +80,30 @@ const ModalUpdateUser = ({ userData = {}, users, setUsers }) => {
       if ( isNumberValue({name: 'Telefono', value: dataEditUser['phone'].value}) &&
         isValidateEmail(dataEditUser['email'].value)) {
         setIsLoading(true);
+        let dataToSend = {
+          name: dataEditUser.name.value, lastName: dataEditUser.lastName.value,
+          motherLastName: dataEditUser.motherLastName.value, email: dataEditUser.email.value,
+          phone: dataEditUser.phone.value, userName: dataEditUser.userName.value,
+          idUser: userData.id
 
+        };
+        if (changePasswordToo) {
+          dataToSend = {
+            ...dataToSend,
+            password: dataEditUser.password.value
+          };
+        }
+        editDataUser({ ...dataToSend}).then(response => {
+          setIsLoading(false);
+          if (response !== null) {
+            let filterData = users.filter(user => user.id !== response.id);
+            setUsers([
+              ...filterData,
+              response
+            ]);
+            myModal.hide();
+          }
+        });
       }
     }
   };

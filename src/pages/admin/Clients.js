@@ -10,7 +10,7 @@ const ModalCreateUser = React.lazy(() => import('../../components/modals/ModalCr
 
 const Clients = () => {
   const [searcher, setSearcher] = useState('');
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState([]);
 
   const handleChangeKeyword = (evt) => {
     setSearcher(evt.target.value);
