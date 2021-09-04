@@ -29,13 +29,13 @@ export const createService = async({name, detail, price, token}) => {
   }, config);
   return response;
 };
-export const updateService = async({name, detail, price, token}) => {
+export const updateService = async({idService, name, detail, price, token}) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`
     }
   };
-  let response = await axios.put(`${baseAPI}/edit-service`, {
+  let response = await axios.put(`${baseAPI}/edit-service/${idService}`, {
     name, detail, price
   }, config);
   return response;

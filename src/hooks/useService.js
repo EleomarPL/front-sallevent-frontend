@@ -63,10 +63,10 @@ const useService = () => {
       return null;
     }
   };
-  const updateService = async({ name, price, detail }) => {
+  const updateService = async({ name, price, detail, idService}) => {
     const token = JSON.parse(window.localStorage.getItem('session'));
     try {
-      let {data} = await updateServiceAxios({ name, price, detail, token });
+      let {data} = await updateServiceAxios({ name, price, detail, token, idService });
       notifySuccess('Servicio actualizado correctamente');
       return data;
     } catch ( err ) {
