@@ -7,10 +7,12 @@ import DataRoom from '../../components/views/admin/DataRoom';
 import DirectionRoom from '../../components/views/admin/DirectionRoom';
 import ScheduleRoom from '../../components/views/admin/ScheduleRoom';
 import useRoom from '../../hooks/useRoom';
+import SpinnerButtonLoading from '../../components/common/SpinnerButtonLoading';
 
 const Room = () => {
   const [infoRoom, setInfoRoom] = useState({});
-  const {getInfoRoom} = useRoom();
+  const [isLoading, setIsLoading] = useState(false);
+  const {getInfoRoom, updateInfoRoom} = useRoom();
   useEffect(() => {
     getInfoRoom().then(response => {
       if (response !== null)
@@ -50,6 +52,12 @@ const Room = () => {
         minLength: 2,
         maxLength: 45,
         value: infoRoom.direction.municipality
+      },
+      suburb: {
+        name: 'Colonia',
+        minLength: 2,
+        maxLength: 45,
+        value: infoRoom.direction.suburb.toString()
       }
     };
     
@@ -62,7 +70,20 @@ const Room = () => {
           if (Number(infoRoom.room.capacity) <= 0 || Number(infoRoom.room.priceHour) <= 0) {
             notifyWarning('Un valor númerico debe ser mayor a 0');
           } else {
-            console.log('update');
+            setIsLoading(true);
+            updateInfoRoom({
+              name: dataRoom.name.value, capacity: infoRoom.room.capacity, description: dataRoom.description.value,
+              priceHour: infoRoom.room.priceHour, street: dataRoom.street.value, state: dataRoom.state.value,
+              municipality: dataRoom.municipality.value, suburb: dataRoom.suburb.value,
+              sunday: infoRoom.schedule.sunday, monday: infoRoom.schedule.monday,
+              tuesday: infoRoom.schedule.tuesday, wednesday: infoRoom.schedule.wednesday,
+              thursday: infoRoom.schedule.thursday, friday: infoRoom.schedule.friday,
+              saturday: infoRoom.schedule.saturday
+            }).then(response => {
+              setIsLoading(false);
+              if (response !== null)
+                setInfoRoom(response);
+            });
           }
         }
       }
@@ -86,6 +107,9 @@ const Room = () => {
         </div>
         <div className="d-flex justify-content-center my-2">
           <BaseButtonAdmin type={ 1 } onClick={ handleSubmitNewData }>
+            { isLoading &&
+              <SpinnerButtonLoading />
+            }
             Actualizar
           </BaseButtonAdmin>
         </div>
