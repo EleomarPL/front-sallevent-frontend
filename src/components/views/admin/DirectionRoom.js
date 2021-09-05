@@ -1,6 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const DirectionRoom = () => {
+const DirectionRoom = ({dataRoom = {}, setDataRoom}) => {
+  const handleChangeInputs = ({evt, property}) => {
+    setDataRoom({
+      ...dataRoom,
+      direction: {
+        ...dataRoom.direction,
+        [property]: evt.target.value
+      }
+    });
+  };
   return (
     <section className="container-fluid py-3 px-2"
       style={ {boxShadow: '0 0 7px 1px #3e9fce', borderRadius: '10px'} }
@@ -14,7 +24,8 @@ const DirectionRoom = () => {
             <td>
               <input type="text" className="form-control mb-3"
                 placeholder="Calle" aria-label="Street"
-                aria-describedby="street"
+                aria-describedby="street" value={ dataRoom.direction ? dataRoom.direction.street : '' }
+                onChange={ (evt) => handleChangeInputs({evt, property: 'street'}) }
               />
             </td>
           </tr>
@@ -25,7 +36,8 @@ const DirectionRoom = () => {
             <td>
               <input type="text" className="form-control mb-3"
                 placeholder="Estado" aria-label="State"
-                aria-describedby="state"
+                aria-describedby="state" value={ dataRoom.direction ? dataRoom.direction.state : '' }
+                onChange={ (evt) => handleChangeInputs({evt, property: 'state'}) }
               />
             </td>
           </tr>
@@ -36,7 +48,8 @@ const DirectionRoom = () => {
             <td>
               <input type="text" className="form-control mb-3"
                 placeholder="Municipio" aria-label="Municipality"
-                aria-describedby="municipality"
+                aria-describedby="municipality" value={ dataRoom.direction ? dataRoom.direction.municipality : '' }
+                onChange={ (evt) => handleChangeInputs({evt, property: 'municipality'}) }
               />
             </td>
           </tr>
@@ -47,7 +60,8 @@ const DirectionRoom = () => {
             <td>
               <input type="text" className="form-control mb-3"
                 placeholder="Colonia" aria-label="Suburb"
-                aria-describedby="suburb"
+                aria-describedby="suburb" value={ dataRoom.direction ? dataRoom.direction.suburb : '' }
+                onChange={ (evt) => handleChangeInputs({evt, property: 'suburb'}) }
               />
             </td>
           </tr>
@@ -55,6 +69,13 @@ const DirectionRoom = () => {
       </table>
     </section>
   );
+};
+
+DirectionRoom.propTypes = {
+  dataRoom: PropTypes.oneOfType([
+    PropTypes.object, PropTypes.oneOf([null])
+  ]),
+  setDataRoom: PropTypes.func.isRequired
 };
 
 export default DirectionRoom;

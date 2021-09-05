@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BaseButtonAdmin from '../../components/buttons/BaseButtonAdmin';
 
 import DataRoom from '../../components/views/admin/DataRoom';
 import DirectionRoom from '../../components/views/admin/DirectionRoom';
 import ScheduleRoom from '../../components/views/admin/ScheduleRoom';
+import useRoom from '../../hooks/useRoom';
 
 const Room = () => {
+  const [infoRoom, setInfoRoom] = useState({});
+  const {getInfoRoom} = useRoom();
+  useEffect(() => {
+    getInfoRoom().then(response => {
+      if (response !== null)
+        setInfoRoom(response);
+    });
+  }, []);
+
   const handleSubmitNewData = (evt) => {
     evt.preventDefault();
   };
@@ -16,13 +26,13 @@ const Room = () => {
       <form id="form-room-info">
         <div className="col-md-12 row">
           <div className="col-md-7 mb-3">
-            <DataRoom />
+            <DataRoom dataRoom={ infoRoom } setDataRoom={ setInfoRoom } />
           </div>
           <div className="col-md-5 mb-3">
-            <ScheduleRoom />
+            <ScheduleRoom dataRoom={ infoRoom } setDataRoom={ setInfoRoom } />
           </div>
           <div className="col-md-7 mb-3">
-            <DirectionRoom />
+            <DirectionRoom dataRoom={ infoRoom } setDataRoom={ setInfoRoom } />
           </div>
         </div>
         <div className="d-flex justify-content-center my-2">

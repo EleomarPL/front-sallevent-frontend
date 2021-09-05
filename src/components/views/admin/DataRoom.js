@@ -1,6 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const DataRoom = () => {
+const DataRoom = ({dataRoom = {}, setDataRoom}) => {
+  const handleChangeInputs = ({evt, property}) => {
+    setDataRoom({
+      ...dataRoom,
+      room: {
+        ...dataRoom.room,
+        [property]: evt.target.value
+      }
+    });
+  };
+
   return (
     <section className="container-fluid py-3 px-2"
       style={ {boxShadow: '0 0 7px 1px #3e9fce', borderRadius: '10px'} }
@@ -15,7 +26,8 @@ const DataRoom = () => {
             <td>
               <input type="text" className="form-control mb-3"
                 placeholder="Nombre del salón" aria-label="Name"
-                aria-describedby="nameRoom"
+                aria-describedby="nameRoom" value={ dataRoom.room ? dataRoom.room.name : '' }
+                onChange={ (evt) => handleChangeInputs({evt, property: 'name'}) }
               />
             </td>
           </tr>
@@ -26,7 +38,8 @@ const DataRoom = () => {
             <td>
               <input type="text" className="form-control mb-3"
                 placeholder="Capacidad" aria-label="Capacity"
-                aria-describedby="capacity"
+                aria-describedby="capacity" value={ dataRoom.room ? dataRoom.room.capacity : '' }
+                onChange={ (evt) => handleChangeInputs({evt, property: 'capacity'}) }
               />
             </td>
           </tr>
@@ -37,7 +50,8 @@ const DataRoom = () => {
             <td>
               <input type="text" className="form-control mb-3"
                 placeholder="Precio" aria-label="Price"
-                aria-describedby="price"
+                aria-describedby="price" value={ dataRoom.room ? dataRoom.room.priceHour : '' }
+                onChange={ (evt) => handleChangeInputs({evt, property: 'priceHour'}) }
               />
             </td>
           </tr>
@@ -50,6 +64,8 @@ const DataRoom = () => {
                 className="form-control mb-3"
                 aria-label="Description"
                 placeholder="Descripción"
+                value={ dataRoom.room ? dataRoom.room.description : '' }
+                onChange={ (evt) => handleChangeInputs({evt, property: 'description'}) }
               >
               </textarea>
             </td>
@@ -58,6 +74,13 @@ const DataRoom = () => {
       </table>
     </section>
   );
+};
+
+DataRoom.propTypes = {
+  dataRoom: PropTypes.oneOfType([
+    PropTypes.object, PropTypes.oneOf([null])
+  ]),
+  setDataRoom: PropTypes.func.isRequired
 };
 
 export default DataRoom;
