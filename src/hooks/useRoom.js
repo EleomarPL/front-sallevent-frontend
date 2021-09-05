@@ -1,8 +1,9 @@
 import {
   getDataFooter as getDataFooterAxios,
-  getInfoRoom as getInfoRoomAxios
+  getInfoRoom as getInfoRoomAxios,
+  updateInfoRoom as updateInfoRoomAxios
 } from '../services/apis/room';
-import {notifyError} from '../consts/notifications';
+import {notifyError, notifySuccess, notifyWarning} from '../consts/notifications';
 
 
 const useRoom = () => {
@@ -26,10 +27,33 @@ const useRoom = () => {
       return null;
     }
   };
+  const updateInfoRoom = async({
+    name, capacity, description, priceHour, street, state, municipality, suburb,
+    sunday, monday, tuesday, wednesday, thursday, friday, saturday
+  }) => {
+    const token = JSON.parse(window.localStorage.getItem('session'));
+    try {
+      let {data} = await updateInfoRoomAxios(
+        {
+          name, capacity, description, priceHour, street, state, municipality, suburb,
+          sunday, monday, tuesday, wednesday, thursday, friday, saturday, token
+        });
+      notifySuccess('Los datos del salón se han modificado exitosamente');
+      return data;
+    } catch ( err ) {
+      if (err.response.data.error === 'Token missing or invalid') {
+        notifyWarning('Al parecer, perdiste los permisos, te recomiendo cerrar sesión');
+      } else if (err.message === 'Network Error') {
+        notifyError('No encontramos una conexión a internet');
+      }
+      return null;
+    }
+  };
 
   return {
     getDataFooter,
-    getInfoRoom
+    getInfoRoom,
+    updateInfoRoom
   };
 };
 
