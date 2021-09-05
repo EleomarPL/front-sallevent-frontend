@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import BaseButtonAdmin from '../../components/buttons/BaseButtonAdmin';
 
+import {isObjectValuesNull, validateLength, isNumberValue} from '../../services/validations/generalValidations';
+import {notifyWarning} from '../../consts/notifications';
+import BaseButtonAdmin from '../../components/buttons/BaseButtonAdmin';
 import DataRoom from '../../components/views/admin/DataRoom';
 import DirectionRoom from '../../components/views/admin/DirectionRoom';
 import ScheduleRoom from '../../components/views/admin/ScheduleRoom';
@@ -18,6 +20,53 @@ const Room = () => {
 
   const handleSubmitNewData = (evt) => {
     evt.preventDefault();
+    let dataRoom = {
+      name: {
+        name: 'Nombre',
+        minLength: 2,
+        maxLength: 45,
+        value: infoRoom.room.name
+      },
+      description: {
+        name: 'Detalles',
+        minLength: 2,
+        maxLength: 300,
+        value: infoRoom.room.description
+      },
+      street: {
+        name: 'Calle',
+        minLength: 2,
+        maxLength: 45,
+        value: infoRoom.direction.street
+      },
+      state: {
+        name: 'Estado',
+        minLength: 2,
+        maxLength: 45,
+        value: infoRoom.direction.state
+      },
+      municipality: {
+        name: 'Municipio',
+        minLength: 2,
+        maxLength: 45,
+        value: infoRoom.direction.municipality
+      }
+    };
+    
+    if ( !isObjectValuesNull(dataRoom) && validateLength(dataRoom) ) {
+      if ( isNumberValue({name: 'Capacidad', value: infoRoom.room.capacity})
+      ) {
+        if (isNaN(infoRoom.room.priceHour)) {
+          notifyWarning('Precio debe ser numerico');
+        } else {
+          if (Number(infoRoom.room.capacity) <= 0 || Number(infoRoom.room.priceHour) <= 0) {
+            notifyWarning('Un valor númerico debe ser mayor a 0');
+          } else {
+            console.log('update');
+          }
+        }
+      }
+    }
   };
 
   return (
