@@ -21,7 +21,7 @@ const ScheduleRoom = ({dataRoom = {}, setDataRoom}) => {
         <input className="form-check-input" type="checkbox"
           id="monday"
           defaultChecked={ dataRoom.schedule && dataRoom.schedule.monday === 'Y' }
-          onChange={ (evt) => handleChangeChecks({evt, property: 'monday'}) }
+          onClick={ (evt) => handleChangeChecks({evt, property: 'monday'}) }
         />
         <label className="form-check-label" htmlFor="monday">
           Lunes
@@ -31,7 +31,7 @@ const ScheduleRoom = ({dataRoom = {}, setDataRoom}) => {
         <input className="form-check-input" type="checkbox"
           id="tuesday"
           defaultChecked={ dataRoom.schedule && dataRoom.schedule.tuesday === 'Y' }
-          onChange={ (evt) => handleChangeChecks({evt, property: 'tuesday'}) }
+          onClick={ (evt) => handleChangeChecks({evt, property: 'tuesday'}) }
         />
         <label className="form-check-label" htmlFor="tuesday">
           Martes
@@ -41,7 +41,7 @@ const ScheduleRoom = ({dataRoom = {}, setDataRoom}) => {
         <input className="form-check-input" type="checkbox"
           id="wednesday"
           defaultChecked={ dataRoom.schedule && dataRoom.schedule.wednesday === 'Y' }
-          onChange={ (evt) => handleChangeChecks({evt, property: 'wednesday'}) }
+          onClick={ (evt) => handleChangeChecks({evt, property: 'wednesday'}) }
         />
         <label className="form-check-label" htmlFor="wednesday">
           Miércoles
@@ -51,7 +51,7 @@ const ScheduleRoom = ({dataRoom = {}, setDataRoom}) => {
         <input className="form-check-input" type="checkbox"
           id="thursday"
           defaultChecked={ dataRoom.schedule && dataRoom.schedule.thursday === 'Y' }
-          onChange={ (evt) => handleChangeChecks({evt, property: 'thursday'}) }
+          onClick={ (evt) => handleChangeChecks({evt, property: 'thursday'}) }
         />
         <label className="form-check-label" htmlFor="thursday">
           Jueves
@@ -61,7 +61,7 @@ const ScheduleRoom = ({dataRoom = {}, setDataRoom}) => {
         <input className="form-check-input" type="checkbox"
           id="friday"
           defaultChecked={ dataRoom.schedule && dataRoom.schedule.friday === 'Y' }
-          onChange={ (evt) => handleChangeChecks({evt, property: 'friday'}) }
+          onClick={ (evt) => handleChangeChecks({evt, property: 'friday'}) }
         />
         <label className="form-check-label" htmlFor="friday">
           Viernes
@@ -71,7 +71,7 @@ const ScheduleRoom = ({dataRoom = {}, setDataRoom}) => {
         <input className="form-check-input" type="checkbox"
           id="saturday"
           defaultChecked={ dataRoom.schedule && dataRoom.schedule.saturday === 'Y' }
-          onChange={ (evt) => handleChangeChecks({evt, property: 'saturday'}) }
+          onClick={ (evt) => handleChangeChecks({evt, property: 'saturday'}) }
         />
         <label className="form-check-label" htmlFor="saturday">
           Sabado
@@ -81,7 +81,7 @@ const ScheduleRoom = ({dataRoom = {}, setDataRoom}) => {
         <input className="form-check-input" type="checkbox"
           id="sunday"
           defaultChecked={ dataRoom.schedule && dataRoom.schedule.sunday === 'Y' }
-          onChange={ (evt) => handleChangeChecks({evt, property: 'sunday'}) }
+          onClick={ (evt) => handleChangeChecks({evt, property: 'sunday'}) }
         />
         <label className="form-check-label" htmlFor="sunday">
           Domingo
