@@ -9,11 +9,13 @@ const Footer = () => {
   const {userData} = useContext(Auth);
 
   useEffect(() => {
-    getDataFooter().then(response => {
-      if (response)
-        setInfoFooter(response);
-    });
-  }, []);
+    if (userData === null) {
+      getDataFooter().then(response => {
+        if (response)
+          setInfoFooter(response);
+      });
+    }
+  }, [userData]);
   if (userData !== null)
     return null;
   return (
