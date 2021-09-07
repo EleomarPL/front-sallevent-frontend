@@ -199,7 +199,9 @@ const Register = () => {
                 { messageStatusPassword.text }
               </small>
               <div className="w-100 mt-4">
-                <button type="submit" className="btn btn-lg btn-primary d-block px-4 mx-auto">
+                <button type="submit" className="btn btn-lg btn-primary d-block px-4 mx-auto"
+                  disabled={ isLoading }
+                >
                   { isLoading &&
                     <SpinnerButtonLoading />
                   }

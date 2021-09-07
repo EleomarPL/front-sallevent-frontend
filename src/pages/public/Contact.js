@@ -124,6 +124,7 @@ const Contact = () => {
               <button
                 type="submit"
                 className="btn btn-warning btn-block text-white mt-2"
+                disabled={ isLoading }
               >
                 { isLoading &&
                   <SpinnerButtonLoading />
