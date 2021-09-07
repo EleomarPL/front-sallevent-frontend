@@ -30,7 +30,8 @@ const MyReservations = () => {
     });
   }, []);
   useEffect(() => {
-    const total = listReservations.reduce((acc, currentValue) => acc + currentValue.priceTotal, 0);
+    let total = listReservations.reduce((acc, currentValue) => acc + currentValue.priceTotal, 0);
+    total = parseFloat(total).toFixed(4);
     setTotalReservations(total);
   }, [listReservations]);
 
