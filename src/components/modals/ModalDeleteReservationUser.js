@@ -53,6 +53,7 @@ const ModalDeleteReservationUser = ({ idReservation, listReservations, setListRe
               type="button"
               className="btn btn-danger"
               onClick={ handleDeleteReservation }
+              disabled={ isLoading }
             >
               { isLoading &&
                 <SpinnerButtonLoading />
