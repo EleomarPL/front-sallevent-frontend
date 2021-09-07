@@ -106,7 +106,9 @@ const Room = () => {
           </div>
         </div>
         <div className="d-flex justify-content-center my-2">
-          <BaseButtonAdmin type={ 1 } onClick={ handleSubmitNewData }>
+          <BaseButtonAdmin type={ 1 } onClick={ handleSubmitNewData }
+            disabled={ isLoading }
+          >
             { isLoading &&
               <SpinnerButtonLoading />
             }

@@ -76,7 +76,7 @@ const ButtonQuotation = () => {
   };
   return (
     <button type="button" className="btn btn-dark btn-sm"
-      onClick={ handleQuotation }
+      onClick={ handleQuotation } disabled={ isLoading }
     >
       { isLoading &&
         <SpinnerButtonLoading />

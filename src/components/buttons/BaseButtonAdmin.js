@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const BaseButtonAdmin = ({ onClick, children, type = 0}, props) => {
+const BaseButtonAdmin = ({ onClick, children, type = 0, disabled = false}) => {
   return (
     <button
       type={ type === 1 ? 'submit' : 'button' }
-      { ...props }
+      disabled={ disabled }
       className="btn btn-primary"
       onClick={ onClick }
     >
@@ -17,7 +17,8 @@ const BaseButtonAdmin = ({ onClick, children, type = 0}, props) => {
 BaseButtonAdmin.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node,
-  type: PropTypes.number
+  type: PropTypes.number,
+  disabled: PropTypes.bool
 };
 
 export default BaseButtonAdmin;

@@ -6,7 +6,7 @@ import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
 const ButtonUpdatedPasswordUser = ({isLoading}) => {
   return (
     <button type="submit" className="btn btn-dark btn-sm"
-      form="form-updated-password-user"
+      form="form-updated-password-user" disabled={ isLoading }
     >
       { isLoading &&
         <SpinnerButtonLoading />

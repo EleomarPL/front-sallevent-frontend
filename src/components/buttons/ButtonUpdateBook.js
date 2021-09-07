@@ -101,6 +101,7 @@ const ButtonUpdateBook = () => {
         type="button"
         className="btn btn-dark btn-sm"
         onClick={ handleUpdateBook }
+        disabled={ isLoading }
       >
         { isLoading &&
           <SpinnerButtonLoading />

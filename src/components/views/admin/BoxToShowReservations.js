@@ -56,6 +56,7 @@ const BoxToShowReservations = ({reservationData, reservations, setReservations})
           type="button"
           className="btn btn-warning"
           onClick={ handleConfirmReservation }
+          disabled={ isLoading }
         >
           { isLoading &&
             <SpinnerButtonLoading />

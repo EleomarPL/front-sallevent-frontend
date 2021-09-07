@@ -79,6 +79,7 @@ const FormUpdateData = ({handleSubmitUpdateDataUser, userData = {}, isLoading, c
       <div className="d-flex flex-wrap justify-content-center">
         <BaseButtonAdmin
           type={ 1 }
+          disabled={ isLoading }
         >
           { isLoading &&
             <SpinnerButtonLoading />

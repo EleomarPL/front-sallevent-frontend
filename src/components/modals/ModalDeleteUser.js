@@ -53,6 +53,7 @@ const modalDeleteUserUser = ({ idUser, users, setUsers }) => {
               type="button"
               className="btn btn-danger"
               onClick={ handleDeleteReservation }
+              disabled={ isLoading }
             >
               { isLoading &&
                 <SpinnerButtonLoading />

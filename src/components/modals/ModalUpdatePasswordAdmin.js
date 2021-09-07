@@ -135,6 +135,7 @@ const ModalUpdatePasswordAdmin = () => {
             <div className="d-flex flex-wrap justify-content-center">
               <BaseButtonAdmin
                 onClick={ updatePasswordAdmin }
+                disabled={ isLoading }
               >
                 { isLoading &&
                   <SpinnerButtonLoading />

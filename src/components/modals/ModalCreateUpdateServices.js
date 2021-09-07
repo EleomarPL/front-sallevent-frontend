@@ -143,6 +143,7 @@ const ModalCreateUpdateServices = ({ services, setServices, dataService }) => {
                 type="button"
                 className="btn btn-primary"
                 onClick={ handleOperationService }
+                disabled={ isLoading }
               >
                 { isLoading &&
                   <SpinnerButtonLoading />
