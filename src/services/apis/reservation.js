@@ -85,6 +85,6 @@ export const confirmReservation = async({token, idReservation}) => {
   return response;
 };
 export const verifyOpenRoom = async({dateYYMMDD}) => {
-  let response = await axios.get(`${baseAPI}/verify-date-to-reservation`, {dateYYMMDD});
+  let response = await axios.get(`${baseAPI}/verify-date-to-reservation/${dateYYMMDD}`);
   return response;
 };
