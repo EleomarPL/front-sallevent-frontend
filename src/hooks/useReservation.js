@@ -111,6 +111,8 @@ const useReservation = () => {
     } catch ( err ) {
       if (err.response.data.error === 'Token missing or invalid') {
         notifyWarning('Al parecer, perdiste los permisos, te recomiendo cerrar sesión');
+      } else if (err.response.data.error === 'This reservation cannot be modified') {
+        notifyWarning('Esta reservación ya ha sido confirmada, por lo tanto, no es posible modificarlo');
       } else if (err.message === 'Network Error') {
         notifyError('No encontramos una conexión a internet');
       } else
