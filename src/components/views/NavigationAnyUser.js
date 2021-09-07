@@ -13,6 +13,7 @@ const NavigationAnyUser = ({isAdmin, routesNav}) => {
     <nav
       id="lateral-navigation"
       className="navbar navbar-expand-lg navbar-dark bg-dark align-items-start"
+      style={ {borderStartEndRadius: '10px'} }
     >
       <div className="w-100 text-center" style={ {display: 'block'} }>
         <span className="fw-bold" style={ {color: 'white', fontSize: '1.3rem'} }>
