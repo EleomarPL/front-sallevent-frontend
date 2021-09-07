@@ -7,7 +7,8 @@ import {
   getReservationWithServices,
   updateReservacion as updateReservacionAxios,
   getAllReservations as getAllReservationsAxios,
-  confirmReservation as confirmReservationAxios
+  confirmReservation as confirmReservationAxios,
+  verifyOpenRoom as verifyOpenRoomAxios
 } from '../services/apis/reservation';
 import {notifyError, notifyWarning, notifySuccess} from '../consts/notifications';
 
@@ -148,6 +149,17 @@ const useReservation = () => {
       return null;
     }
   };
+  const verifyOpenRoom = async({dateYYMMDD}) => {
+    try {
+      let {data} = await verifyOpenRoomAxios({dateYYMMDD});
+      return data;
+    } catch ( err ) {
+      if (err.message === 'Network Error') {
+        notifyError('No encontramos una conexión a internet');
+      }
+      return null;
+    }
+  };
 
   return {
     getDateReservationWithStatus,
@@ -158,7 +170,8 @@ const useReservation = () => {
     getReservation,
     updateReservation,
     getAllReservations,
-    confirmReservation
+    confirmReservation,
+    verifyOpenRoom
   };
 };
 
