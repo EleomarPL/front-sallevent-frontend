@@ -143,7 +143,9 @@ const MyReservations = () => {
                       <td>{ data.dateReservationStart.split('T')[0] }</td>
                       <td>{ data.priceTotal }</td>
                       <td>
-                        <ButtonTableReservations onClick={ () => handleUpdateReservation(data.id) }>
+                        <ButtonTableReservations onClick={ () => handleUpdateReservation(data.id) }
+                          disabled={ loadingUpdateButtonState === data.id }
+                        >
                           { loadingUpdateButtonState === data.id &&
                             <SpinnerButtonLoading />
                           }
@@ -156,7 +158,9 @@ const MyReservations = () => {
                         </ButtonTableReservations>
                       </td>
                       <td>
-                        <ButtonTableReservations onClick={ () => handleViewStatusReservation(data.id) }>
+                        <ButtonTableReservations onClick={ () => handleViewStatusReservation(data.id) }
+                          disabled={ loadingSpecificButtonState === data.id }
+                        >
                           { loadingSpecificButtonState === data.id &&
                             <SpinnerButtonLoading />
                           }
