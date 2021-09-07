@@ -7,6 +7,16 @@ import Quotation from '../../../contexts/Quotation';
 const ServicesQuotation = () => {
   const {quotationData, setQuotationData} = useContext(Quotation);
   const {getAllServices} = useService();
+  const typeEventsArray = [
+    'Graduacion',
+    'Boda',
+    'Bautizo',
+    'Comunion',
+    'Confirmacion',
+    'Cumpleaños',
+    'Quince años',
+    'Reunion'
+  ];
 
   useEffect(() => {
     getAllServices().then(response => {
@@ -16,9 +26,27 @@ const ServicesQuotation = () => {
       });
     });
   }, []);
+  useEffect(() => {
+    setTypeEvent({
+      selectValue: switchTypeEvent(quotationData.typeEvent),
+      inputAltValue: switchTypeEvent(quotationData.typeEvent) === 'other' ? quotationData.typeEvent : ''
+    });
+  }, [quotationData.typeEvent]);
+
+  const switchTypeEvent = (event) => {
+    switch (event) {
+    case typeEventsArray.includes(event):
+      return event;
+    case '':
+      return '';
+    default:
+      return 'other';
+    }
+  };
+
   const [typeEvent, setTypeEvent] = useState({
-    selectValue: quotationData.typeEvent,
-    inputAltValue: ''
+    selectValue: switchTypeEvent(quotationData.typeEvent),
+    inputAltValue: switchTypeEvent(quotationData.typeEvent) === 'other' ? quotationData.typeEvent : ''
   });
 
   const handleChageValueSelect = (evt) => {
@@ -103,14 +131,16 @@ const ServicesQuotation = () => {
               style={ {marginRight: '5px'} }
             >
               <option value="" hidden>Seleccione una opción</option>
-              <option value="Graduacion">Graduacion</option>
-              <option value="Boda">Boda</option>
-              <option value="Bautizo">Bautizo</option>
-              <option value="Comunion">Comunion</option>
-              <option value="Confirmacion">Confirmacion</option>
-              <option value="Cumpleaños">Cumpleaños</option>
-              <option value="Quince años">Quince años</option>
-              <option value="Reunion">Reunion</option>
+              { typeEventsArray &&
+                typeEventsArray.map(event =>
+                  <option
+                    key={ event }
+                    value={ event }
+                  >
+                    { event }
+                  </option>
+                )
+              }
               <option value="other">Otro</option>
             </select>
             { typeEvent.selectValue === 'other' &&
@@ -125,6 +155,7 @@ const ServicesQuotation = () => {
                 <input
                   type="text"
                   className="form-control"
+                  value={ typeEvent.inputAltValue }
                   required
                   onChange={ handleChangeInputSelect }
                 />
