@@ -2,16 +2,23 @@ import React, {Suspense, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import {openmodalReadMessageContactUser} from '../../modals/ModalReadMessageContact';
+import {openmodalDeleteContact} from '../../modals/ModalDeleteContact';
 import SpinnerLoading from '../../common/SpinnerLoading';
 
 const ModalReadMessageContact = React.lazy(() => import('../../modals/ModalReadMessageContact'));
+const ModalDeleteContact = React.lazy(() => import('../../modals/ModalDeleteContact'));
 
 const TableContact = ({ contact, setContact }) => {
   const [dataMessageContact, setDataMessageContact] = useState({});
+  const [idMessageContact, setIdMessageContact] = useState('');
 
   const handleReadMessageContact = (dataMessage) => {
     setDataMessageContact(dataMessage);
     openmodalReadMessageContactUser();
+  };
+  const handleDeleteMessageContact = (id) => {
+    setIdMessageContact(id);
+    openmodalDeleteContact();
   };
 
   return (
@@ -36,7 +43,7 @@ const TableContact = ({ contact, setContact }) => {
                 <td>{ dataContact.fullName }</td>
                 <td>{ dataContact.text.slice(0, 20) + `${dataContact.text.length >= 20 ? '...' : ''}` }</td>
                 <td><ButtonReadMessage onClick={ () => handleReadMessageContact(dataContact) } /></td>
-                <td><ButtonDeleteUser onClick={ () => console.log('delete message') } /></td>
+                <td><ButtonDeleteUser onClick={ () => handleDeleteMessageContact(dataContact.id) } /></td>
               </tr>
             )
           }
@@ -44,6 +51,11 @@ const TableContact = ({ contact, setContact }) => {
       </table>
       <Suspense fallback={ <SpinnerLoading /> }>
         <ModalReadMessageContact dataMessageContact={ dataMessageContact } />
+        <ModalDeleteContact
+          contact={ contact }
+          setContact={ setContact }
+          idMessageContact={ idMessageContact }
+        />
       </Suspense>
     </div>
   );
