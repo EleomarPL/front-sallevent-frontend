@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import Helmet from 'react-helmet';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
@@ -9,14 +9,15 @@ import AdminRouter from './components/router/AdminRouter';
 import MyRouter from './components/router/MyRouter';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import SpinnerLoading from './components/common/SpinnerLoading';
 
-import Home from './pages/public/Home';
-import Services from './pages/public/Services';
-import Contact from './pages/public/Contact';
-import Register from './pages/public/Register';
-import Login from './pages/public/Login';
-import IndexMy from './pages/my/IndexMy';
-import IndexAdmin from './pages/admin/IndexAdmin';
+const Home = React.lazy(() => import('./pages/public/Home'));
+const Services = React.lazy(() => import('./pages/public/Services'));
+const Contact = React.lazy(() => import('./pages/public/Contact'));
+const Register = React.lazy(() => import('./pages/public/Register'));
+const Login = React.lazy(() => import('./pages/public/Login'));
+const IndexMy = React.lazy(() => import('./pages/my/IndexMy'));
+const IndexAdmin = React.lazy(() => import('./pages/admin/IndexAdmin'));
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -37,41 +38,55 @@ const App = () => {
               <title>Inicio | SallEvent</title>
               <meta name="description" content="Salón SallEvent, renta este salón para tus eventos y poder disfrutar de ellos sin preocuparte por los arreglos, en este salón puedes rentar diferentes servicios bajo tus necesidades." />
             </Helmet>
-            <Home />
+            <Suspense fallback={ <SpinnerLoading /> }>
+              <Home />
+            </Suspense>
           </PublicRoute>
           <PublicRoute path="/services">
             <Helmet>
               <title>Servicios | SallEvent</title>
               <meta name="description" content="Conoce los servicios con los que cuenta el salón SallEvent, así como también los diferentes servicios con los que cuenta y el calendario de días ya agendados." />
             </Helmet>
-            <Services />
+            <Suspense fallback={ <SpinnerLoading /> }>
+              <Services />
+            </Suspense>
           </PublicRoute>
           <PublicRoute path="/contact">
             <Helmet>
               <title>Contacto | SallEvent</title>
               <meta name="description" content="Servicio incorporado de mensajes de contacto para tus dudas, quejar o sugerencias que surjan acerca del salón SallEvent como de sus servicios." />
             </Helmet>
-            <Contact />
+            <Suspense fallback={ <SpinnerLoading /> }>
+              <Contact />
+            </Suspense>
           </PublicRoute>
           <PublicRoute path="/register">
             <Helmet>
               <title>Registrarse | SallEvent</title>
               <meta name="description" content="Regístrate y disfruta de nuestra plataforma para poder realizar reservaciones con los servicios según tus necesidades." />
             </Helmet>
-            <Register />
+            <Suspense fallback={ <SpinnerLoading /> }>
+              <Register />
+            </Suspense>
           </PublicRoute>
           <PublicRoute path="/login">
             <Helmet>
               <title>Acceder | SallEvent</title>
               <meta name="description" content="Iniciar sesión y navega por nuestra plataforma, pudiendo reservar el salón, así como también consumir nuestros servicios, asegurando su satisfacción al uso de nuestros servicios." />
             </Helmet>
-            <Login />
+            <Suspense fallback={ <SpinnerLoading /> }>
+              <Login />
+            </Suspense>
           </PublicRoute>
           <MyRouter path="/my">
-            <IndexMy />
+            <Suspense fallback={ <SpinnerLoading /> }>
+              <IndexMy />
+            </Suspense>
           </MyRouter>
           <AdminRouter path="/admin">
-            <IndexAdmin />
+            <Suspense fallback={ <SpinnerLoading /> }>
+              <IndexAdmin />
+            </Suspense>
           </AdminRouter>
         </Switch>
         <Footer />
