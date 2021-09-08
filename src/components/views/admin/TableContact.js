@@ -17,12 +17,18 @@ const TableContact = ({ contact, setContact }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Eleomar Pedro Lorenzo</td>
-            <td>{ 'Velit ad dolore minim consequat consectetur Lorem. Ullamco sit cupidatat veniam velit labore excepteur magna fugiat. Enim est officia ea pariatur veniam id nostrud elit irure Lorem aliquip.'.slice(0, 30) + '...' }</td>
-            <td><ButtonReadMessage onClick={ () => console.log('read message') } /></td>
-            <td><ButtonDeleteUser onClick={ () => console.log('delete message') } /></td>
-          </tr>
+          { contact &&
+            contact.map(dataContact =>
+              <tr
+                key={ dataContact.id }
+              >
+                <td>{ dataContact.fullName }</td>
+                <td>{ dataContact.text.slice(0, 20) + `${dataContact.text.length >= 20 && '...'}` }</td>
+                <td><ButtonReadMessage onClick={ () => console.log('read message') } /></td>
+                <td><ButtonDeleteUser onClick={ () => console.log('delete message') } /></td>
+              </tr>
+            )
+          }
         </tbody>
       </table>
     </div>
