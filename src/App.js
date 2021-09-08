@@ -35,43 +35,42 @@ const App = () => {
           <PublicRoute exact path="/">
             <Helmet>
               <title>Inicio | SallEvent</title>
+              <meta name="description" content="Salón SallEvent, renta este salón para tus eventos y poder disfrutar de ellos sin preocuparte por los arreglos, en este salón puedes rentar diferentes servicios bajo tus necesidades." />
             </Helmet>
             <Home />
           </PublicRoute>
           <PublicRoute path="/services">
             <Helmet>
               <title>Servicios | SallEvent</title>
+              <meta name="description" content="Conoce los servicios con los que cuenta el salón SallEvent, así como también los diferentes servicios con los que cuenta y el calendario de días ya agendados." />
             </Helmet>
             <Services />
           </PublicRoute>
           <PublicRoute path="/contact">
             <Helmet>
               <title>Contacto | SallEvent</title>
+              <meta name="description" content="Servicio incorporado de mensajes de contacto para tus dudas, quejar o sugerencias que surjan acerca del salón SallEvent como de sus servicios." />
             </Helmet>
             <Contact />
           </PublicRoute>
           <PublicRoute path="/register">
             <Helmet>
               <title>Registrarse | SallEvent</title>
+              <meta name="description" content="Regístrate y disfruta de nuestra plataforma para poder realizar reservaciones con los servicios según tus necesidades." />
             </Helmet>
             <Register />
           </PublicRoute>
           <PublicRoute path="/login">
             <Helmet>
               <title>Acceder | SallEvent</title>
+              <meta name="description" content="Iniciar sesión y navega por nuestra plataforma, pudiendo reservar el salón, así como también consumir nuestros servicios, asegurando su satisfacción al uso de nuestros servicios." />
             </Helmet>
             <Login />
           </PublicRoute>
           <MyRouter path="/my">
-            <Helmet>
-              <title>My | SallEvent</title>
-            </Helmet>
             <IndexMy />
           </MyRouter>
           <AdminRouter path="/admin">
-            <Helmet>
-              <title>Admin | SallEvent</title>
-            </Helmet>
             <IndexAdmin />
           </AdminRouter>
         </Switch>
