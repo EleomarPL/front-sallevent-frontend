@@ -1,7 +1,18 @@
-import React from 'react';
+import React, {Suspense, useState} from 'react';
 import PropTypes from 'prop-types';
 
+import {openmodalReadMessageContactUser} from '../../modals/ModalReadMessageContact';
+import SpinnerLoading from '../../common/SpinnerLoading';
+
+const ModalReadMessageContact = React.lazy(() => import('../../modals/ModalReadMessageContact'));
+
 const TableContact = ({ contact, setContact }) => {
+  const [dataMessageContact, setDataMessageContact] = useState({});
+
+  const handleReadMessageContact = (dataMessage) => {
+    setDataMessageContact(dataMessage);
+    openmodalReadMessageContactUser();
+  };
 
   return (
     <div className="table-responsive mt-3"
@@ -23,14 +34,17 @@ const TableContact = ({ contact, setContact }) => {
                 key={ dataContact.id }
               >
                 <td>{ dataContact.fullName }</td>
-                <td>{ dataContact.text.slice(0, 20) + `${dataContact.text.length >= 20 && '...'}` }</td>
-                <td><ButtonReadMessage onClick={ () => console.log('read message') } /></td>
+                <td>{ dataContact.text.slice(0, 20) + `${dataContact.text.length >= 20 ? '...' : ''}` }</td>
+                <td><ButtonReadMessage onClick={ () => handleReadMessageContact(dataContact) } /></td>
                 <td><ButtonDeleteUser onClick={ () => console.log('delete message') } /></td>
               </tr>
             )
           }
         </tbody>
       </table>
+      <Suspense fallback={ <SpinnerLoading /> }>
+        <ModalReadMessageContact dataMessageContact={ dataMessageContact } />
+      </Suspense>
     </div>
   );
 };
