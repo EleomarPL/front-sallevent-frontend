@@ -8,6 +8,7 @@ import Clients from './Clients';
 import Reservations from './Reservations';
 import Services from './Services';
 import Room from './Room';
+import Contact from './Contact';
 
 import {routesNav} from '../../data/admin/routes';
 
@@ -27,6 +28,9 @@ const IndexAdmin = () => {
           </AdminRouter>
           <AdminRouter exact path="/admin/room">
             <Room />
+          </AdminRouter>
+          <AdminRouter exact path="/admin/contact">
+            <Contact />
           </AdminRouter>
           <AdminRouter exact path="/admin/">
             <PersonalInformation />

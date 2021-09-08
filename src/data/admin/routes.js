@@ -17,6 +17,11 @@ export const routesNav = [
   {
     path: '/room',
     text: 'Salón',
+    borderBottom: false
+  },
+  {
+    path: '/contact',
+    text: 'Contacto',
     borderBottom: true
   },
   {
