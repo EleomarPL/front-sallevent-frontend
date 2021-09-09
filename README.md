@@ -1,6 +1,6 @@
 # SallEvent Clone
 
-Sitio web (backend) donde se pueden reservar un salón de eventos con diferentes servicios.
+Sitio web (frontend) donde se pueden reservar un salón de eventos con diferentes servicios.
 
 # Comenzando 🚀
 
