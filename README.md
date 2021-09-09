@@ -18,7 +18,7 @@ En este momento este ya usa las APIs en producción, si gustas, puedes cambiarla
 Tal vez suene muy obvio pero primero clone el repositorio
 
 ```
-    git clone https://github.com/EleomarPL/grade-control-frontend
+    git clone https://github.com/EleomarPL/front-sallevent-frontend
 ```
 
 Instale las dependencias. Las depedencias ya se encuentran implicitas en el Package del proyecto, solo basta ejecutar la siguiente instrucción:
