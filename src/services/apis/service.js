@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const baseAPI = 'http://localhost:4000/api/service';
+// const baseAPI = 'http://localhost:4000/api/service';
+const baseAPI = 'https://sleepy-island-14614.herokuapp.com/api/service';
 
 
 export const getAllServices = async() => {
