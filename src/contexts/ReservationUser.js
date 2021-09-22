@@ -1,8 +1,7 @@
-
-import React, { useState } from 'react';
+import { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
 
-const Reservation = React.createContext({});
+const Reservation = createContext({});
 
 export const ReservationProvider = ({ children }) => {
   let getDataFromLocalStorage = JSON.parse(window.localStorage.getItem('dataReservation'));

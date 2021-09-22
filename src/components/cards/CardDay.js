@@ -1,4 +1,4 @@
-import React, {useEffect, useState, memo} from 'react';
+import {useEffect, useState, memo} from 'react';
 import PropTypes from 'prop-types';
 
 const CardDay = memo(function CardDay({day, date, daysNotAllowed, setDaysNotAllowed, listReservation, fcGetDaySelected}) {

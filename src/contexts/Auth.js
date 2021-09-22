@@ -1,8 +1,7 @@
-
-import React, { useState } from 'react';
+import { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
 
-const Auth = React.createContext({});
+const Auth = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [userData, setUserData] = useState(JSON.parse(window.localStorage.getItem('datauser')) || null);

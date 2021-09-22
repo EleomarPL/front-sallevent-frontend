@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 
 import CardMessageCalendar from '../../components/cards/CardMessageCalendar';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
@@ -8,7 +8,7 @@ import ButtonClean from '../../components/views/quotationDashboard/ButtonClean';
 import ButtonQuotation from '../../components/views/quotationDashboard/ButtonQuotation';
 import BoxTotal from '../../components/views/quotationDashboard/BoxTotal';
 
-const SomeServices = React.lazy(() => import('../../components/views/SomeServices'));
+const SomeServices = lazy(() => import('../../components/views/SomeServices'));
 
 
 const Services = () => {

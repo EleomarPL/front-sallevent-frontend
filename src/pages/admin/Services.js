@@ -1,11 +1,11 @@
-import React, {useState, Suspense} from 'react';
+import {useState, Suspense, lazy} from 'react';
 
 import TableServices from '../../components/views/admin/TableServices';
 import PersonalizedSearcher from '../../components/views/PersonalizedSearcher';
 import {openmodalCreateUpdateServicesUser} from '../../components/modals/ModalCreateUpdateServices';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 
-const ModalCreateUpdateServices = React.lazy(() => import('../../components/modals/ModalCreateUpdateServices'));
+const ModalCreateUpdateServices = lazy(() => import('../../components/modals/ModalCreateUpdateServices'));
 
 const Services = () => {
   const [searcher, setSearcher] = useState('');

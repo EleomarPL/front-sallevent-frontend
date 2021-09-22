@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import DataUser from '../../components/views/user/DataUser';
 import StatusReservation from '../../components/views/user/StatusReservation';

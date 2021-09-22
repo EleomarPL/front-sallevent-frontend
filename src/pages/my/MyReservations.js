@@ -1,4 +1,4 @@
-import React, { Suspense, useContext, useEffect, useState } from 'react';
+import { Suspense, useContext, useEffect, useState, lazy} from 'react';
 
 import ButtonGoToNewReservation from '../../components/buttons/ButtonGoToNewReservation';
 import ButtonTableReservations from '../../components/buttons/ButtonTableReservations';
@@ -8,7 +8,7 @@ import useReservation from '../../hooks/useReservation';
 import {openModalDeleteReservationUser} from '../../components/modals/ModalDeleteReservationUser';
 import ReservationUser from '../../contexts/ReservationUser';
 
-const ModalDeleteReservationUser = React.lazy(() => import('../../components/modals/ModalDeleteReservationUser'));
+const ModalDeleteReservationUser = lazy(() => import('../../components/modals/ModalDeleteReservationUser'));
 
 const MyReservations = () => {
   const [listReservations, setListReservations] = useState([]);

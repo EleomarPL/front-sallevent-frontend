@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import {Suspense, lazy} from 'react';
 import Helmet from 'react-helmet';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
@@ -11,13 +11,13 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import SpinnerLoading from './components/common/SpinnerLoading';
 
-const Home = React.lazy(() => import('./pages/public/Home'));
-const Services = React.lazy(() => import('./pages/public/Services'));
-const Contact = React.lazy(() => import('./pages/public/Contact'));
-const Register = React.lazy(() => import('./pages/public/Register'));
-const Login = React.lazy(() => import('./pages/public/Login'));
-const IndexMy = React.lazy(() => import('./pages/my/IndexMy'));
-const IndexAdmin = React.lazy(() => import('./pages/admin/IndexAdmin'));
+const Home = lazy(() => import('./pages/public/Home'));
+const Services = lazy(() => import('./pages/public/Services'));
+const Contact = lazy(() => import('./pages/public/Contact'));
+const Register = lazy(() => import('./pages/public/Register'));
+const Login = lazy(() => import('./pages/public/Login'));
+const IndexMy = lazy(() => import('./pages/my/IndexMy'));
+const IndexAdmin = lazy(() => import('./pages/admin/IndexAdmin'));
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail}
   from '../../services/validations/generalValidations';

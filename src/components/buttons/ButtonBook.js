@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 
 import {notifyWarning} from '../../consts/notifications';
 import Quotation from '../../contexts/Quotation';

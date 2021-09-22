@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 
 import TableContact from '../../components/views/admin/TableContact';

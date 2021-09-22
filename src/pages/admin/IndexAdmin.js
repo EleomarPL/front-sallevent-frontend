@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import {Suspense, lazy} from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
@@ -6,12 +6,12 @@ import GroupPageAnyUser from '../../components/layouts/GroupPageAnyUser';
 import AdminRouter from '../../components/router/AdminRouter';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 
-const PersonalInformation = React.lazy(() => import('./PersonalInformation'));
-const Clients = React.lazy(() => import('./Clients'));
-const Reservations = React.lazy(() => import('./Reservations'));
-const Services = React.lazy(() => import('./Services'));
-const Room = React.lazy(() => import('./Room'));
-const Contact = React.lazy(() => import('./Contact'));
+const PersonalInformation = lazy(() => import('./PersonalInformation'));
+const Clients = lazy(() => import('./Clients'));
+const Reservations = lazy(() => import('./Reservations'));
+const Services = lazy(() => import('./Services'));
+const Room = lazy(() => import('./Room'));
+const Contact = lazy(() => import('./Contact'));
 
 import {routesNav} from '../../data/admin/routes';
 

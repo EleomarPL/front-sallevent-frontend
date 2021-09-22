@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 const BaseButtonAdmin = ({ onClick, children, type = 0, disabled = false}) => {

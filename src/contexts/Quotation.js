@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
 
-const Quotation = React.createContext({});
+const Quotation = createContext({});
 
 export const QuotationProvider = ({ children }) => {
   const [quotationData, setQuotationData] = useState(

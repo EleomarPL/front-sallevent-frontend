@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import CardMessageCalendar from '../../components/cards/CardMessageCalendar';
 import CalendarReservations from '../../components/views/CalendarReservations';

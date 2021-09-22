@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {isObjectValuesNull, validateLength, isNumberValue} from '../../services/validations/generalValidations';
 import {notifyWarning} from '../../consts/notifications';

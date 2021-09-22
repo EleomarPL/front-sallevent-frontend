@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 import {passwordsInputsSettings} from '../../../data/my/inputsSettings';
 import ButtonUpdatedPasswordUser from '../../buttons/ButtonUpdatedPasswordUser';

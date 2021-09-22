@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import _calendar from 'calendar';
 import PropTypes from 'prop-types';
 

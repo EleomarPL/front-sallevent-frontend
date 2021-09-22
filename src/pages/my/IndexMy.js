@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import {Suspense, lazy} from 'react';
 import {BrowserRouter, Switch} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
 
@@ -11,12 +11,12 @@ import ValidateReservationUser from '../../components/router/ValidateReservation
 import ValidateUpdateBookUser from '../../components/router/ValidateUpdateBookUser';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 
-const MyReservations = React.lazy(() => import('./MyReservations'));
-const Settings = React.lazy(() => import('./Settings'));
-const Calendar = React.lazy(() => import('./Calendar'));
-const Book = React.lazy(() => import('./Book'));
-const Reservation = React.lazy(() => import('./Reservation'));
-const UpdateBook = React.lazy(() => import('./UpdateBook'));
+const MyReservations = lazy(() => import('./MyReservations'));
+const Settings = lazy(() => import('./Settings'));
+const Calendar = lazy(() => import('./Calendar'));
+const Book = lazy(() => import('./Book'));
+const Reservation = lazy(() => import('./Reservation'));
+const UpdateBook = lazy(() => import('./UpdateBook'));
 
 import {routesNav} from '../../data/my/routes';
 

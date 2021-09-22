@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, lazy } from 'react';
 import PropTypes from 'prop-types';
 
 import useAdmin from '../../../hooks/useAdmin';
@@ -6,8 +6,8 @@ import SpinnerLoading from '../../common/SpinnerLoading';
 import {openmodalDeleteUserUser} from '../../modals/ModalDeleteUser';
 import {openmodalUpdateUserByAdminUser} from '../../modals/ModalUpdateUser';
 
-const ModalDeleteUser = React.lazy(() => import('../../modals/ModalDeleteUser'));
-const ModalUpdateUser = React.lazy(() => import('../../modals/ModalUpdateUser'));
+const ModalDeleteUser = lazy(() => import('../../modals/ModalDeleteUser'));
+const ModalUpdateUser = lazy(() => import('../../modals/ModalUpdateUser'));
 
 const TableGetUsers = ({ keyword, users, setUsers }) => {
   const [isLoading, setIsLoading] = useState(false);

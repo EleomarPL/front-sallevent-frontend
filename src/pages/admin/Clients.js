@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import { Suspense, useState, lazy } from 'react';
 
 import BaseButtonAdmin from '../../components/buttons/BaseButtonAdmin';
 import TableGetUsers from '../../components/views/admin/TableGetUsers';
@@ -6,7 +6,7 @@ import PersonalizedSearcher from '../../components/views/PersonalizedSearcher';
 import {openmodalCreateUserUser} from '../../components/modals/ModalCreateUser';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 
-const ModalCreateUser = React.lazy(() => import('../../components/modals/ModalCreateUser'));
+const ModalCreateUser = lazy(() => import('../../components/modals/ModalCreateUser'));
 
 const Clients = () => {
   const [searcher, setSearcher] = useState('');

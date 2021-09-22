@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { dataCarousel } from '../../data/public/home';
 
 const CarouselHome = () => {

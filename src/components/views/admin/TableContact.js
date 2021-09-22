@@ -1,12 +1,12 @@
-import React, {Suspense, useState} from 'react';
+import {Suspense, useState, lazy} from 'react';
 import PropTypes from 'prop-types';
 
 import {openmodalReadMessageContactUser} from '../../modals/ModalReadMessageContact';
 import {openmodalDeleteContact} from '../../modals/ModalDeleteContact';
 import SpinnerLoading from '../../common/SpinnerLoading';
 
-const ModalReadMessageContact = React.lazy(() => import('../../modals/ModalReadMessageContact'));
-const ModalDeleteContact = React.lazy(() => import('../../modals/ModalDeleteContact'));
+const ModalReadMessageContact = lazy(() => import('../../modals/ModalReadMessageContact'));
+const ModalDeleteContact = lazy(() => import('../../modals/ModalDeleteContact'));
 
 const TableContact = ({ contact, setContact }) => {
   const [dataMessageContact, setDataMessageContact] = useState({});

@@ -1,8 +1,7 @@
-import React, { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 
 import CarouselHome from '../../components/views/CarouselHome';
-// import CardContentHome from '../../components/cards/CardContentHome';
-const CardContentHome = React.lazy(() => import('../../components/cards/CardContentHome'));
+const CardContentHome = lazy(() => import('../../components/cards/CardContentHome'));
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 
 import { dataContentDown } from '../../data/public/home';

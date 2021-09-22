@@ -1,4 +1,4 @@
-import React, {Suspense, useContext} from 'react';
+import {Suspense, useContext, lazy} from 'react';
 
 import {inputsPersonalInformation} from '../../data/admin/inputsPersonalInformation';
 
@@ -8,8 +8,8 @@ import {openmodalUpdateAdminUser} from '../../components/modals/ModalUpdateDataA
 import {openmodalUpdatePasswordAdminUser} from '../../components/modals/ModalUpdatePasswordAdmin';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 
-const ModalUpdateDataAdmin = React.lazy(() => import('../../components/modals/ModalUpdateDataAdmin'));
-const ModalUpdatePasswordAdmin = React.lazy(() => import('../../components/modals/ModalUpdatePasswordAdmin'));
+const ModalUpdateDataAdmin = lazy(() => import('../../components/modals/ModalUpdateDataAdmin'));
+const ModalUpdatePasswordAdmin = lazy(() => import('../../components/modals/ModalUpdatePasswordAdmin'));
 
 const PersonalInformation = () => {
   const {userData} = useContext(Auth);

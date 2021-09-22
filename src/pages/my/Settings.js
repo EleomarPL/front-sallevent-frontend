@@ -1,9 +1,9 @@
-import React, {Suspense} from 'react';
+import {Suspense, lazy} from 'react';
 
 import ChangeDataUser from '../../components/views/user/ChangeDataUser';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 
-const ChangePasswordUser = React.lazy(() => import('../../components/views/user/ChangePasswordUser'));
+const ChangePasswordUser = lazy(() => import('../../components/views/user/ChangePasswordUser'));
 
 const Settings = () => {
   return (
