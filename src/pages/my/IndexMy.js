@@ -23,9 +23,7 @@ const Index = () => {
   return (
     <ReservationProvider>
       <Routes>
-        <Route path="/"
-          element={ <GroupPageAnyUser routesNav={ routesNav } /> }
-        >
+        <Route element={ <GroupPageAnyUser routesNav={ routesNav } /> }>
           <Route index
             element={
               <ValidateWithoutUserReservation>
