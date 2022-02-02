@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import useReservation from '../../hooks/useReservation';
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
@@ -9,7 +9,7 @@ import ReservationUser from '../../contexts/ReservationUser';
 
 
 const ButtonBookDay = ({date}) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const {setDataReservation} = useContext(ReservationUser);
   const {verifyOpenRoom} = useReservation();
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +34,7 @@ const ButtonBookDay = ({date}) => {
         } else {
           window.localStorage.setItem('dataReservation', JSON.stringify({ dateYYMMDD: _date }));
           setDataReservation({ dateYYMMDD: _date, isBooked: false });
-          history.push('/my/book');
+          navigate('/my/book');
         }
       }
     });

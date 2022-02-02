@@ -1,9 +1,8 @@
 import {Suspense, lazy} from 'react';
-import {BrowserRouter, Switch} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import {Helmet} from 'react-helmet';
 
 import GroupPageAnyUser from '../../components/layouts/GroupPageAnyUser';
-import MyRouter from '../../components/router/MyRouter';
 import { ReservationProvider } from '../../contexts/ReservationUser';
 import ValidateBookUser from '../../components/router/ValidateBookUser';
 import ValidateWithoutUserReservation from '../../components/router/ValidateWithoutUserReservation';
@@ -23,9 +22,52 @@ import {routesNav} from '../../data/my/routes';
 const Index = () => {
   return (
     <ReservationProvider>
-      <BrowserRouter>
-        <Switch>
-          <MyRouter exact path="/my/book">
+      <Routes>
+        <Route path="/"
+          element={ <GroupPageAnyUser routesNav={ routesNav } /> }
+        >
+          <Route index
+            element={
+              <ValidateWithoutUserReservation>
+                <Helmet>
+                  <title>Configuración | my</title>
+                  <meta name="description" content="Leer o modificar los datos del usuario, cambiando datos o credenciales para mayor comodidad." />
+                </Helmet>
+                <Suspense fallback={ <SpinnerLoading /> }>
+                  <Settings />
+                </Suspense>
+              </ValidateWithoutUserReservation>
+            }
+          />
+          <Route path="my-reservations"
+            element={
+              <ValidateWithoutUserReservation>
+                <Helmet>
+                  <title>Mis reservaciones | my</title>
+                  <meta name="description" content="Leer, modificar y eliminar las reservaciones con las que cuente, para así tener un control de las mismas reservaciones agendadas por el usuario." />
+                </Helmet>
+                <Suspense fallback={ <SpinnerLoading /> }>
+                  <MyReservations />
+                </Suspense>
+              </ValidateWithoutUserReservation>
+            }
+          />
+          <Route path="calendar"
+            element={
+              <ValidateWithoutUserReservation>
+                <Helmet>
+                  <title>Calendario | my</title>
+                  <meta name="description" content="Calendario con las fechas de reservaciones agendadas, así como también seleccionar la fecha deseada y reservar el salón." />
+                </Helmet>
+                <Suspense fallback={ <SpinnerLoading /> }>
+                  <Calendar />
+                </Suspense>
+              </ValidateWithoutUserReservation>
+            }
+          />
+        </Route>
+        <Route path="book"
+          element={
             <ValidateBookUser>
               <Helmet>
                 <title>Reservar | my</title>
@@ -35,8 +77,10 @@ const Index = () => {
                 <Book />
               </Suspense>
             </ValidateBookUser>
-          </MyRouter>
-          <MyRouter exact path="/my/reservation">
+          }
+        />
+        <Route path="reservation"
+          element={
             <ValidateReservationUser>
               <Helmet>
                 <title>Estado Reservación | my</title>
@@ -46,8 +90,10 @@ const Index = () => {
                 <Reservation />
               </Suspense>
             </ValidateReservationUser>
-          </MyRouter>
-          <MyRouter exact path="/my/update-book">
+          }
+        />
+        <Route path="update-book"
+          element={
             <ValidateUpdateBookUser>
               <Helmet>
                 <title>Actualizar Reservación | my</title>
@@ -57,46 +103,9 @@ const Index = () => {
                 <UpdateBook />
               </Suspense>
             </ValidateUpdateBookUser>
-          </MyRouter>
-          <GroupPageAnyUser routesNav={ routesNav }>
-            <Switch>
-              <MyRouter exact path="/my/my-reservations">
-                <ValidateWithoutUserReservation>
-                  <Helmet>
-                    <title>Mis reservaciones | my</title>
-                    <meta name="description" content="Leer, modificar y eliminar las reservaciones con las que cuente, para así tener un control de las mismas reservaciones agendadas por el usuario." />
-                  </Helmet>
-                  <Suspense fallback={ <SpinnerLoading /> }>
-                    <MyReservations />
-                  </Suspense>
-                </ValidateWithoutUserReservation>
-              </MyRouter>
-              <MyRouter exact path="/my/calendar">
-                <ValidateWithoutUserReservation>
-                  <Helmet>
-                    <title>Calendario | my</title>
-                    <meta name="description" content="Calendario con las fechas de reservaciones agendadas, así como también seleccionar la fecha deseada y reservar el salón." />
-                  </Helmet>
-                  <Suspense fallback={ <SpinnerLoading /> }>
-                    <Calendar />
-                  </Suspense>
-                </ValidateWithoutUserReservation>
-              </MyRouter>
-              <MyRouter exact path="/my">
-                <ValidateWithoutUserReservation>
-                  <Helmet>
-                    <title>Configuración | my</title>
-                    <meta name="description" content="Leer o modificar los datos del usuario, cambiando datos o credenciales para mayor comodidad." />
-                  </Helmet>
-                  <Suspense fallback={ <SpinnerLoading /> }>
-                    <Settings />
-                  </Suspense>
-                </ValidateWithoutUserReservation>
-              </MyRouter>
-            </Switch>
-          </GroupPageAnyUser>
-        </Switch>
-      </BrowserRouter>
+          }
+        />
+      </Routes>
     </ReservationProvider>
   );
 };

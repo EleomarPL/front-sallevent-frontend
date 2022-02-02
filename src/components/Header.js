@@ -43,9 +43,8 @@ const Header = () => {
                 <li className="nav-item">
                   <NavLink
                     className="nav-link"
-                    activeClassName="active"
+                    // activeClassName="active"
                     to="/"
-                    exact
                   >
                     Inicio
                   </NavLink>
@@ -53,7 +52,7 @@ const Header = () => {
                 <li className="nav-item">
                   <NavLink
                     className="nav-link"
-                    activeClassName="active"
+                    // activeClassName="active"
                     to="/services"
                   >
                     Servicios
@@ -62,7 +61,7 @@ const Header = () => {
                 <li className="nav-item">
                   <NavLink
                     className="nav-link"
-                    activeClassName="active"
+                    // activeClassName="active"
                     to="/contact"
                   >
                     Contacto
@@ -73,7 +72,7 @@ const Header = () => {
                 <li className="nav-item">
                   <NavLink
                     className="nav-link"
-                    activeClassName="active"
+                    // activeClassName="active"
                     to="/register"
                   >
                     Registrarse
@@ -82,7 +81,7 @@ const Header = () => {
                 <li className="nav-item">
                   <NavLink
                     className="nav-link"
-                    activeClassName="active"
+                    // activeClassName="active"
                     to="/login"
                   >
                     Acceder

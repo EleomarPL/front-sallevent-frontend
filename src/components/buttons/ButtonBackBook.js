@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import ProptTypes from 'prop-types';
 
 import ReservationUser from '../../contexts/ReservationUser';
 
 const ButtonBackBook = ({text, to}) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const {setDataReservation} = useContext(ReservationUser);
 
   const handleBackBook = () => {
@@ -14,7 +14,7 @@ const ButtonBackBook = ({text, to}) => {
       dateYYMMDD: '',
       isBooked: false
     });
-    history.push(to);
+    navigate(to);
   };
   return (
     <button

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import ReservationUser from '../../contexts/ReservationUser';
@@ -7,14 +7,14 @@ import ReservationUser from '../../contexts/ReservationUser';
 const ValidateReservationUser = ({children}) => {
   const {dataReservation} = useContext(ReservationUser);
   if (!dataReservation.dateYYMMDD)
-    return <Redirect to="/my/calendar" />;
+    return <Navigate to="/my/calendar" />;
   else {
     if (dataReservation.isBooked)
-      return <>{ children }</>;
+      return children;
     else if (dataReservation.isUpdateBook)
-      return <Redirect to="/my/update-book" />;
+      return <Navigate to="/my/update-book" />;
     else if (!dataReservation.isBooked)
-      return <Redirect to="/my/book" />;
+      return <Navigate to="/my/book" />;
   }
 };
 

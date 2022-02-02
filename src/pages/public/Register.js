@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail}
   from '../../services/validations/generalValidations';
@@ -12,7 +12,7 @@ import SpinnerButtonLoading from '../../components/common/SpinnerButtonLoading';
 const Register = () => {
 
   const {createNewUser} = useUser();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [messageStatusPassword, setMessageStatusPaswword] = useState({ color: '', text: '' });
   const [isLoading, setIsLoading] = useState();
@@ -100,7 +100,7 @@ const Register = () => {
           }).then( (response) => {
             setIsLoading(false);
             if (response)
-              history.push('/login');
+              navigate('/login');
           }).catch(() => {
             setIsLoading(false);
           });

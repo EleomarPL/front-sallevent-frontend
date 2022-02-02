@@ -39,9 +39,8 @@ const NavigationAnyUser = ({isAdmin, routesNav}) => {
                   <li className="link-options">
                     <NavLink
                       className="nav-link-personalized"
-                      activeClassName="active-link-personalized"
+                      // activeClassName="active-link-personalized"
                       to={ isAdmin ? '/admin' + data.path : '/my' + data.path }
-                      exact
                     >
                       { data.text }
                     </NavLink>

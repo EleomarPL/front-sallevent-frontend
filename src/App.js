@@ -1,6 +1,6 @@
 import {Suspense, lazy} from 'react';
 import {Helmet} from 'react-helmet';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
 
 import { AuthProvider } from './contexts/Auth';
@@ -32,63 +32,92 @@ const App = () => {
     <AuthProvider>
       <BrowserRouter>
         <Header />
-        <Switch>
-          <PublicRoute exact path="/">
-            <Helmet>
-              <title>Inicio | SallEvent</title>
-              <meta name="description" content="Salón SallEvent, renta este salón para tus eventos y poder disfrutar de ellos sin preocuparte por los arreglos, en este salón puedes rentar diferentes servicios bajo tus necesidades." />
-            </Helmet>
-            <Suspense fallback={ <SpinnerLoading /> }>
-              <Home />
-            </Suspense>
-          </PublicRoute>
-          <PublicRoute path="/services">
-            <Helmet>
-              <title>Servicios | SallEvent</title>
-              <meta name="description" content="Conoce los servicios con los que cuenta el salón SallEvent, así como también los diferentes servicios con los que cuenta y el calendario de días ya agendados." />
-            </Helmet>
-            <Suspense fallback={ <SpinnerLoading /> }>
-              <Services />
-            </Suspense>
-          </PublicRoute>
-          <PublicRoute path="/contact">
-            <Helmet>
-              <title>Contacto | SallEvent</title>
-              <meta name="description" content="Servicio incorporado de mensajes de contacto para tus dudas, quejar o sugerencias que surjan acerca del salón SallEvent como de sus servicios." />
-            </Helmet>
-            <Suspense fallback={ <SpinnerLoading /> }>
-              <Contact />
-            </Suspense>
-          </PublicRoute>
-          <PublicRoute path="/register">
-            <Helmet>
-              <title>Registrarse | SallEvent</title>
-              <meta name="description" content="Regístrate y disfruta de nuestra plataforma para poder realizar reservaciones con los servicios según tus necesidades." />
-            </Helmet>
-            <Suspense fallback={ <SpinnerLoading /> }>
-              <Register />
-            </Suspense>
-          </PublicRoute>
-          <PublicRoute path="/login">
-            <Helmet>
-              <title>Acceder | SallEvent</title>
-              <meta name="description" content="Iniciar sesión y navega por nuestra plataforma, pudiendo reservar el salón, así como también consumir nuestros servicios, asegurando su satisfacción al uso de nuestros servicios." />
-            </Helmet>
-            <Suspense fallback={ <SpinnerLoading /> }>
-              <Login />
-            </Suspense>
-          </PublicRoute>
-          <MyRouter path="/my">
-            <Suspense fallback={ <SpinnerLoading /> }>
-              <IndexMy />
-            </Suspense>
-          </MyRouter>
-          <AdminRouter path="/admin">
-            <Suspense fallback={ <SpinnerLoading /> }>
-              <IndexAdmin />
-            </Suspense>
-          </AdminRouter>
-        </Switch>
+        <Routes>
+          <Route index
+            element={
+              <PublicRoute>
+                <Helmet>
+                  <title>Inicio | SallEvent</title>
+                  <meta name="description" content="Salón SallEvent, renta este salón para tus eventos y poder disfrutar de ellos sin preocuparte por los arreglos, en este salón puedes rentar diferentes servicios bajo tus necesidades." />
+                </Helmet>
+                <Suspense fallback={ <SpinnerLoading /> }>
+                  <Home />
+                </Suspense>
+              </PublicRoute>
+            }
+          />
+          <Route path="/services"
+            element={
+              <PublicRoute>
+                <Helmet>
+                  <title>Servicios | SallEvent</title>
+                  <meta name="description" content="Conoce los servicios con los que cuenta el salón SallEvent, así como también los diferentes servicios con los que cuenta y el calendario de días ya agendados." />
+                </Helmet>
+                <Suspense fallback={ <SpinnerLoading /> }>
+                  <Services />
+                </Suspense>
+              </PublicRoute>
+            }
+          />
+          <Route path="/contact"
+            element={
+              <PublicRoute>
+                <Helmet>
+                  <title>Contacto | SallEvent</title>
+                  <meta name="description" content="Servicio incorporado de mensajes de contacto para tus dudas, quejar o sugerencias que surjan acerca del salón SallEvent como de sus servicios." />
+                </Helmet>
+                <Suspense fallback={ <SpinnerLoading /> }>
+                  <Contact />
+                </Suspense>
+              </PublicRoute>
+            }
+          />
+          <Route path="/register"
+            element={
+              <PublicRoute>
+                <Helmet>
+                  <title>Registrarse | SallEvent</title>
+                  <meta name="description" content="Regístrate y disfruta de nuestra plataforma para poder realizar reservaciones con los servicios según tus necesidades." />
+                </Helmet>
+                <Suspense fallback={ <SpinnerLoading /> }>
+                  <Register />
+                </Suspense>
+              </PublicRoute>
+            }
+          />
+          <Route path="/login"
+            element={
+              <PublicRoute>
+                <Helmet>
+                  <title>Acceder | SallEvent</title>
+                  <meta name="description" content="Iniciar sesión y navega por nuestra plataforma, pudiendo reservar el salón, así como también consumir nuestros servicios, asegurando su satisfacción al uso de nuestros servicios." />
+                </Helmet>
+                <Suspense fallback={ <SpinnerLoading /> }>
+                  <Login />
+                </Suspense>
+              </PublicRoute>
+            }
+          >
+          </Route>
+          <Route path="/my/*"
+            element={
+              <MyRouter>
+                <Suspense fallback={ <SpinnerLoading /> }>
+                  <IndexMy />
+                </Suspense>
+              </MyRouter>
+            }
+          />
+          <Route path="/admin/*"
+            element={
+              <AdminRouter>
+                <Suspense fallback={ <SpinnerLoading /> }>
+                  <IndexAdmin />
+                </Suspense>
+              </AdminRouter>
+            }
+          />
+        </Routes>
         <Footer />
         <ToastContainer position="top-right"
           autoClose={ 5000 } hideProgressBar={ false }

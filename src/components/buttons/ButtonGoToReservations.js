@@ -1,16 +1,16 @@
 import { useContext } from 'react';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 import ReservationUser from '../../contexts/ReservationUser';
 
 const ButtonGoToReservations = () => {
   const {setDataReservation} = useContext(ReservationUser);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleRedirection = () => {
     window.localStorage.removeItem('dataReservation');
     setDataReservation({ dateYYMMDD: '', isBooked: false });
-    history.push('/my/my-reservations');
+    navigate('/my/my-reservations');
   };
 
   return (
