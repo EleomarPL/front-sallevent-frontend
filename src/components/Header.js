@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types';
 import { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink as NavLinkReactRouterDom} from 'react-router-dom';
 
 import Auth from '../contexts/Auth';
 import useLogin from '../hooks/useLogin';
@@ -41,49 +42,29 @@ const Header = () => {
 
               <ul className="navbar-nav m-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <NavLink
-                    className="nav-link"
-                    // activeClassName="active"
-                    to="/"
-                  >
+                  <NavLink to="/">
                     Inicio
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink
-                    className="nav-link"
-                    // activeClassName="active"
-                    to="/services"
-                  >
+                  <NavLink to="/services">
                     Servicios
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink
-                    className="nav-link"
-                    // activeClassName="active"
-                    to="/contact"
-                  >
+                  <NavLink to="/contact">
                     Contacto
                   </NavLink>
                 </li>
               </ul>
               <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <NavLink
-                    className="nav-link"
-                    // activeClassName="active"
-                    to="/register"
-                  >
+                  <NavLink to="/register">
                     Registrarse
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink
-                    className="nav-link"
-                    // activeClassName="active"
-                    to="/login"
-                  >
+                  <NavLink to="/login">
                     Acceder
                   </NavLink>
                 </li>
@@ -108,6 +89,21 @@ const Header = () => {
       </div>
     </nav>
   );
+};
+
+const NavLink = ({to, children, className}) => {
+  return <NavLinkReactRouterDom to={ to }
+    className={ ({isActive}) =>
+      `nav-link ${className} ${isActive && 'active'}`
+    }
+  >
+    { children }
+  </NavLinkReactRouterDom>;
+};
+NavLink.propTypes = {
+  to: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string
 };
 
 export default Header;

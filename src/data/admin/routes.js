@@ -1,26 +1,26 @@
 export const routesNav = [
   {
-    path: '/clients',
+    path: 'clients',
     text: 'Clientes',
     borderBottom: false
   },
   {
-    path: '/books',
+    path: 'books',
     text: 'Reservaciones',
     borderBottom: false
   },
   {
-    path: '/services',
+    path: 'services',
     text: 'Servicios',
     borderBottom: false
   },
   {
-    path: '/room',
+    path: 'room',
     text: 'Salón',
     borderBottom: false
   },
   {
-    path: '/contact',
+    path: 'contact',
     text: 'Contacto',
     borderBottom: true
   },

@@ -38,9 +38,11 @@ const NavigationAnyUser = ({isAdmin, routesNav}) => {
                 <Fragment key={ data.path }>
                   <li className="link-options">
                     <NavLink
-                      className="nav-link-personalized"
-                      // activeClassName="active-link-personalized"
-                      to={ isAdmin ? '/admin' + data.path : '/my' + data.path }
+                      className={
+                        ({isActive}) =>
+                          `nav-link-personalized ${isActive && 'active-link-personalized'}`
+                      }
+                      end to={ data.path }
                     >
                       { data.text }
                     </NavLink>

@@ -1,11 +1,11 @@
 export const routesNav = [
   {
-    path: '/my-reservations',
+    path: 'my-reservations',
     text: 'Mis Reservaciones',
     borderBottom: false
   },
   {
-    path: '/calendar',
+    path: 'calendar',
     text: 'Calendario',
     borderBottom: true
   },
