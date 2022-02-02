@@ -6,9 +6,9 @@ import Auth from '../contexts/Auth';
 import useLogin from '../hooks/useLogin';
 
 const Header = () => {
-  const {logout} = useLogin();
+  const { logout } = useLogin();
+  const { userData } = useContext(Auth);
 
-  const {userData} = useContext(Auth);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div className="container">

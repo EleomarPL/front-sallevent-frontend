@@ -1,11 +1,10 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
 import BaseButtonAdmin from '../buttons/BaseButtonAdmin';
 
 const FormUpdateData = ({handleSubmitUpdateDataUser, userData = {}, isLoading, children, textButton}) => {
-
   return (
     <form onSubmit={ handleSubmitUpdateDataUser }>
       <div className="input-group mb-3">

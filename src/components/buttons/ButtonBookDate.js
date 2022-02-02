@@ -1,16 +1,16 @@
 import { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import useReservation from '../../hooks/useReservation';
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
-import {notifyInfo} from '../../consts/notifications';
+import { notifyInfo } from '../../consts/notifications';
 import ReservationUser from '../../contexts/ReservationUser';
 
 
 const ButtonBookDay = ({date}) => {
   const navigate = useNavigate();
-  const {setDataReservation} = useContext(ReservationUser);
+  const { setDataReservation } = useContext(ReservationUser);
   const {verifyOpenRoom} = useReservation();
   const [isLoading, setIsLoading] = useState(false);
 

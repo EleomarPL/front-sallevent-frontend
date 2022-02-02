@@ -10,8 +10,9 @@ import {
   confirmReservation as confirmReservationAxios,
   verifyOpenRoom as verifyOpenRoomAxios
 } from '../services/apis/reservation';
-import {notifyError, notifyWarning, notifySuccess} from '../consts/notifications';
-
+import {
+  notifyError, notifyWarning, notifySuccess
+} from '../consts/notifications';
 
 const useReservation = () => {
   const getDateReservationWithStatus = async() => {

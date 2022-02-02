@@ -1,12 +1,12 @@
 import { useContext } from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ProptTypes from 'prop-types';
 
 import ReservationUser from '../../contexts/ReservationUser';
 
 const ButtonBackBook = ({text, to}) => {
   const navigate = useNavigate();
-  const {setDataReservation} = useContext(ReservationUser);
+  const { setDataReservation } = useContext(ReservationUser);
 
   const handleBackBook = () => {
     window.localStorage.removeItem('dataReservation');

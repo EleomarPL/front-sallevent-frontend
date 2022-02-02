@@ -1,5 +1,5 @@
 import { Fragment, useContext } from 'react';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Auth from '../../contexts/Auth';
@@ -7,7 +7,7 @@ import Auth from '../../contexts/Auth';
 import '../../styles/styleNavigationAnyUser.css';
 
 const NavigationAnyUser = ({isAdmin, routesNav}) => {
-  const {userData} = useContext(Auth);
+  const { userData } = useContext(Auth);
 
   return (
     <nav

@@ -1,4 +1,4 @@
-import {Suspense, lazy} from 'react';
+import { Suspense, lazy } from 'react';
 
 import ChangeDataUser from '../../components/views/user/ChangeDataUser';
 import SpinnerLoading from '../../components/common/SpinnerLoading';

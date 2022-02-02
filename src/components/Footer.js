@@ -5,8 +5,8 @@ import Auth from '../contexts/Auth';
 
 const Footer = () => {
   const [infoFooter, setInfoFooter] = useState(null);
-  const {getDataFooter} = useRoom();
-  const {userData} = useContext(Auth);
+  const { getDataFooter } = useRoom();
+  const { userData } = useContext(Auth);
 
   useEffect(() => {
     if (userData === null) {

@@ -5,7 +5,9 @@ import Auth from '../../contexts/Auth';
 import useAdmin from '../../hooks/useAdmin';
 import FormUpdateData from '../views/FormUpdateData';
 
-import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail} from '../../services/validations/generalValidations';
+import {
+  isObjectValuesNull, validateLength, isNumberValue, isValidateEmail
+} from '../../services/validations/generalValidations';
 
 export const openmodalUpdateAdminUser = () => {
   let myModal = new Modal(
@@ -18,9 +20,9 @@ export const openmodalUpdateAdminUser = () => {
 };
 
 const ModalUpdateDataAdmin = () => {
-  const {userData} = useContext(Auth);
+  const { userData } = useContext(Auth);
   const [isLoading, setIsLoading] = useState(false);
-  const {editDataAdmin} = useAdmin();
+  const { editDataAdmin } = useAdmin();
 
   const handleSubmitUpdateDataUser = (evt) => {
     evt.preventDefault();

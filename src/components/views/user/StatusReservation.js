@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import ReservationUser from '../../../contexts/ReservationUser';
 
 const StatusReservation = () => {
-  const {dataReservation} = useContext(ReservationUser);
+  const { dataReservation } = useContext(ReservationUser);
   let dataReservationToRender = {
     'Horas contratadas': dataReservation.timeEnd - dataReservation.timeStart,
     'Hora Inicio': `${dataReservation.timeStart}:00:00 horas`,

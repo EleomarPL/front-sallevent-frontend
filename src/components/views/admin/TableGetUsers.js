@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import useAdmin from '../../../hooks/useAdmin';
 import SpinnerLoading from '../../common/SpinnerLoading';
-import {openmodalDeleteUserUser} from '../../modals/ModalDeleteUser';
-import {openmodalUpdateUserByAdminUser} from '../../modals/ModalUpdateUser';
+import { openmodalDeleteUserUser } from '../../modals/ModalDeleteUser';
+import { openmodalUpdateUserByAdminUser } from '../../modals/ModalUpdateUser';
 
 const ModalDeleteUser = lazy(() => import('../../modals/ModalDeleteUser'));
 const ModalUpdateUser = lazy(() => import('../../modals/ModalUpdateUser'));
@@ -13,7 +13,7 @@ const TableGetUsers = ({ keyword, users, setUsers }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [idUser, setIdUser] = useState('');
   const [userData, setUserData] = useState({});
-  const {getUsers} = useAdmin();
+  const { getUsers } = useAdmin();
 
   useEffect(() => {
     setIsLoading(true);

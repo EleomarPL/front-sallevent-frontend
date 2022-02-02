@@ -5,8 +5,8 @@ import useService from '../../../hooks/useService';
 import Quotation from '../../../contexts/Quotation';
 
 const ServicesQuotation = () => {
-  const {quotationData, setQuotationData} = useContext(Quotation);
-  const {getAllServices} = useService();
+  const { quotationData, setQuotationData } = useContext(Quotation);
+  const { getAllServices } = useService();
   const typeEventsArray = [
     'Graduacion',
     'Boda',

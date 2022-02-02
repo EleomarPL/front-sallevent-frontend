@@ -12,7 +12,7 @@ const Services = lazy(() => import('./Services'));
 const Room = lazy(() => import('./Room'));
 const Contact = lazy(() => import('./Contact'));
 
-import {routesNav} from '../../data/admin/routes';
+import { routesNav } from '../../data/admin/routes';
 
 const IndexAdmin = () => {
   return (

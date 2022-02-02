@@ -7,7 +7,7 @@ import useContact from '../../hooks/useContact';
 const Contact = () => {
   const [contact, setContact] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const {getAllMessagesContact} = useContact();
+  const { getAllMessagesContact } = useContact();
 
   useEffect(() => {
     setIsLoading(true);

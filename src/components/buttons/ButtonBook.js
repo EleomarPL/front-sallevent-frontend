@@ -1,15 +1,15 @@
 import { useContext, useState } from 'react';
 
-import {notifyWarning} from '../../consts/notifications';
+import { notifyWarning } from '../../consts/notifications';
 import Quotation from '../../contexts/Quotation';
 import ReservationUser from '../../contexts/ReservationUser';
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
 import useReservation from '../../hooks/useReservation';
 
 const ButtonBook = () => {
-  const {quotationData} = useContext(Quotation);
-  const {dataReservation, setDataReservation} = useContext(ReservationUser);
-  const {createReservation} = useReservation();
+  const { quotationData } = useContext(Quotation);
+  const { dataReservation, setDataReservation } = useContext(ReservationUser);
+  const { createReservation } = useReservation();
 
   const [isLoading, setIsLoading] = useState(false);
 

@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 
 import FormUpdateData from '../views/FormUpdateData';
 import useAdmin from '../../hooks/useAdmin';
-import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail} from '../../services/validations/generalValidations';
+import {
+  isObjectValuesNull, validateLength, isNumberValue, isValidateEmail
+} from '../../services/validations/generalValidations';
 import ChangePasswordOption from '../views/admin/ChangePasswordOption';
 
 export const openmodalUpdateUserByAdminUser = () => {
@@ -19,7 +21,7 @@ export const openmodalUpdateUserByAdminUser = () => {
 
 const ModalUpdateUser = ({ userData = {}, users, setUsers }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const {editDataUser} = useAdmin();
+  const { editDataUser } = useAdmin();
 
   const handleSubmitUpdateDataUser = (evt) => {
     evt.preventDefault();

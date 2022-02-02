@@ -10,7 +10,7 @@ const Reservations = () => {
   const [reservations, setReservations] = useState([]);
   const [reservationsToSearcher, setReservationsToSearcher] = useState('all');
   const [isLoading, setIsLoading] = useState(false);
-  const {getAllReservations} = useReservation();
+  const { getAllReservations } = useReservation();
 
   useEffect(() => {
     setIsLoading(true);

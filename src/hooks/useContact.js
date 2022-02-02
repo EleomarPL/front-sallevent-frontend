@@ -3,7 +3,9 @@ import {
   deleteMessageContact as deleteMessageContactAxios,
   getAllMessagesContact as getAllMessagesContactAxios
 } from '../services/apis/contact';
-import {notifySuccess, notifyError, notifyWarning} from '../consts/notifications';
+import {
+  notifySuccess, notifyError, notifyWarning
+} from '../consts/notifications';
 
 const useContact = () => {
   const createMessageContact = async({ fullName, email, phone, text }) => {

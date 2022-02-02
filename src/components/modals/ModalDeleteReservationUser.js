@@ -16,7 +16,7 @@ export const openModalDeleteReservationUser = () => {
 };
 
 const ModalDeleteReservationUser = ({ idReservation, listReservations, setListReservations }) => {
-  const {deleteReservation} = useReservation();
+  const { deleteReservation } = useReservation();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleDeleteReservation = () => {

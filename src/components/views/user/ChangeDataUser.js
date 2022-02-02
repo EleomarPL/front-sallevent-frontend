@@ -5,12 +5,14 @@ import ButtonUpdatedDataUser from '../../buttons/ButtonUpdatedDataUser';
 import {configInputsSettings} from '../../../data/my/inputsSettings';
 import Auth from '../../../contexts/Auth';
 import useUser from '../../../hooks/useUser';
-import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail} from '../../../services/validations/generalValidations';
+import {
+  isObjectValuesNull, validateLength, isNumberValue, isValidateEmail
+} from '../../../services/validations/generalValidations';
 
 const ChangeDataUser = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const {userData} = useContext(Auth);
-  const {editDataUser} = useUser();
+  const { userData } = useContext(Auth);
+  const { editDataUser } = useUser();
 
   const handleChangeData = (evt) => {
     evt.preventDefault();

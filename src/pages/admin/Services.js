@@ -1,4 +1,4 @@
-import {useState, Suspense, lazy} from 'react';
+import { useState, Suspense, lazy } from 'react';
 
 import TableServices from '../../components/views/admin/TableServices';
 import PersonalizedSearcher from '../../components/views/PersonalizedSearcher';

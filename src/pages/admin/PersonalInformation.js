@@ -1,18 +1,18 @@
-import {Suspense, useContext, lazy} from 'react';
+import { Suspense, useContext, lazy } from 'react';
 
-import {inputsPersonalInformation} from '../../data/admin/inputsPersonalInformation';
+import { inputsPersonalInformation } from '../../data/admin/inputsPersonalInformation';
 
 import Auth from '../../contexts/Auth';
 import BaseButtonAdmin from '../../components/buttons/BaseButtonAdmin';
-import {openmodalUpdateAdminUser} from '../../components/modals/ModalUpdateDataAdmin';
-import {openmodalUpdatePasswordAdminUser} from '../../components/modals/ModalUpdatePasswordAdmin';
+import { openmodalUpdateAdminUser } from '../../components/modals/ModalUpdateDataAdmin';
+import { openmodalUpdatePasswordAdminUser } from '../../components/modals/ModalUpdatePasswordAdmin';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 
 const ModalUpdateDataAdmin = lazy(() => import('../../components/modals/ModalUpdateDataAdmin'));
 const ModalUpdatePasswordAdmin = lazy(() => import('../../components/modals/ModalUpdatePasswordAdmin'));
 
 const PersonalInformation = () => {
-  const {userData} = useContext(Auth);
+  const { userData } = useContext(Auth);
 
   return (
     <section className="container-fluid">

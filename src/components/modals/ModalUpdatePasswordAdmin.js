@@ -1,11 +1,13 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import { Modal } from 'bootstrap';
 
 import BaseButtonAdmin from '../buttons/BaseButtonAdmin';
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
 import useAdmin from '../../hooks/useAdmin';
 
-import {isObjectValuesNull, validateLength} from '../../services/validations/generalValidations';
+import {
+  isObjectValuesNull, validateLength
+} from '../../services/validations/generalValidations';
 
 export const openmodalUpdatePasswordAdminUser = () => {
   let myModal = new Modal(
@@ -24,7 +26,7 @@ const ModalUpdatePasswordAdmin = () => {
   const [messageStatusPassword, setMessageStatusPaswword] = useState({ color: '', text: '' });
 
   const [isLoading, setIsLoading] = useState(false);
-  const {editPasswordAdmin} = useAdmin();
+  const { editPasswordAdmin } = useAdmin();
 
   const verifyNewPassword = (evt, setNewValue, index) => {
     setNewValue(evt.target.value);

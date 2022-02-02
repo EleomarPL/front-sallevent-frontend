@@ -10,7 +10,6 @@ import BoxTotal from '../../components/views/quotationDashboard/BoxTotal';
 
 const SomeServices = lazy(() => import('../../components/views/SomeServices'));
 
-
 const Services = () => {
   return (
     <section className="container-fluid p-lg-4">

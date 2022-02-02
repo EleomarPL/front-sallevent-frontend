@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import SpinnerLoading from '../../common/SpinnerLoading';
 import useService from '../../../hooks/useService';
-import {openmodalCreateUpdateServicesUser} from '../../modals/ModalCreateUpdateServices';
+import { openmodalCreateUpdateServicesUser } from '../../modals/ModalCreateUpdateServices';
 
 const TableServices = ({ keyword, services, setServices, setDataService }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const {searchServices} = useService();
+  const { searchServices } = useService();
 
   useEffect(() => {
     setIsLoading(true);

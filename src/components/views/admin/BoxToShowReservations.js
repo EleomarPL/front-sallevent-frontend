@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import useReservation from '../../../hooks/useReservation';
@@ -6,7 +6,7 @@ import SpinnerButtonLoading from '../../common/SpinnerButtonLoading';
 
 const BoxToShowReservations = ({reservationData, reservations, setReservations}) => {
   const [isLoading, setIsLoading] = useState(false);
-  const {confirmReservation} = useReservation();
+  const { confirmReservation } = useReservation();
 
   let status = reservationData.statusReservation ? 'Confirmado' : 'Por Confirmar';
   let varColor = reservationData.statusReservation ? 'var(--day-reservated)' : 'var(--day-waiter)';

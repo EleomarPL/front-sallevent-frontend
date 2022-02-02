@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 
 import StructureQuotation from '../../components/layouts/StructureQuotation';
 import DataUser from '../../components/views/user/DataUser';

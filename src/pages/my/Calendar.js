@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import CardMessageCalendar from '../../components/cards/CardMessageCalendar';
 import CalendarReservations from '../../components/views/CalendarReservations';
-import {data} from '../../data/public/calendar';
+import { data } from '../../data/public/calendar';
 import ButtonBookDay from '../../components/buttons/ButtonBookDate';
 
 const Calendar = () => {

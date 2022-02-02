@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import ReservationUser from '../../contexts/ReservationUser';
 
 const ValidateUpdateBookUser = ({children}) => {
-  const {dataReservation} = useContext(ReservationUser);
+  const { dataReservation } = useContext(ReservationUser);
   if (!dataReservation.dateYYMMDD)
     return <Navigate to="/my/my-reservations" />;
   else {

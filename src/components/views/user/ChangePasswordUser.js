@@ -1,16 +1,18 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
-import {passwordsInputsSettings} from '../../../data/my/inputsSettings';
+import { passwordsInputsSettings } from '../../../data/my/inputsSettings';
 import ButtonUpdatedPasswordUser from '../../buttons/ButtonUpdatedPasswordUser';
 import useUser from '../../../hooks/useUser';
-import {isObjectValuesNull, validateLength} from '../../../services/validations/generalValidations';
-import {notifyInfo} from '../../../consts/notifications';
+import {
+  isObjectValuesNull, validateLength
+} from '../../../services/validations/generalValidations';
+import { notifyInfo } from '../../../consts/notifications';
 
 const ChangePasswordUser = () => {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [messageStatusPassword, setMessageStatusPaswword] = useState({ color: '', text: '' });
-  const {editPasswordUser} = useUser();
+  const { editPasswordUser } = useUser();
 
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');

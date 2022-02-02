@@ -3,7 +3,7 @@ import { Suspense, useState, lazy } from 'react';
 import BaseButtonAdmin from '../../components/buttons/BaseButtonAdmin';
 import TableGetUsers from '../../components/views/admin/TableGetUsers';
 import PersonalizedSearcher from '../../components/views/PersonalizedSearcher';
-import {openmodalCreateUserUser} from '../../components/modals/ModalCreateUser';
+import { openmodalCreateUserUser } from '../../components/modals/ModalCreateUser';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 
 const ModalCreateUser = lazy(() => import('../../components/modals/ModalCreateUser'));

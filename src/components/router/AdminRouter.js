@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Auth from '../../contexts/Auth';
 
 const AdminRouter = ({children}) => {
-  const {userData} = useContext(Auth);
+  const { userData } = useContext(Auth);
   let isLogged = userData === null ? false : true;
 
   if (isLogged) {

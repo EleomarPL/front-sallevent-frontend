@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import _calendar from 'calendar';
 import PropTypes from 'prop-types';
 
@@ -10,7 +10,7 @@ import '../../styles/stylesCalendar.css';
 
 const CalendarReservations = ({ showStage = true, fcGetDaySelected }) => {
   const [listReservations, setListReservation] = useState({});
-  const {getDateReservationWithStatus} = useReservation();
+  const { getDateReservationWithStatus } = useReservation();
   const cal = new _calendar.Calendar(0);
   const currentDate = new Date();
   

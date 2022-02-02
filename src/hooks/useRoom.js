@@ -3,7 +3,9 @@ import {
   getInfoRoom as getInfoRoomAxios,
   updateInfoRoom as updateInfoRoomAxios
 } from '../services/apis/room';
-import {notifyError, notifySuccess, notifyWarning} from '../consts/notifications';
+import {
+  notifyError, notifySuccess, notifyWarning
+} from '../consts/notifications';
 
 
 const useRoom = () => {

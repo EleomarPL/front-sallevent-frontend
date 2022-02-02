@@ -1,11 +1,11 @@
-import { Suspense, useContext, useEffect, useState, lazy} from 'react';
+import { Suspense, useContext, useEffect, useState, lazy } from 'react';
 
 import ButtonGoToNewReservation from '../../components/buttons/ButtonGoToNewReservation';
 import ButtonTableReservations from '../../components/buttons/ButtonTableReservations';
 import SpinnerButtonLoading from '../../components/common/SpinnerButtonLoading';
 import SpinnerLoading from '../../components/common/SpinnerLoading';
 import useReservation from '../../hooks/useReservation';
-import {openModalDeleteReservationUser} from '../../components/modals/ModalDeleteReservationUser';
+import { openModalDeleteReservationUser } from '../../components/modals/ModalDeleteReservationUser';
 import ReservationUser from '../../contexts/ReservationUser';
 
 const ModalDeleteReservationUser = lazy(() => import('../../components/modals/ModalDeleteReservationUser'));
@@ -18,8 +18,10 @@ const MyReservations = () => {
   const [loadingUpdateButtonState, setLoadingUpdateButtonState] = useState('');
 
   const [idReservation, setIdReservation] = useState(null);
-  const {getReservationsUser, getOnlyReservation, getReservation} = useReservation();
-  const {setDataReservation} = useContext(ReservationUser);
+  const {
+    getReservationsUser, getOnlyReservation, getReservation
+  } = useReservation();
+  const { setDataReservation } = useContext(ReservationUser);
 
   useEffect(() => {
     setIsLoading(true);

@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 import FormUpdateData from '../views/FormUpdateData';
 import useUser from '../../hooks/useUser';
 
-import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail} from '../../services/validations/generalValidations';
+import {
+  isObjectValuesNull, validateLength, isNumberValue, isValidateEmail
+} from '../../services/validations/generalValidations';
 
 export const openmodalCreateUserUser = () => {
   let myModal = new Modal(
@@ -19,7 +21,7 @@ export const openmodalCreateUserUser = () => {
 
 const ModalCreateUser = ({ users, setUsers }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const {createNewUser} = useUser();
+  const { createNewUser } = useUser();
 
   const handleSubmitUpdateDataUser = (evt) => {
     evt.preventDefault();

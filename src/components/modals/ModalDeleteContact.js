@@ -17,7 +17,7 @@ export const openmodalDeleteContact = () => {
 
 const ModalDeleteContact = ({ idMessageContact, contact, setContact }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const {deleteMessageContact} = useContact();
+  const { deleteMessageContact } = useContact();
   
   const handleDelelteContact = () => {
     let myModal = Modal.getInstance( document.getElementById('modalDeleteContact') );

@@ -4,7 +4,7 @@ import Quotation from '../../../contexts/Quotation';
 
 const ButtonClean = () => {
   
-  const {quotationData, setQuotationData} = useContext(Quotation);
+  const { quotationData, setQuotationData } = useContext(Quotation);
 
   const handleReset = () => {
     const {listServices} = quotationData;

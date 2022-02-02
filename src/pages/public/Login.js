@@ -7,10 +7,9 @@ import Auth from '../../contexts/Auth';
 
 import '../../styles/stylesRegister.css';
 
-
 const Login = () => {
-  const {login} = useLogin();
-  const {setUserData} = useContext(Auth);
+  const { login } = useLogin();
+  const { setUserData } = useContext(Auth);
 
   const [isLoading, setIsLoading] = useState(false);
 

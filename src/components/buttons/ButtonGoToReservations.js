@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import ReservationUser from '../../contexts/ReservationUser';
 
 const ButtonGoToReservations = () => {
-  const {setDataReservation} = useContext(ReservationUser);
+  const { setDataReservation } = useContext(ReservationUser);
   const navigate = useNavigate();
 
   const handleRedirection = () => {

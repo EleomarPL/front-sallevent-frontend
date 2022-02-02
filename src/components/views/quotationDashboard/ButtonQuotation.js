@@ -1,14 +1,14 @@
 import { useContext, useState } from 'react';
 
 import Quotation from '../../../contexts/Quotation';
-import {notifyWarning} from '../../../consts/notifications';
+import { notifyWarning } from '../../../consts/notifications';
 import useService from '../../../hooks/useService';
 import SpinnerButtonLoading from '../../common/SpinnerButtonLoading';
 
 const ButtonQuotation = () => {
   
-  const {quotationData, setQuotationData} = useContext(Quotation);
-  const {quotationReservation} = useService();
+  const { quotationData, setQuotationData } = useContext(Quotation);
+  const { quotationReservation } = useService();
   const [isLoading, setIsLoading] = useState(false);
 
   const repairTime = (time) => {

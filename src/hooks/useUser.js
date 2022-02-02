@@ -1,12 +1,17 @@
 import { useContext } from 'react';
 
-import {createUser, editDataUser as editDataUserAxios, editPasswordUser as editPasswordUserAxios} from '../services/apis/user';
-import {notifySuccess, notifyError, notifyWarning} from '../consts/notifications';
+import {
+  createUser, editDataUser as editDataUserAxios,
+  editPasswordUser as editPasswordUserAxios
+} from '../services/apis/user';
+import {
+  notifySuccess, notifyError, notifyWarning
+} from '../consts/notifications';
 
 import Auth from '../contexts/Auth';
 
 const useUser = () => {
-  const {userData, setUserData} = useContext(Auth);
+  const { userData, setUserData } = useContext(Auth);
 
   const createNewUser = async({ name, lastName, motherLastName, phone, email, userName, password }) => {
     try {

@@ -17,7 +17,7 @@ export const openmodalDeleteUserUser = () => {
 
 const modalDeleteUserUser = ({ idUser, users, setUsers }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const {deleteUser} = useAdmin();
+  const { deleteUser } = useAdmin();
 
   const handleDeleteReservation = () => {
     let myModal = Modal.getInstance( document.getElementById('modalDeleteUser') );

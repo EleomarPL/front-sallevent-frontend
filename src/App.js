@@ -1,7 +1,7 @@
-import {Suspense, lazy} from 'react';
-import {Helmet} from 'react-helmet';
+import { Suspense, lazy } from 'react';
+import { Helmet } from 'react-helmet';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import {ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 import { AuthProvider } from './contexts/Auth';
 import PublicRoute from './components/router/PublicRouter';

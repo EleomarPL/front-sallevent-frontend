@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import {login as loginUser} from '../services/apis/login';
-import {notifyError, notifyInfo} from '../consts/notifications';
+import { login as loginUser } from '../services/apis/login';
+import { notifyError, notifyInfo } from '../consts/notifications';
 import Auth from '../contexts/Auth';
 
 const useLogin = () => {
-  const {setUserData} = useContext(Auth);
+  const { setUserData } = useContext(Auth);
 
   const login = async({ userName, password }) => {
     try {

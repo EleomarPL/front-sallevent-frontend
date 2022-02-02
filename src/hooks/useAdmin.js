@@ -7,7 +7,9 @@ import {
   deleteUser as deleteUserAxios,
   editDataUser as editDataUserAxios
 } from '../services/apis/admin';
-import {notifySuccess, notifyError, notifyWarning} from '../consts/notifications';
+import {
+  notifySuccess, notifyError, notifyWarning
+} from '../consts/notifications';
 
 import Auth from '../contexts/Auth';
 

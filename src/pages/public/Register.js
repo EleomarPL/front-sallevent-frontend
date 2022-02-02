@@ -1,17 +1,16 @@
 import { useState } from 'react';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail}
   from '../../services/validations/generalValidations';
 import useUser from '../../hooks/useUser';
-import {notifyWarning} from '../../consts/notifications';
+import { notifyWarning } from '../../consts/notifications';
 
 import '../../styles/stylesRegister.css';
 import SpinnerButtonLoading from '../../components/common/SpinnerButtonLoading';
 
 const Register = () => {
-
-  const {createNewUser} = useUser();
+  const { createNewUser } = useUser();
   const navigate = useNavigate();
 
   const [messageStatusPassword, setMessageStatusPaswword] = useState({ color: '', text: '' });

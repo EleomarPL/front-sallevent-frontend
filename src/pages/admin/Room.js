@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import {isObjectValuesNull, validateLength, isNumberValue} from '../../services/validations/generalValidations';
-import {notifyWarning} from '../../consts/notifications';
+import {
+  isObjectValuesNull, validateLength, isNumberValue
+} from '../../services/validations/generalValidations';
+import { notifyWarning} from '../../consts/notifications';
 import BaseButtonAdmin from '../../components/buttons/BaseButtonAdmin';
 import DataRoom from '../../components/views/admin/DataRoom';
 import DirectionRoom from '../../components/views/admin/DirectionRoom';
@@ -12,7 +14,7 @@ import SpinnerButtonLoading from '../../components/common/SpinnerButtonLoading';
 const Room = () => {
   const [infoRoom, setInfoRoom] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const {getInfoRoom, updateInfoRoom} = useRoom();
+  const { getInfoRoom, updateInfoRoom } = useRoom();
   useEffect(() => {
     getInfoRoom().then(response => {
       if (response !== null)

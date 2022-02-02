@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import {isObjectValuesNull, validateLength, isNumberValue, isValidateEmail}
-  from '../../services/validations/generalValidations';
+import {
+  isObjectValuesNull, validateLength, isNumberValue, isValidateEmail
+} from '../../services/validations/generalValidations';
 import useContact from '../../hooks/useContact';
 import SpinnerButtonLoading from '../../components/common/SpinnerButtonLoading';
 
@@ -9,7 +10,7 @@ import '../../styles/stylesContact.css';
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const {createMessageContact} = useContact();
+  const { createMessageContact } = useContact();
 
   const handleSubmitMessageContact = (evt) => {
     evt.preventDefault();

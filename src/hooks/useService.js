@@ -6,7 +6,9 @@ import {
   updateService as updateServiceAxios
 }
   from '../services/apis/service';
-import {notifyError, notifySuccess, notifyWarning} from '../consts/notifications';
+import {
+  notifyError, notifySuccess, notifyWarning
+} from '../consts/notifications';
 
 
 const useService = () => {

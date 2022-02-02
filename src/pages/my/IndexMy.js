@@ -1,6 +1,6 @@
-import {Suspense, lazy} from 'react';
-import {Routes, Route} from 'react-router-dom';
-import {Helmet} from 'react-helmet';
+import { Suspense, lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 import GroupPageAnyUser from '../../components/layouts/GroupPageAnyUser';
 import { ReservationProvider } from '../../contexts/ReservationUser';
@@ -17,7 +17,7 @@ const Book = lazy(() => import('./Book'));
 const Reservation = lazy(() => import('./Reservation'));
 const UpdateBook = lazy(() => import('./UpdateBook'));
 
-import {routesNav} from '../../data/my/routes';
+import { routesNav } from '../../data/my/routes';
 
 const Index = () => {
   return (

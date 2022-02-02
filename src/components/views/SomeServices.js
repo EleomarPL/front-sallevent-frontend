@@ -1,7 +1,6 @@
 const SomeServices = () => {
   return (
     <>
-
       <article className="row no-gutters mb-3">
         <div className="mb-3 pl-md-5 pr-md-5 col-lg-6 pl-lg-3 pr-lg-3">
           <picture>

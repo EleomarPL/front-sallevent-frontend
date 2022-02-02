@@ -1,9 +1,9 @@
-import {useContext} from 'react';
+import { useContext } from 'react';
 
 import Auth from '../../../contexts/Auth';
 
 const DataUser = () => {
-  const {userData} = useContext(Auth);
+  const { userData } = useContext(Auth);
 
   let dataUser = {
     'Nombre completo': `${userData.name} ${userData.lastName} ${userData.motherLastName}`,

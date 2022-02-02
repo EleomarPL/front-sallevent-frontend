@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Modal } from 'bootstrap';
 import PropTypes from 'prop-types';
 
-import {isObjectValuesNull, validateLength} from '../../services/validations/generalValidations';
+import { isObjectValuesNull, validateLength } from '../../services/validations/generalValidations';
 import SpinnerButtonLoading from '../common/SpinnerButtonLoading';
 import { notifyInfo } from '../../consts/notifications';
 import useService from '../../hooks/useService';
@@ -25,7 +25,7 @@ const ModalCreateUpdateServices = ({ services, setServices, dataService }) => {
   const [priceService, setPriceService] = useState(isCreateNewService ? '' : dataService.price);
   const [detailService, setDetailService] = useState(isCreateNewService ? '' : dataService.detail);
   const [isLoading, setIsLoading] = useState(false);
-  const {createService, updateService} = useService();
+  const { createService, updateService } = useService();
 
   useEffect(() => {
     setNameService(isCreateNewService ? '' : dataService.name.toString());

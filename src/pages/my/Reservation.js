@@ -7,7 +7,7 @@ import ButtonBackBook from '../../components/buttons/ButtonBackBook';
 import ButtonGoToReservations from '../../components/buttons/ButtonGoToReservations';
 
 const Reservation = () => {
-  const {dataReservation} = useContext(ReservationUser);
+  const { dataReservation } = useContext(ReservationUser);
   return (
     <section className="container-fluid p-md-3">
       <div className="col-md-12 border border-dark">
