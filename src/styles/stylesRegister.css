@@ -1,5 +1,5 @@
 .container-register {
-  background: url("../img/login/background.png");
+  background-image: url("../img/login/background.webp");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
@@ -7,7 +7,7 @@
   object-fit: contain;
 }
 .img-background {
-  background: url("../img/login/login.png");
+  background-image: url("../img/login/login.webp");
   background-size: cover;
   background-repeat: no-repeat;
   object-fit: contain;
