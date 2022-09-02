@@ -15,7 +15,7 @@ const Header = () => {
         <NavLink className="navbar-brand" to="/">
           <picture>
             <source
-              srcSet={ require('../img/home/logo.webp').default }
+              srcSet={ require('../img/home/logo.webp') }
               className="fas fa-link"
               height="50px"
               style={ {paddingRight: '1rem'} }
@@ -24,7 +24,7 @@ const Header = () => {
               className="fas fa-link"
               height="50px"
               style={ {paddingRight: '1rem'} }
-              src={ require('../img/home/logo.png').default }
+              src={ require('../img/home/logo.png') }
               alt="Logo "
             />
           </picture>

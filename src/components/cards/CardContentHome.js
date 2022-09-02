@@ -13,10 +13,10 @@ const CardContentHome = ({ nameImage, isImageLeft, information }) => {
       >
         <picture>
           <source
-            srcSet={ require(`../../img/home/content-down/${nameImage}.webp`).default }
+            srcSet={ require(`../../img/home/content-down/${nameImage}.webp`) }
           />
           <img
-            src={ require(`../../img/home/content-down/${nameImage}.png`).default }
+            src={ require(`../../img/home/content-down/${nameImage}.png`) }
             className="mw-100 mh-100"
             style={ {objectFit: 'cover', borderRadius: '10px'} }
             alt={ nameImage }

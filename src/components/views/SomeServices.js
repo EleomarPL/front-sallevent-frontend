@@ -5,9 +5,9 @@ const SomeServices = () => {
         <div className="mb-3 pl-md-5 pr-md-5 col-lg-6 pl-lg-3 pr-lg-3">
           <picture>
             <source
-              srcSet={ require('../../img/services/boda.webp').default }
+              srcSet={ require('../../img/services/boda.webp') }
             />
-            <img src={ require('../../img/services/boda.png').default }
+            <img src={ require('../../img/services/boda.png') }
               alt="Boda" style={ {borderRadius: '30px'} }
               className="img-fluid"
             />
@@ -53,10 +53,10 @@ const SomeServices = () => {
         <div className="pl-md-5 pr-md-5 col-lg-6 pl-lg-3 pr-lg-3">
           <picture>
             <source
-              srcSet={ require('../../img/services/luz.webp').default }
+              srcSet={ require('../../img/services/luz.webp') }
             />
             <img
-              src={ require('../../img/services/luz.png').default }
+              src={ require('../../img/services/luz.png') }
               alt="Iluminación" style={ {borderRadius: '30px'} }
               className="img-fluid"
             />

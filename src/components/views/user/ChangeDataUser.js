@@ -103,10 +103,10 @@ const ChangeDataUser = () => {
           <div className="flex-shrink-1 bd-highlight m-auto">
             <picture>
               <source
-                srcSet={ require('../../../img/my/settings/settings.webp').default }
+                srcSet={ require('../../../img/my/settings/settings.webp') }
               />
               <img
-                src={ require('../../../img/my/settings/settings.png').default }
+                src={ require('../../../img/my/settings/settings.png') }
                 alt="settings"
               />
             </picture>

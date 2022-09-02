@@ -28,13 +28,13 @@ const CarouselHome = () => {
             >
               <picture>
                 <source
-                  srcSet={ require(`../../img/home/content-carousel/${object.nameImg}.webp`).default }
+                  srcSet={ require(`../../img/home/content-carousel/${object.nameImg}.webp`) }
                   className="img-responsive d-block w-100"
                   style={ { objectFit: 'cover' } }
                   height="500px"
                 />
                 <img
-                  src={ require(`../../img/home/content-carousel/${object.nameImg}.png`).default }
+                  src={ require(`../../img/home/content-carousel/${object.nameImg}.png`) }
                   className="img-responsive d-block w-100"
                   style={ { objectFit: 'cover' } }
                   alt={ object.title }
