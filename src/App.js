@@ -18,6 +18,7 @@ const Register = lazy(() => import('./pages/public/Register'));
 const Login = lazy(() => import('./pages/public/Login'));
 const IndexMy = lazy(() => import('./pages/my/IndexMy'));
 const IndexAdmin = lazy(() => import('./pages/admin/IndexAdmin'));
+const NotFoundPublic = lazy(() => import('./pages/NotFoundPublic'));
 
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -96,6 +97,19 @@ const App = () => {
                     </Helmet>
                     <Suspense fallback={ <SpinnerLoading /> }>
                       <Login />
+                    </Suspense>
+                  </>
+                }
+              />
+              <Route path="*"
+                element={
+                  <>
+                    <Helmet>
+                      <title>No Encontrado | SallEvent</title>
+                      <meta name="description" content="Página no encontrada en las rutas públicas." />
+                    </Helmet>
+                    <Suspense fallback={ <SpinnerLoading /> }>
+                      <NotFoundPublic />
                     </Suspense>
                   </>
                 }

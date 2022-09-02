@@ -11,6 +11,7 @@ const Reservations = lazy(() => import('./Reservations'));
 const Services = lazy(() => import('./Services'));
 const Room = lazy(() => import('./Room'));
 const Contact = lazy(() => import('./Contact'));
+const NotFoundAdmin = lazy(() => import('../NotFoundAdmin'));
 
 import { routesNav } from '../../data/admin/routes';
 
@@ -92,6 +93,19 @@ const IndexAdmin = () => {
               </Helmet>
               <Suspense fallback={ <SpinnerLoading /> }>
                 <Contact />
+              </Suspense>
+            </>
+          }
+        />
+        <Route path="*"
+          element={
+            <>
+              <Helmet>
+                <title>No Encontrado | admin</title>
+                <meta name="description" content="Página no encontrada en las rutas del administrador." />
+              </Helmet>
+              <Suspense fallback={ <SpinnerLoading /> }>
+                <NotFoundAdmin />
               </Suspense>
             </>
           }

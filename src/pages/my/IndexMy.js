@@ -16,6 +16,7 @@ const Calendar = lazy(() => import('./Calendar'));
 const Book = lazy(() => import('./Book'));
 const Reservation = lazy(() => import('./Reservation'));
 const UpdateBook = lazy(() => import('./UpdateBook'));
+const NotFoundMy = lazy(() => import('../NotFoundMy'));
 
 import { routesNav } from '../../data/my/routes';
 
@@ -60,6 +61,19 @@ const Index = () => {
                   </Helmet>
                   <Suspense fallback={ <SpinnerLoading /> }>
                     <Calendar />
+                  </Suspense>
+                </>
+              }
+            />
+            <Route path="*"
+              element={
+                <>
+                  <Helmet>
+                    <title>No Encontrado | my</title>
+                    <meta name="description" content="Página no encontrada en las rutas del usuario." />
+                  </Helmet>
+                  <Suspense fallback={ <SpinnerLoading /> }>
+                    <NotFoundMy />
                   </Suspense>
                 </>
               }
