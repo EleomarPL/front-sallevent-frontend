@@ -1,10 +1,9 @@
 import {useContext} from 'react';
-import { Navigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Navigate, Outlet } from 'react-router-dom';
 
 import ReservationUser from '../../contexts/ReservationUser';
 
-const ValidateWithoutUserReservation = ({children}) => {
+const ValidateWithoutUserReservation = () => {
   const { dataReservation } = useContext(ReservationUser);
   if (dataReservation.dateYYMMDD) {
     if (dataReservation.isBooked)
@@ -14,10 +13,7 @@ const ValidateWithoutUserReservation = ({children}) => {
     else if (!dataReservation.isBooked)
       return <Navigate to="/my/book" />;
   } else
-    return children;
-};
-ValidateWithoutUserReservation.propTypes = {
-  children: PropTypes.node.isRequired
+    return <Outlet />;
 };
 
 export default ValidateWithoutUserReservation;

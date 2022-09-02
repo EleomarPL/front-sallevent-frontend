@@ -24,85 +24,93 @@ const Index = () => {
     <ReservationProvider>
       <Routes>
         <Route element={ <GroupPageAnyUser routesNav={ routesNav } /> }>
-          <Route index
+          <Route element={ <ValidateWithoutUserReservation /> }>
+            <Route index
+              element={
+                <>
+                  <Helmet>
+                    <title>Configuración | my</title>
+                    <meta name="description" content="Leer o modificar los datos del usuario, cambiando datos o credenciales para mayor comodidad." />
+                  </Helmet>
+                  <Suspense fallback={ <SpinnerLoading /> }>
+                    <Settings />
+                  </Suspense>
+                </>
+              }
+            />
+            <Route path="my-reservations"
+              element={
+                <>
+                  <Helmet>
+                    <title>Mis reservaciones | my</title>
+                    <meta name="description" content="Leer, modificar y eliminar las reservaciones con las que cuente, para así tener un control de las mismas reservaciones agendadas por el usuario." />
+                  </Helmet>
+                  <Suspense fallback={ <SpinnerLoading /> }>
+                    <MyReservations />
+                  </Suspense>
+                </>
+              }
+            />
+            <Route path="calendar"
+              element={
+                <>
+                  <Helmet>
+                    <title>Calendario | my</title>
+                    <meta name="description" content="Calendario con las fechas de reservaciones agendadas, así como también seleccionar la fecha deseada y reservar el salón." />
+                  </Helmet>
+                  <Suspense fallback={ <SpinnerLoading /> }>
+                    <Calendar />
+                  </Suspense>
+                </>
+              }
+            />
+          </Route>
+        </Route>
+        <Route element={ <ValidateBookUser /> }>
+          <Route path="book"
             element={
-              <ValidateWithoutUserReservation>
+              <>
                 <Helmet>
-                  <title>Configuración | my</title>
-                  <meta name="description" content="Leer o modificar los datos del usuario, cambiando datos o credenciales para mayor comodidad." />
+                  <title>Reservar | my</title>
+                  <meta name="description" content="Agendar una reservación con el tipo de evento, horario preferido y servicios a la necesidad del tipo de evento y del usuario." />
                 </Helmet>
                 <Suspense fallback={ <SpinnerLoading /> }>
-                  <Settings />
+                  <Book />
                 </Suspense>
-              </ValidateWithoutUserReservation>
-            }
-          />
-          <Route path="my-reservations"
-            element={
-              <ValidateWithoutUserReservation>
-                <Helmet>
-                  <title>Mis reservaciones | my</title>
-                  <meta name="description" content="Leer, modificar y eliminar las reservaciones con las que cuente, para así tener un control de las mismas reservaciones agendadas por el usuario." />
-                </Helmet>
-                <Suspense fallback={ <SpinnerLoading /> }>
-                  <MyReservations />
-                </Suspense>
-              </ValidateWithoutUserReservation>
-            }
-          />
-          <Route path="calendar"
-            element={
-              <ValidateWithoutUserReservation>
-                <Helmet>
-                  <title>Calendario | my</title>
-                  <meta name="description" content="Calendario con las fechas de reservaciones agendadas, así como también seleccionar la fecha deseada y reservar el salón." />
-                </Helmet>
-                <Suspense fallback={ <SpinnerLoading /> }>
-                  <Calendar />
-                </Suspense>
-              </ValidateWithoutUserReservation>
+              </>
             }
           />
         </Route>
-        <Route path="book"
-          element={
-            <ValidateBookUser>
-              <Helmet>
-                <title>Reservar | my</title>
-                <meta name="description" content="Agendar una reservación con el tipo de evento, horario preferido y servicios a la necesidad del tipo de evento y del usuario." />
-              </Helmet>
-              <Suspense fallback={ <SpinnerLoading /> }>
-                <Book />
-              </Suspense>
-            </ValidateBookUser>
-          }
-        />
-        <Route path="reservation"
-          element={
-            <ValidateReservationUser>
-              <Helmet>
-                <title>Estado Reservación | my</title>
-                <meta name="description" content="Ver el estado de la reservación del usuario, conociendo el total, tipo de evento, cantidad de horas contratadas, datos del cliente y estado de la reservación." />
-              </Helmet>
-              <Suspense fallback={ <SpinnerLoading /> }>
-                <Reservation />
-              </Suspense>
-            </ValidateReservationUser>
-          }
-        />
-        <Route path="update-book"
-          element={
-            <ValidateUpdateBookUser>
-              <Helmet>
-                <title>Actualizar Reservación | my</title>
-                <meta name="description" content="Actualizar reservación, pudiendo cambiar el tipo de evento, evento preferido y servicios con las que ya se había intentado reservar." />
-              </Helmet>
-              <Suspense fallback={ <SpinnerLoading /> }>
-                <UpdateBook />
-              </Suspense>
-            </ValidateUpdateBookUser>
-          }
-        />
+        <Route element={ <ValidateReservationUser /> }>
+          <Route path="reservation"
+            element={
+              <>
+                <Helmet>
+                  <title>Estado Reservación | my</title>
+                  <meta name="description" content="Ver el estado de la reservación del usuario, conociendo el total, tipo de evento, cantidad de horas contratadas, datos del cliente y estado de la reservación." />
+                </Helmet>
+                <Suspense fallback={ <SpinnerLoading /> }>
+                  <Reservation />
+                </Suspense>
+              </>
+            }
+          />
+        </Route>
+        <Route element={ <ValidateUpdateBookUser /> }>
+          <Route path="update-book"
+            element={
+              <>
+                <Helmet>
+                  <title>Actualizar Reservación | my</title>
+                  <meta name="description" content="Actualizar reservación, pudiendo cambiar el tipo de evento, evento preferido y servicios con las que ya se había intentado reservar." />
+                </Helmet>
+                <Suspense fallback={ <SpinnerLoading /> }>
+                  <UpdateBook />
+                </Suspense>
+              </>
+            }
+          />
+        </Route>
       </Routes>
     </ReservationProvider>
   );

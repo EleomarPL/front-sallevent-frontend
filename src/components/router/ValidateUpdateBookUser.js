@@ -1,25 +1,20 @@
 import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Navigate, Outlet } from 'react-router-dom';
 
 import ReservationUser from '../../contexts/ReservationUser';
 
-const ValidateUpdateBookUser = ({children}) => {
+const ValidateUpdateBookUser = () => {
   const { dataReservation } = useContext(ReservationUser);
   if (!dataReservation.dateYYMMDD)
     return <Navigate to="/my/my-reservations" />;
   else {
     if (dataReservation.isUpdateBook)
-      return children;
+      return <Outlet />;
     else if (dataReservation.isBooked)
       return <Navigate to="/my/reservation" />;
     else if (!dataReservation.isBooked)
       return <Navigate to="/my/book" />;
   }
-};
-
-ValidateUpdateBookUser.propTypes = {
-  children: PropTypes.node.isRequired
 };
 
 export default ValidateUpdateBookUser;

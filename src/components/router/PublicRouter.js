@@ -1,10 +1,9 @@
 import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Navigate, Outlet } from 'react-router-dom';
 
 import Auth from '../../contexts/Auth';
 
-const PublicRoute = ({children}) => {
+const PublicRoute = () => {
   const { userData } = useContext(Auth);
   let isLogged = userData === null ? false : true;
 
@@ -14,12 +13,9 @@ const PublicRoute = ({children}) => {
     else if (userData.type === 1)
       return <Navigate to="/my" />;
   } else {
-    return children;
+    return <Outlet />;
   }
 
-};
-PublicRoute.propTypes = {
-  children: PropTypes.node.isRequired
 };
 
 export default PublicRoute;
