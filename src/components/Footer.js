@@ -24,7 +24,7 @@ const Footer = () => {
         <div>
           <picture>
             <source
-              srcSet={ require('../img/home/logo.webp').default }
+              srcSet={ require('../img/home/logo.webp') }
               className="fas fa-link"
               height="50px"
               style={ {paddingRight: '1rem'} }
@@ -33,7 +33,7 @@ const Footer = () => {
               className="fas fa-link"
               height="50px"
               style={ {paddingRight: '1rem'} }
-              src={ require('../img/home/logo.png').default }
+              src={ require('../img/home/logo.png') }
               alt="Logo "
             />
           </picture>
