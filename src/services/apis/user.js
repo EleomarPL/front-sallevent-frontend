@@ -1,8 +1,7 @@
 import axios from 'axios';
+import { BASE_API } from './BASE_API';
 
-// const baseAPI = 'http://localhost:4000/api/user';
-const baseAPI = 'https://sleepy-island-14614.herokuapp.com/api/user';
-
+const baseAPI = `${BASE_API}user`;
 
 export const createUser = async({ name, lastName, motherLastName, phone, email, userName, password }) => {
   

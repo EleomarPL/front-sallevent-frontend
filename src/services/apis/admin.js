@@ -1,7 +1,7 @@
 import axios from 'axios';
+import { BASE_API } from './BASE_API';
 
-// const baseAPI = 'http://localhost:4000/api/admin';
-const baseAPI = 'https://sleepy-island-14614.herokuapp.com/api/admin';
+const baseAPI = `${BASE_API}admin`;
 
 export const editDataAdmin = async({ name, lastName, motherLastName, phone, email, userName, token }) => {
   const config = {

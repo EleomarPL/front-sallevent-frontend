@@ -1,8 +1,8 @@
 
 import axios from 'axios';
+import { BASE_API } from './BASE_API';
 
-// const baseAPI = 'http://localhost:4000/api/reservation';
-const baseAPI = 'https://sleepy-island-14614.herokuapp.com/api/reservation';
+const baseAPI = `${BASE_API}reservation`;
 
 export const getDateReservationWithStatus = async() => {
   let response = await axios.get(`${baseAPI}/get-only-date-reservations`);

@@ -1,0 +1,1 @@
+export const BASE_API = 'https://front-sallevent-backend-production.up.railway.app/api/';

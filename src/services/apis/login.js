@@ -1,8 +1,7 @@
 import axios from 'axios';
+import { BASE_API } from './BASE_API';
 
-// const baseAPI = 'http://localhost:4000/api/login';
-const baseAPI = 'https://sleepy-island-14614.herokuapp.com/api/login';
-
+const baseAPI = `${BASE_API}login`;
 
 export const login = async({ userName, password }) => {
   let response = await axios.post(`${baseAPI}/`, { userName, password});

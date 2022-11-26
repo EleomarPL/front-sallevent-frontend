@@ -1,7 +1,7 @@
 import axios from 'axios';
+import { BASE_API } from './BASE_API';
 
-// const baseAPI = 'http://localhost:4000/api/contact';
-const baseAPI = 'https://sleepy-island-14614.herokuapp.com/api/contact';
+const baseAPI = `${BASE_API}contact`;
 
 
 export const sendMessageContact = async({ fullName, email, phone, text }) => {
